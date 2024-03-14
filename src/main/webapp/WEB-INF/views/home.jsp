@@ -96,7 +96,7 @@
 </style>
 <body data-spy="scroll" data-target=".navbar" data-offset="70">
     
-    <section class="home svg_shape bg_image" id="home" style="background-image: url(/image/modern-1.jpg)">
+    <section class="home svg_shape bg_image" id="home" style="background-image: url(/image/배경.png)">
         
         <div class="full_height">
             

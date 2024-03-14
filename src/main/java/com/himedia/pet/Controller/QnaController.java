@@ -21,8 +21,6 @@ public class QnaController {
 	
 	@Autowired dataDAO ddao;
 	
-	
-	
 	@PostMapping("/doQna") // Qna로딩
 	@ResponseBody
 	public String doQna(HttpServletRequest req) {
