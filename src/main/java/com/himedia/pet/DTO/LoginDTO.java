@@ -1,4 +1,4 @@
-package com.himedia.pet;
+package com.himedia.pet.DTO;
 import lombok.Data;
 
 @Data

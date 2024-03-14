@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.himedia.pet.noticeDAO">
+<mapper namespace="com.himedia.pet.DAO.noticeDAO">
 	<!-- 공지사항 리스트 -->
-	<select id="notice" resultType="com.himedia.pet.noticeDTO">
+	<select id="notice" resultType="com.himedia.pet.DTO.noticeDTO">
 		SELECT id, title, writer, detail, image, created_at, views from notice order by id desc LIMIT #{param1},10
 	</select>
 	
@@ -15,13 +15,13 @@
 	<update id="modify">
 		UPDATE notice SET title=#{param2}, writer=#{param3}, image=#{param4}, detail=#{param5} where id =#{param1}
 	</update>
-	<select id="noticeList" resultType="com.himedia.pet.noticeDTO">
+	<select id="noticeList" resultType="com.himedia.pet.DTO.noticeDTO">
 		SELECT id, title, writer, detail, image from notice where id=#{param1}
 	</select>
 	
 	
 	<!-- 공지사항 상세보기 -->
-	<select id="textView" resultType="com.himedia.pet.noticeDTO">
+	<select id="textView" resultType="com.himedia.pet.DTO.noticeDTO">
    		SELECT id,title, writer, detail, image, views, created_at from notice where id=#{param1}
 	</select>
 	

@@ -1,8 +1,12 @@
-package com.himedia.pet;
+package com.himedia.pet.DAO;
 
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import com.himedia.pet.DTO.QnaDTO;
+import com.himedia.pet.DTO.boardDTO;
+import com.himedia.pet.DTO.dataDTO;
 
 @Mapper
 public interface dataDAO {

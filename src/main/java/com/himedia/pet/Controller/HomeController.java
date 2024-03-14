@@ -1,4 +1,4 @@
-package com.himedia.pet;
+package com.himedia.pet.Controller;
 
 import java.util.ArrayList;
 
@@ -10,6 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.himedia.pet.DAO.LoginDAO;
+import com.himedia.pet.DAO.dataDAO;
+import com.himedia.pet.DTO.LoginDTO;
+import com.himedia.pet.DTO.QnaDTO;
+import com.himedia.pet.DTO.boardDTO;
+import com.himedia.pet.DTO.dataDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 

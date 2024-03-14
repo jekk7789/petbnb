@@ -2,8 +2,8 @@
 <!DOCTYPE mapper 
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.himedia.pet.dataDAO">
-<select id="view" resultType="com.himedia.pet.dataDTO">
+<mapper namespace="com.himedia.pet.DAO.dataDAO">
+<select id="view" resultType="com.himedia.pet.DTO.dataDTO">
 	SELECT id, name, loadAddress, number, homepage, holiday, operatingTime, parking, petSize, petben, 
 	areaIn, areaOut, wido, gyeongdo  
 	from petdata where id=#{param1}
@@ -11,7 +11,7 @@
 <insert id="write">
 	INSERT into board set pNAme=#{param1},writer=#{param2},content=#{param3},created=sysdate()
 </insert>
-<select id="reviewLoad" resultType="com.himedia.pet.boardDTO">
+<select id="reviewLoad" resultType="com.himedia.pet.DTO.boardDTO">
 	SELECT id, writer, content, created from board where pName=#{param1} limit #{param2},10
 </select> 
 <delete id="rDelete">
@@ -20,7 +20,7 @@
 <update id="rUpdate">
 	UPDATE board set content=#{param1},created=sysdate() where id=#{param2}
 </update>
-<select id="reLoad" resultType="com.himedia.pet.boardDTO">
+<select id="reLoad" resultType="com.himedia.pet.DTO.boardDTO">
 	SELECT writer, content from board where id=#{param1}
 </select>
 <select resultType="_int" id="reviewTotal">
@@ -43,7 +43,7 @@
 <insert id="QnaWrite">
 	INSERT into Questions set title=#{param1},writer=#{param2},content=#{param3},created_at=sysdate()
 </insert>
-<select id="QnaLoad" resultType="com.himedia.pet.QnaDTO">
+<select id="QnaLoad" resultType="com.himedia.pet.DTO.QnaDTO">
 	SELECT id, title, writer, content, created_at from Questions limit #{param1},10
 </select> 
 <select resultType="_int" id="QnaTotal">

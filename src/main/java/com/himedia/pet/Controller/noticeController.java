@@ -1,4 +1,4 @@
-package com.himedia.pet;
+package com.himedia.pet.Controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import com.himedia.pet.DAO.noticeDAO;
+import com.himedia.pet.DTO.noticeDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

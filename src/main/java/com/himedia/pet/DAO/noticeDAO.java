@@ -1,8 +1,10 @@
-package com.himedia.pet;
+package com.himedia.pet.DAO;
 
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import com.himedia.pet.DTO.noticeDTO;
 
 
 @Mapper
