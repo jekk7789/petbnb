@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상점 찾기</title>
 </head>
 <style>
+
 a{
 	text-decoration:none;
 }
@@ -92,6 +93,7 @@ td.qbutton{
 
 </style>
 <body>
+
 <input type=hidden id=hpage value=${page }>
 <input type=hidden id=hlastpage value=${lastpage }>
 <input type=hidden id=hname value=${text }>
@@ -100,8 +102,18 @@ td.qbutton{
 
    <h2>${text }입니다</h2>
    <h3>현재페이지:${page }</h3>
-
-
+   <div>
+		<p>이색기들 너네어디감?</p>
+		<form method="get" action="search">
+			<input name="search"><input type="submit" value="&#128269;">
+		</form>
+		<a class="bn5" href="store?text=반려동물용품">애견용품점</a>
+		<a class="bn5" href="store?text=동물병원">동물병원</a>
+		<a class="bn5" href="store?text=동물약국">동물약국</a>
+		<a class="bn5" href="store?text=식당,카페,문예회관">문화시설</a>
+		<a class="bn5" href="store?text=펜션">숙박시설</a>
+	</div>
+   <hr>
    
 <div class=detail>
 	<table>

@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,84 +15,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fittext/1.2.0/jquery.fittext.min.js"></script>
 
 </head>
-<style>
-.bn5 {
-  padding: 0.6em 2em;
-  border: none;
-  outline: none;
-  color: rgb(255, 255, 255);
-  background-color:transparent;
-  cursor: pointer;
-  position: relative;
-  z-index: 0;
-  border-radius: 10px;
-}
-
-.bn5:before {
-  content: "";
-  background: linear-gradient(
-    45deg,
-    #ff0000,
-    #ff7300,
-    #fffb00,
-    #48ff00,
-    #00ffd5,
-    #002bff,
-    #7a00ff,
-    #ff00c8,
-    #ff0000
-  );
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  background-size: 400%;
-  z-index: -1;
-  filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowingbn5 20s linear infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  border-radius: 10px;
-}
-
-@keyframes glowingbn5 {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
-}
-
-.bn5:active {
-  color: #000;
-}
-
-.bn5:active:after {
-  background: transparent;
-}
-
-.bn5:hover:before {
-  opacity: 1;
-}
-
-.bn5:after {
-  z-index: -1;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color:transparent;
-  left: 0;
-  top: 0;
-  border-radius: 10px;
-}
-
-</style>
 <body data-spy="scroll" data-target=".navbar" data-offset="70">
     
     <section class="home svg_shape bg_image" id="home" style="background-image: url(/image/배경.png)">
@@ -112,7 +33,7 @@
                         </button>
 
                         <!-- LOGO -->
-                        <a class="navbar-brand" href="#">petB&B</a>
+                        <a class="navbar-brand" href="/popupContent" style="color: brown;">petB&B</a>
 
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -120,40 +41,40 @@
                             <li>
                                 <c:choose>
 		                            <c:when test="${not empty email}">
-		                                <a href="/logout">logout</a>
+		                                <a href="/logout" style="color: brown;">logout</a>
 		                            </c:when>
 		                            <c:otherwise>
-		                                <a href="/login" class="btn-11">login</a>
+		                                <a href="/login" class="btn-11" style="color: brown;">login</a>
 		                            </c:otherwise>
 		                        </c:choose>
                             </li>
-                            <li>
-                                <a href="/notice" >notice</a>
+                            <li >
+                                <a href="/notice" style="color: brown;">notice</a>
                             </li>
                             <li>
-                                <a href="#services" >Services</a>
+                                <a href="#services" style="color: brown;">Services</a>
                             </li>
                             <li>
-                                <a href="#portfolio" >Portfolio</a>
+                                <a href="#portfolio" style="color: brown;">Portfolio</a>
                             </li>
                             <li>
-                                <a href="#contact" >Contact</a>
+                                <a href="#contact" style="color: brown;">Contact</a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="navigation" style="margin-top: 100px;">
-                    <p>이색기들 너네어디감?</p>
-                    <form method=get action=search>
-      						<input name=search><input type=submit value=&#128269;>
-      				</form>
-                    <a href="#">도그 비 앤 비</a>
-                        <a class="bn5" href="store?text=반려동물용품">애견용품점</a>
-                        <a class="bn5" href="store?text=동물병원">동물병원</a>
-                        <a class="bn5" href="store?text=동물약국">동물약국</a>
-                        <a class="bn5" href="store?text=식당,카페,문예회관">문화시설</a>
-                        <a class="bn5" href="store?text=펜션">숙박시설</a>
-                    </div>
+				    <p>이색기들 너네어디감?</p>
+				    <form method="get" action="search">
+				        <input name="search"><input type="submit" value="&#128269;">
+				    </form>
+				        
+				        <a class="bn5" href="store?text=반려동물용품">애견용품점</a>
+				        <a class="bn5" href="store?text=동물병원">동물병원</a>
+				        <a class="bn5" href="store?text=동물약국">동물약국</a>
+				        <a class="bn5" href="store?text=식당,카페,문예회관">문화시설</a>
+				        <a class="bn5" href="store?text=펜션">숙박시설</a>
+				</div>
             </nav>
             
             <div class="display-table">

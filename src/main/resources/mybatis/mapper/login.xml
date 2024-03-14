@@ -66,4 +66,5 @@
     <select id="adLogin" resultType="_int">
         SELECT count(*) FROM login WHERE email=#{parma1} and admin="1";
     </select>
+
 </mapper>
