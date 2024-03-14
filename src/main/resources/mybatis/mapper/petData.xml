@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.himedia.pet.dataDAO">
+<select id="view" resultType="com.himedia.pet.dataDTO">
+	SELECT id, name, loadAddress, number, homepage, holiday, operatingTime, parking, petSize, petben, 
+	areaIn, areaOut, wido, gyeongdo  
+	from petdata where id=#{param1}
+</select> 
+<insert id="write">
+	INSERT into board set pNAme=#{param1},writer=#{param2},content=#{param3},created=sysdate()
+</insert>
+<select id="reviewLoad" resultType="com.himedia.pet.boardDTO">
+	SELECT id, writer, content, created from board where pName=#{param1} limit #{param2},10
+</select> 
+<delete id="rDelete">
+	delete from board where id=#{param1}
+</delete>
+<update id="rUpdate">
+	UPDATE board set content=#{param1},created=sysdate() where id=#{param2}
+</update>
+<select id="reLoad" resultType="com.himedia.pet.boardDTO">
+	SELECT writer, content from board where id=#{param1}
+</select>
+<select resultType="_int" id="reviewTotal">
+	select count(*) from board where pName like #{param1}
+</select>
+<!-- 찜 -->
+<insert id="jjim">
+	insert into jjim set userid=#{param1}, dataid=#{param2}
+</insert>
+<select resultType="_int" id="chekJjim">
+	select count(*) from jjim where userid=#{param1} and dataid=#{param2}
+</select>
+<select resultType="_int" id="getJjimid">
+	select id from jjim where userid=#{param1} and dataid=#{param2}
+</select>
+<delete id="delJjim">
+	delete from jjim where id=#{param1}
+</delete>
+<!-- Qna-->
+<insert id="QnaWrite">
+	INSERT into Questions set title=#{param1},writer=#{param2},content=#{param3},created_at=sysdate()
+</insert>
+<select id="QnaLoad" resultType="com.himedia.pet.QnaDTO">
+	SELECT id, title, writer, content, created_at from Questions limit #{param1},10
+</select> 
+<select resultType="_int" id="QnaTotal">
+	select count(*) from Questions
+</select>
+<update id="Qmodify">
+	UPDATE Questions set title=#{param1}, content=#{param2} where id=#{param3}
+</update>
+<delete id="QDelete">
+	delete from Questions where id=#{param1}
+</delete>
+
+</mapper>
