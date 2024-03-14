@@ -21,29 +21,52 @@ public class LoginController {
     @PostMapping("/googleLogin")
     @ResponseBody
     public String googleLogin(@RequestParam("googleId") String googleId, @RequestParam("email") String email, HttpServletRequest req) {
-    	HttpSession sess = req.getSession();
-    	if (!ldao.gemailExists(email,googleId)) {
-            sess.setAttribute("email", email);
-            sess.setAttribute("googleId", googleId);
-            ldao.saveGoogle(email, googleId);
+       HttpSession sess = req.getSession();
+       if(ldao.findEmail(email)) {
+           if (!ldao.nemailExists(email,googleId)) {
+              int member_id=ldao.getuserid(email);
+               sess.setAttribute("email", email);
+               sess.setAttribute("naverId", googleId);
+               ldao.updateGoogle(email, googleId,member_id);
+           } else {
+              sess.setAttribute("email", email);
+           }
         } else {
-        	sess.setAttribute("email", email);
+           if (!ldao.nemailExists(email,googleId)) {
+               sess.setAttribute("email", email);
+               sess.setAttribute("naverId", googleId);
+               ldao.saveNaver(email, googleId);
+           } else {
+              sess.setAttribute("email", email);
+           }
         }
-    	return "1";
+       return "1";
     }
     
     @PostMapping("/naverLogin")
     @ResponseBody
     public String naaverLogin(@RequestParam("naverId") String naverId, @RequestParam("email") String email, HttpServletRequest req) {
         HttpSession sess = req.getSession();
-        if (!ldao.nemailExists(email,naverId)) {
-            sess.setAttribute("email", email);
-            sess.setAttribute("naverId", naverId);
-            ldao.saveNaver(email, naverId);
+        if(ldao.findEmail(email)) {
+           int member_id=ldao.getuserid(email);
+           if (!ldao.nemailExists(email,naverId)) {
+               sess.setAttribute("email", email);
+               sess.setAttribute("naverId", naverId);
+               ldao.updateNaver(email, naverId,member_id);
+           } else {
+              sess.setAttribute("email", email);
+           }
         } else {
-        	sess.setAttribute("email", email);
+           if (!ldao.nemailExists(email,naverId)) {
+               sess.setAttribute("email", email);
+               sess.setAttribute("naverId", naverId);
+               ldao.saveNaver(email, naverId);
+           } else {
+              sess.setAttribute("email", email);
+           }
         }
         return "1"; 
+        
     }
     
     
@@ -51,21 +74,32 @@ public class LoginController {
     @ResponseBody
     public String kakaoLogin(@RequestParam("kakaoId") String kakaoId, @RequestParam("email") String email, HttpServletRequest req) {
         HttpSession sess = req.getSession();
-        if (!ldao.kemailExists(email, kakaoId)) {
-            sess.setAttribute("email", email);
-            sess.setAttribute("kakaoId", kakaoId);
-            ldao.saveKakao(email, kakaoId);
+        if(ldao.findEmail(email)) {
+           System.out.println("잉");
+           if (!ldao.nemailExists(email,kakaoId)) {
+              int member_id=ldao.getuserid(email);
+               sess.setAttribute("email", email);
+               sess.setAttribute("naverId", kakaoId);
+               ldao.updateKakao(email, kakaoId,member_id);
+           } else {
+              sess.setAttribute("email", email);
+           }
         } else {
-        	sess.setAttribute("email", email);
+           if (!ldao.nemailExists(email,kakaoId)) {
+               sess.setAttribute("email", email);
+               sess.setAttribute("naverId", kakaoId);
+               ldao.saveNaver(email, kakaoId);
+           } else {
+              sess.setAttribute("email", email);
+           }
         }
-        
         return "1"; 
     }
 
     
     @GetMapping("/login")
     public String dologin() {
-    	return "login";
+       return "login";
     }
     
     
@@ -77,7 +111,7 @@ public class LoginController {
     
     @GetMapping("/kakaoLogout")
     public String kakaologout(HttpSession session) {
-    	session.invalidate(); 
+       session.invalidate(); 
         return "redirect:/"; 
     }
     
@@ -127,7 +161,7 @@ public class LoginController {
         if (ldao.kemailExists(email, kakaoId)) {
             return "redirect:/login";
         }else if(ldao.nemailExists(email, naverId)){
-        	return "redirect:/login";
+           return "redirect:/login";
         } else {
             int n = ldao.savelog(email, password);
             if (n > 0) {
@@ -139,7 +173,7 @@ public class LoginController {
         }
         
     }
-	 
-	
+    
+   
     
 }

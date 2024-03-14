@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 </head>
 <style>
 body {
@@ -41,17 +42,19 @@ input[type='radio']:checked + section {
   transition: top 500ms;
   transform-style: preserve-3d;
 }
+
+
 .container section.home {
   background: #2196f3;
 }
 .container section.about {
-  background: #ffc107;
+  background: #d5664c;
 }
 .container section.work {
   background: #4caf50;
 }
 .container section.contact {
-  background: #FF6CEB;
+  background: #d3a23f;
 }
 /* .container h1,h2,h3,h4 { */
 /*   margin: 30; */
@@ -125,6 +128,11 @@ transform: translate(83ch,30mm);
 width:600px;
 height:auto;
 transform: translate(75ch,30mm);
+}
+.image05{
+width:400px;
+height:auto;
+transform: translate(87ch,-35mm);
 }
 
 .container section label {
@@ -274,20 +282,17 @@ transform: translate(75ch,30mm);
 }
 .container01 {
   display: flex;
-  
   align-items: center;
   justify-content: center;
-  min-height: 400px;
+  min-height: 500px;
 }
-
-
 /* :::::::::::::: Required CSS */
 /* Locked */
 .lock {
-  width: 24px;
-  height: 21px;
-  border: 3px solid var(--locked-color);
-  border-radius: 5px;
+  width: 200px;
+  height: 200px;
+  border: 5px solid var(--locked-color);
+  border-radius: 15px;
   position: relative;
   cursor: pointer;
   -webkit-transition: all 0.1s ease-in-out;
@@ -297,7 +302,7 @@ transform: translate(75ch,30mm);
   content: "";
   display: block;
   background: var(--locked-color);
-  width: 3px;
+  width: 30px;
   height: 7px;
   position: absolute;
   top: 50%;
@@ -310,7 +315,7 @@ transform: translate(75ch,30mm);
   content: "";
   display: block;
   width: 10px;
-  height: 10px;
+  height: 20px;
   bottom: 100%;
   position: absolute;
   left: 50%;
@@ -348,12 +353,17 @@ transform: translate(75ch,30mm);
   transform: rotate(3deg);
 }
 .unlocked:hover:before {
-  height: 10px;
+  height: 40px;
   left: 40%;
   bottom: 124%;
   transform: rotate(-30deg);
 }
 
+.lock01{
+	width:200px;
+	background-color:#684d2d;
+	color: rgba(255,255,255,0.85);
+}
 </style>
 <body>
 <input type=hidden id=hemailId value=${email }>
@@ -399,8 +409,10 @@ transform: translate(75ch,30mm);
 	    <section class="about">
 	      <h1 >추천장소</h1>
 	      <label for="about"></label>
+	      <br><br>
 	    	<div class=my02>
 	    		<table id=place01>
+	    		
 	    			<tr>
 	    				<td>
 	    					<a href="/">핫플레이스 바로가기</a>
@@ -426,6 +438,7 @@ transform: translate(75ch,30mm);
 	    <section class="work">
 	      <h1>게시판</h1>
 	      <label for="work"></label>
+	      <br><br>
 	      <div class=my03>
 	      	<table>
 	      		<tr>
@@ -446,6 +459,7 @@ transform: translate(75ch,30mm);
 	    </section>
 	    <input type="radio" name="tab" id="contact"/>
 	    <section class="contact">
+	    <br><br>
 	      <h1>개인정보</h1>
 	      <label for="contact"></label>
 	      <div class=my04>
@@ -461,6 +475,12 @@ transform: translate(75ch,30mm);
 	      <div class="container01">
 			  <span class="lock"></span>
 		  </div>
+		  
+			<div>
+				<img class="image05" src="image/mypage05.jpg">
+			</div>		  
+		 
+
 	    </section>
 	
 	    
@@ -472,18 +492,32 @@ transform: translate(75ch,30mm);
 	    </div>
 	  </div>
 </form>
+
 </body>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
 //개인정보 수정하기 리스트
 $(document)
-
 .ready(function(){
 	updateMy();
+	$('#tbl04').hide();
+	lock();
 	
+})
+.on("click","#btnGo",function(){
+	lock();
 })
 
 
+// .on('click','#btnGo',function(){
+// 	console.log('되냐');
+// 	setTimeout(function(){
+// 		$('#tbl04').hide();
+// 		$(".lock").show();
+// 	},500);
+// $(".lock").toggleClass("locked");
+	
+// })
 
 
 
@@ -516,11 +550,41 @@ function updateMy(){
 			$('#tbl04').append(str)
 		}
 	})
-	
-}
-$( ".lock" ).click(function() {
-	  $(this).toggleClass('unlocked');
+};
+
+
+function lock(){
+	let flag="on";
+	$( ".lock" ).click(function() {
+		if(flag=='on'){
+		  $(this).toggleClass('unlocked');
+			  setTimeout(function() {
+		       $('#tbl04').show();
+		   		 }, 500); // 2000 밀리초 (2초) 후에 새 창을 엽니다.
+		   	flag='off'	 
+		} else if(flag=='off'){
+			$(this).toggleClass('unlocked');
+	    	console.log('되냐');
+	    	setTimeout(function(){
+	    		$('#tbl04').hide();
+	    	},500);
+			flag='on';
+			
+		}
 	});
+	$(".lock").show();
+}
+// $(".lock01").click(function(){
+	  
+// 	  setTimeout(function() {
+// 	    $('#tbl04').hide();
+// 	     $(".lock").show();
+// 	  }, 500); // 2000 밀리초 (2초) 후에 새 창을 엽니다.
+	
+// });
+
+
+
 </script>
 
 </html>

@@ -13,9 +13,14 @@ public interface LoginDAO {
     int saveKakao(String email, String KakaoId);
     int saveNaver(String email, String naverId);
     int saveGoogle(String email, String googleId);
+    
+    int updateKakao(String email, String KakaoId,int member_id);
+    int updateNaver(String email, String naverId,int member_id);
+    int updateGoogle(String email, String googleId,int member_id);
 
     int savelog(String email, String password);
     
+    boolean findEmail(String email);
     boolean nemailExists(String email, String naverId);
     boolean kemailExists(String email, String kakaoId);
     boolean gemailExists(String email, String googleId);
