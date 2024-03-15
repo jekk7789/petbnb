@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.himedia.pet.DAO.QnaDAO;
 import com.himedia.pet.DAO.dataDAO;
 import com.himedia.pet.DTO.AnswersDTO;
 import com.himedia.pet.DTO.QnaDTO;
@@ -21,6 +22,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class QnaController {
    
    @Autowired dataDAO ddao;
+   @Autowired QnaDAO qdao;
    
    @PostMapping("/doQna") // Qna로딩
    @ResponseBody
@@ -33,7 +35,7 @@ public class QnaController {
       int page=Integer.parseInt(pageno);
       int start=(page-1)*10;
       
-        ArrayList<QnaDTO> data = ddao.QnaLoad(start);
+        ArrayList<QnaDTO> data = qdao.QnaLoad(start);
         JSONArray ja = new JSONArray();
         
         for (int i = 0; i < data.size(); i++) {
@@ -51,7 +53,7 @@ public class QnaController {
    
    @GetMapping("/Qna")
    public String goQna(HttpServletRequest req,Model model) {
-      int total=ddao.QnaTotal();
+      int total=qdao.QnaTotal();
       String pageno ="1";
       if(req.getParameter("page")!=null && !req.getParameter("page").equals("")) {
          pageno=req.getParameter("page");
@@ -74,7 +76,7 @@ public class QnaController {
       String content = req.getParameter("content");
       
    
-      int n = ddao.QnaWrite(title, writer, content);
+      int n = qdao.QnaWrite(title, writer, content);
 //         n = ddao.rUpdate(content,Integer.parseInt(idDisplay));
       return ""+n;
    }
@@ -82,7 +84,7 @@ public class QnaController {
    @GetMapping("/Qnapage") // 페이징
    @ResponseBody
    public String Qnapage(HttpServletRequest req) {
-      int total=ddao.QnaTotal();
+      int total=qdao.QnaTotal();
       String pageno ="1";
       if(req.getParameter("page")!=null && !req.getParameter("page").equals("")) {
          pageno=req.getParameter("page");
@@ -113,7 +115,7 @@ public class QnaController {
        String content = req.getParameter("content");
        int uniq = Integer.parseInt(req.getParameter("uniq"));
 
-           int n = ddao.Qmodify(title, content, uniq);
+           int n = qdao.Qmodify(title, content, uniq);
       
        return ""+n;
    }
@@ -122,14 +124,14 @@ public class QnaController {
    @ResponseBody
    public String QnaDelete(HttpServletRequest req) {
        int uniq = Integer.parseInt(req.getParameter("uniq"));
-        int n = ddao.QDelete(uniq);
+        int n = qdao.QDelete(uniq);
        
        return ""+n;
    }
    @PostMapping("/commentLoad") // 답변 로딩
    @ResponseBody
    public String commentLoad (HttpServletRequest req) {
-      ArrayList<AnswersDTO> answer = ddao.QnAanswer();
+      ArrayList<AnswersDTO> answer = qdao.QnAanswer();
       
       JSONArray ja=new JSONArray();
       for(int i=0; i<answer.size(); i++) {
@@ -153,10 +155,10 @@ public class QnaController {
        int n ;
        
        if(comment_id == "" || comment_id.equals("")) {
-         n = ddao.comment(Qnaid, awriter, comment);
+         n = qdao.comment(Qnaid, awriter, comment);
          return ""+n;
       } else {
-         ddao.commentModify(Integer.parseInt(comment_id), comment);
+         qdao.commentModify(Integer.parseInt(comment_id), comment);
          return "2";
       }
    }
@@ -166,7 +168,7 @@ public class QnaController {
           String comment_id = req.getParameter("comment_id");
 
           if (comment_id != null && !comment_id.isEmpty()) {
-              int n = ddao.commentDelete(Integer.parseInt(comment_id));
+              int n = qdao.commentDelete(Integer.parseInt(comment_id));
               return ""+n;
           } else {
               return "0"; 

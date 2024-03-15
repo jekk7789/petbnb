@@ -1,23 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>도그비앤비</title>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900%7CMontserrat:300,400,500,600,700,800,900">
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/responsive.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900%7CMontserrat:300,400,500,600,700,800,900"> -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fittext/1.2.0/jquery.fittext.min.js"></script>
-
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="70">
     
-    <section class="home svg_shape bg_image" id="home" style="background-image: url(/image/배경.png)">
+    <section class="home svg_shape bg_image" id="home" style="background-image: url(image/배경.png)">
         
         <div class="full_height">
             
@@ -33,47 +35,108 @@
                         </button>
 
                         <!-- LOGO -->
-                        <a class="navbar-brand" href="/popupContent" style="color: brown;">petB&B</a>
-
+                        <a class="navbar-brand" href="/popupContent" style="color: #B29079;">petB&B</a>
+                        
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <c:choose>
 		                            <c:when test="${not empty email}">
-		                                <a href="/logout" style="color: brown;">logout</a>
+		                                <a href="/logout" style="color: #B29079;">logout</a>
 		                            </c:when>
 		                            <c:otherwise>
-		                                <a href="/login" class="btn-11" style="color: brown;">login</a>
+		                                <a href="/login" class="btn-11" style="color: #B29079;">login</a>
 		                            </c:otherwise>
 		                        </c:choose>
                             </li>
                             <li >
-                                <a href="/notice" style="color: brown;">notice</a>
+                                <a href="/notice" style="color: #B29079;">notice</a>
                             </li>
                             <li>
-                                <a href="#services" style="color: brown;">Services</a>
+                                <a href="/Qna" style="color: #B29079;">Q&A</a>
                             </li>
                             <li>
-                                <a href="#portfolio" style="color: brown;">Portfolio</a>
+                                <a href="/mypage" style="color: #B29079;">mypage</a>
                             </li>
-                            <li>
-                                <a href="#contact" style="color: brown;">Contact</a>
+                            <li style="margin-bottom: 10px;"> 
+                                <form method="get" action="search">
+                                    <div class="search">
+                                        <input type="text" name="search" />
+                                        <div class="material-icons"><i class="fas fa-search"></i></div>
+                                    </div>
+                                </form>
                             </li>
                         </ul>
                     </div>
                 </div>
+                
                 <div class="navigation" style="margin-top: 100px;">
-				    <p>이색기들 너네어디감?</p>
-				    <form method="get" action="search">
-				        <input name="search"><input type="submit" value="&#128269;">
-				    </form>
-				        
-				        <a class="bn5" href="store?text=반려동물용품">애견용품점</a>
-				        <a class="bn5" href="store?text=동물병원">동물병원</a>
-				        <a class="bn5" href="store?text=동물약국">동물약국</a>
-				        <a class="bn5" href="store?text=식당,카페,문예회관">문화시설</a>
-				        <a class="bn5" href="store?text=펜션">숙박시설</a>
+                	
+                    <a class="frame-btn" href="store?text=반려동물용품">
+						<span class="frame-btn__outline frame-btn__outline--tall">
+							<span class="frame-btn__line frame-btn__line--tall"></span>
+							<span class="frame-btn__line frame-btn__line--flat"></span>
+						</span>
+						<span class="frame-btn__outline frame-btn__outline--flat">
+							<span class="frame-btn__line frame-btn__line--tall"></span>
+							<span class="frame-btn__line frame-btn__line--flat"></span>
+						</span>
+						<span class="frame-btn__solid"></span>
+						<span class="frame-btn__text">애견용품점</span>
+					</a>  
+
+					<a class="frame-btn" href="store?text=동물병원">
+						<span class="frame-btn__outline frame-btn__outline--tall">
+							<span class="frame-btn__line frame-btn__line--tall"></span>
+							<span class="frame-btn__line frame-btn__line--flat"></span>
+						</span>
+						<span class="frame-btn__outline frame-btn__outline--flat">
+							<span class="frame-btn__line frame-btn__line--tall"></span>
+							<span class="frame-btn__line frame-btn__line--flat"></span>
+						</span>
+						<span class="frame-btn__solid"></span>
+						<span class="frame-btn__text">동물병원</span>
+					</a>  
+
+					<a class="frame-btn" href="store?text=동물약국">
+						<span class="frame-btn__outline frame-btn__outline--tall">
+							<span class="frame-btn__line frame-btn__line--tall"></span>
+							<span class="frame-btn__line frame-btn__line--flat"></span>
+						</span>
+						<span class="frame-btn__outline frame-btn__outline--flat">
+							<span class="frame-btn__line frame-btn__line--tall"></span>
+							<span class="frame-btn__line frame-btn__line--flat"></span>
+						</span>
+						<span class="frame-btn__solid"></span>
+						<span class="frame-btn__text">동물약국</span>
+					</a>  
+
+					<a class="frame-btn" href="store?text=식당,카페,문예회관">
+						<span class="frame-btn__outline frame-btn__outline--tall">
+							<span class="frame-btn__line frame-btn__line--tall"></span>
+							<span class="frame-btn__line frame-btn__line--flat"></span>
+						</span>
+						<span class="frame-btn__outline frame-btn__outline--flat">
+							<span class="frame-btn__line frame-btn__line--tall"></span>
+							<span class="frame-btn__line frame-btn__line--flat"></span>
+						</span>
+						<span class="frame-btn__solid"></span>
+						<span class="frame-btn__text">문화시설</span>
+					</a>  
+					
+					<a class="frame-btn" href="store?text=펜션">
+						<span class="frame-btn__outline frame-btn__outline--tall">
+							<span class="frame-btn__line frame-btn__line--tall"></span>
+							<span class="frame-btn__line frame-btn__line--flat"></span>
+						</span>
+						<span class="frame-btn__outline frame-btn__outline--flat">
+							<span class="frame-btn__line frame-btn__line--tall"></span>
+							<span class="frame-btn__line frame-btn__line--flat"></span>
+						</span>
+						<span class="frame-btn__solid"></span>
+						<span class="frame-btn__text">숙박시설</span>
+					</a>  
 				</div>
             </nav>
             
@@ -112,11 +175,26 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
     
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/animateHeader.js"></script>
-    <script src="/js/custom.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/animateHeader.js"></script>
+    <script src="js/custom.js"></script>
 <script>
+const searchEl = document.querySelector('.search')
+const searchInputEl = searchEl.querySelector('input')
 
+searchEl.addEventListener('click',function(){
+  searchInputEl.focus();
+})
+
+searchInputEl.addEventListener('focus', function(){
+  searchEl.classList.add('focused')
+  searchInputEl.setAttribute('placeholder','통합검색')
+})
+
+searchInputEl.addEventListener('blur', function(){
+  searchEl.classList.remove('focused')
+  searchInputEl.setAttribute('placeholder','')
+})
 Kakao.init('d129ecc6b869c11eb7e257e7089bcf6b');
 
 //카카오로그아웃  

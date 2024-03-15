@@ -50,10 +50,10 @@
 	            </div>
 	            <div class="bt_wrap">
 	                <a href="/notice" class="on">목록</a>
-	                <a href="/noticeUpdate?id=${notice.id}">수정</a>
 	                <% 
 					    if(session.getAttribute("admin") != null) { 
 					%>
+						<a href="/noticeUpdate?id=${notice.id}">수정</a>
 						<a href="#" class="Del" data-id="${notice.id}">삭제</a>
 					<% } %>
 	                

@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>상점 찾기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 </head>
 <style>
 
@@ -16,7 +19,9 @@ table{
     border-collapse: collapse;
 }
 body {
-    font-family: 'Arial', sans-serif;
+     font-family: "Gowun Dodum", sans-serif;
+     font-weight: 900;
+     font-style: normal;
     margin: 0;
 }
 
@@ -102,6 +107,12 @@ td.qbutton{
 
    <h2>${text }입니다</h2>
    <h3>현재페이지:${page }</h3>
+   	<span>현재날씨</span>
+				    <h3>경기도</h3>
+				    <h3 class="SeoulIcon"  style="width: 10%"></h3>
+				    <h3 class="SeoulNowtemp">현재기온:</h3>
+				    <h3 class="SeoulLowtemp">최저기온:</h3>
+				    <h3 class="SeoulHightemp">최대기온:</h3>
    <div>
 		<p>이색기들 너네어디감?</p>
 		<form method="get" action="search">
@@ -142,9 +153,10 @@ td.qbutton{
 </body>
 
 <script src="https://code.jquery.com/jquery-latest.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-$(document)
-.ready(function(){
+$(document).ready(function(){
+	convertTime();
 	if($('#hpage').val()==1){
 		$('#prev').hide();
 	}
@@ -153,6 +165,32 @@ $(document)
 	}
 })
 
+
+//현재 날짜
+function convertTime() {
+	let now = new Date();
+	let month = now.getMonth() + 1;
+	let date = now.getDate();
+    
+	return month + '월' + date + '일';
+}
+
+let currentTime = convertTime();
+$('.nowtime').append(currentTime);
+
+$.getJSON('https://api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=46b55a9f61cc588200575a3dda8e3069&units=metric',
+    function (WeatherResult) {
+        //기온출력
+        $('.SeoulNowtemp').append(WeatherResult.main.temp);
+        $('.SeoulLowtemp').append(WeatherResult.main.temp_min);
+        $('.SeoulHightemp').append(WeatherResult.main.temp_max);
+
+
+        let weathericonUrl = '<img src= "http://openweathermap.org/img/wn/'
+            					+ WeatherResult.weather[0].icon
+            					+ '.png" alt="' + WeatherResult.weather[0].description + '"/>'
+        $('.SeoulIcon').html(weathericonUrl);
+    })
 .on('click','#prev',function(){
 	let num=$('#hpage').val()
 	console.log(num)

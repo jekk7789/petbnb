@@ -133,7 +133,7 @@
             <a href="#" id="last" class="bt last">>></a>
         </div>
         <div class="bt_wrap">
-            <a href="#" class="on">목록</a>
+            <a href="home" class="on">홈으로</a>
             <% 
 			    if(session.getAttribute("admin") != null) { 
 			%>

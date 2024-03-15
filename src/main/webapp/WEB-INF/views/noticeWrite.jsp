@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/noticecss.css" />
 </head>
 <body>
+
 <form method="post" action="upload" enctype="multipart/form-data">
     <div class="board_wrap">
         <div class="board_title">
@@ -27,7 +28,11 @@
                 <div class="info">
                     <dl>
                         <dt>글쓴이</dt>
-                        <dd><input type="text" name="writer" placeholder="글쓴이 입력"></dd>
+                        <%
+    						String email = (String) session.getAttribute("email");
+							String admin = email.split("@")[0];
+						%>
+                        <dd><input type="text" name="writer" value="<%= admin %>" readonly></dd>
                     </dl>
                     <dl>
                         <dt>파일 추가</dt>

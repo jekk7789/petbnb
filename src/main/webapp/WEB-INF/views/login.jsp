@@ -11,6 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link rel="stylesheet" href="css/login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <title>로그인</title>
     
     <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -56,12 +59,12 @@
         <div class="toggle">
           <div class="toggle-panel toggle-left">
             <h1>환영합니다!</h1>
-            <p>모든 사이트 기능을 사용하려면 개인 정보를 입력하세요</p>
+            <p style="font-size: 12px;">사이트를 이용하시려면 회원가입을 하세요</p>
             <button class="hidden" id="login">로그인</button>
           </div>
           <div class="toggle-panel toggle-right">
             <h1>환영합니다!</h1>
-            <p>모든 사이트 기능을 사용하려면 개인 정보를 입력하세요</p>
+            <p style="font-size: 12px;">사이트를 이용하시려면 회원가입을 하세요</p>
             <button class="hidden" id="register">회원가입</button>
           </div>
         </div>

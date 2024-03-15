@@ -43,6 +43,11 @@ public class HomeController {
 		return "popupContent";
 	}
 	
+	@GetMapping("/weather")
+	public String doweather() {
+		return "weather";
+	}
+	
 	@GetMapping("/review")
 	public String goReview(HttpServletRequest req,Model model) {
 		String pid = req.getParameter("pid");
@@ -370,11 +375,6 @@ public class HomeController {
 		
 			
 		}
-	
-	
-	
-	
-	
 	
 	
 	

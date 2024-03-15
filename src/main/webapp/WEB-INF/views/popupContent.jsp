@@ -29,7 +29,7 @@
         <h4 class="title">petB&B 공지사항</h4>
         <div class="cont">
             <p>
-				<img src="./image/공지사항.jpg" width=350 height=500 usemap="#popup" alt="event page">
+				<img src="./image/공지사항.jpg" style= "width=350 height=500" usemap="#popup" alt="event page">
             </p>
         </div>
           <form name="pop_form">
@@ -39,6 +39,7 @@
 		</form>
 	</div>
 </div>
+
 </body>
 <script src='http://code.jquery.com/jquery-latest.js'></script>
 

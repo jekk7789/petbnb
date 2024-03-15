@@ -67,4 +67,8 @@
         SELECT count(*) FROM login WHERE email=#{parma1} and admin="1";
     </select>
 
+	<select id="updateMyList" resultType="com.himedia.pet.DTO.LoginDTO"> 
+       SELECT id,email FROM login WHERE id=#{param1} 
+    </select>
+
 </mapper>

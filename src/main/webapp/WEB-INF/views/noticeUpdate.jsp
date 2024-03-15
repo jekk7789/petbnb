@@ -28,7 +28,11 @@
                 <div class="info">
                     <dl>
                         <dt>글쓴이</dt>
-                        <dd><input type="text" name="writer" value="${alList.writer}"></dd>
+                        <%
+    						String email = (String) session.getAttribute("email");
+							String admin = email.split("@")[0];
+						%>
+                        <dd><input type="text" name="writer" value="<%= admin %>" readonly></dd>
                     </dl>
                     <dl>
                         <dt>파일 추가</dt>

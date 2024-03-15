@@ -60,8 +60,8 @@ public class noticeController {
 	    @RequestParam (value="id", required=false) String id,
 	    @RequestParam ("title") String title,
 	    @RequestParam ("writer") String writer,
-	    @RequestParam("file") MultipartFile file,
-	    @RequestParam("detail") String detail,
+	    @RequestParam(value="file", required=false) MultipartFile file, // 파일 선택이 필수가 아닌 옵션으로 변경
+	    @RequestParam ("detail") String detail,
 	    @RequestParam(value="views", required=false) String views,
 	    HttpServletRequest req, HttpServletResponse res) throws IOException {
 	    
@@ -79,23 +79,26 @@ public class noticeController {
 	    System.out.println("detail: " +detail);
 	    req.setCharacterEncoding("UTF-8");
 	    res.setContentType("text/html; charset=UTF-8");
-	         
-	    String savePath = "C:\\Users\\1234\\eclipse-workspace\\pet\\src\\main\\resources\\static\\image";
-	    String uploadFolderPath = Paths.get(savePath).toString();
-	    System.out.println("uploadFolderPath:" + uploadFolderPath);
+	    
+	    String ori_file_name = null; // 파일이 선택되지 않았을 때의 파일 이름
+	    
+	    if (file != null && !file.equals("")) { // 파일이 선택되었는지 확인
+	        String savePath = "G:\\디지털java국비\\eclipse\\workspace\\pet\\src\\main\\resources\\static\\image";
+	        String uploadFolderPath = Paths.get(savePath).toString();
+	        System.out.println("uploadFolderPath:" + uploadFolderPath);
 
-	    // 원본 파일 이름 가져오기
-	    String n_image = file.getOriginalFilename();
-	    // 덮어쓰기를 방지하기 위해 고유 파일 이름 생성
-	    String ori_file_name = System.currentTimeMillis() + "_" + n_image;
+	        // 원본 파일 이름 가져오기
+	        String n_image = file.getOriginalFilename();
+	        // 덮어쓰기를 방지하기 위해 고유 파일 이름 생성
+	        ori_file_name = System.currentTimeMillis() + "_" + n_image;
+	        
+	        // 서버에 파일 저장
+	        String filePath = Paths.get(uploadFolderPath, ori_file_name).toString();
+	        System.out.println("Uploaded File Path: " + filePath);
+	        file.transferTo(new File(filePath));
+	        System.out.println("Uploaded File Name: " + n_image);
+	    }
 	    
-	    // 서버에 파일 저장
-	    String filePath = Paths.get(uploadFolderPath, ori_file_name).toString();
-	    System.out.println("Uploaded File Path: " + filePath);
-	    file.transferTo(new File(filePath));
-	    
-	    // 추가 로직:
-	    System.out.println("Uploaded File Name: " + n_image);
 	    int viewsInt = (views != null && !views.equals("")) ? Integer.parseInt(views) : 0;
 	    int n;
 	    if (id == null || id.equals("")) {         

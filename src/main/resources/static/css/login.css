@@ -1,21 +1,23 @@
-@charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Gowun Dodum", sans-serif;
+     font-weight: 900;
+     font-style: normal;
 }
 
 body{
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    background-color: orange;
+    background: linear-gradient(to right, #e2e2e2,#f8f1e5);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+     
 }
 
 .container{
@@ -48,7 +50,7 @@ body{
 }
 
 .container button{
-    background-color: orange;
+    background-color: #E1DACA;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -63,7 +65,7 @@ body{
 
 .container button.hidden{
     background-color: transparent;
-    border-color: #fff;
+    border-color: #F6F5EC;
 }
 
 .container form{
@@ -164,7 +166,7 @@ body{
 .toggle{
     background-color: orange;
     height: 100%;
-    background: linear-gradient(to right, #f8a25c, #e1ec3c);
+    background: linear-gradient(to right, #B29079, #F6F5EC);
     color: #fff;
     position: relative;
     left: -100%;

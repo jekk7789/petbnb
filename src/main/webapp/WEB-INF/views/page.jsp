@@ -6,114 +6,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product Detail</title>
+<link rel="stylesheet" href="css/page.css" />
 <link rel="stylesheet" href="css/kakaomap.css" />
-<style>
-	.container { 
-	    display: flex;
-	    justify-content: space-between;
-	    align-items: flex-start;
-	    max-width: 800px;
-	    margin: 0 auto;
-	    padding: 20px; 
-	}
-	
-	.product-map {
-	    flex: 1; /* 확장 가능한 크기 */
-	    margin-right: 20px;
-	}
-	
-	.product-options {
-	    flex: 1; /* 확장 가능한 크기 */
-	    margin-left: 20px;
-	}
-		
-		/* 테이블 스타일 */
-	table {
-	    border-collapse: collapse;
-	    width: 100%;
-	}
-	
-	th, td {
-	    border: 1px solid black;
-	    padding: 8px;
-	    text-align: left;
-	}
-	
-	/* 리뷰 작성 양식 숨김 */
-	.review {
-	    display: none;
-	}
-	
-	/* 탭 스타일 */
-	.tab {
-	    overflow: hidden;
-	    border: 1px solid #ccc;
-	    background-color: #f1f1f1;
-	}
-	
-	.tab button {
-	    background-color: inherit;
-	    float: left;
-	    border: none;
-	    outline: none;
-	    cursor: pointer;
-	    padding: 14px 16px;
-	    transition: 0.3s;
-	}
-	
-	/* 리뷰 리스트 테이블 스타일 */
-	#tbl_review {
-	    width: 100%;
-	}
-	
-	#tbl_review th {
-	    background-color: #f2f2f2;
-	}
-	
-	#tbl_review th, #tbl_review td {
-	    padding: 10px;
-	}
-	
-	/* 리뷰 작성 양식 스타일 */
-	.review_form {
-	    margin-top: 20px;
-	}
-	
-	.review_form input[type="text"], .review_form textarea {
-	    width: 100%;
-	    padding: 10px;
-	    margin-bottom: 10px;
-	    border: 1px solid #ccc;
-	    border-radius: 4px;
-	    box-sizing: border-box;
-	}
-	.borad_id{
-		display:none;
-	}
-	.btn-like {
-	  color: transparent;
-	  text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 #000;
-	  border: none;
-	  background-color: transparent;
-	}
-	.btn-like:hover {
-	  text-shadow: 0 0 0 #ea0;
-	}
-	.btn-like.done {
-	  color: inherit;
-	  text-shadow: 0;
-	}
-	.btn-like.done:hover {
-	  color: transparent;
-	  text-shadow: 0 0 0 #777;
-	}
-</style>
+
 </head>
 <body>
 <input type=hidden id=jjim_id >
 <input type=hidden id=userid value=${email }>
 <input type=hidden id=hpage value=${page } >
 <input type=hidden id=hlastpage value=${lastpage }>
+<input type=hidden id=loginid >
 
     <header>	<h1 id="shop-name"></h1>	</header>
 
@@ -139,7 +41,8 @@
                 </tr>
                 <tr>
                     <td>홈페이지</td>
-                    <td colspan="2" id='homepage'></td>
+                    <td colspan="2"id="homepage"><a href="" target="_blank" id="homepage2"></a></td>
+
                 </tr>
                 <tr>
                     <td>영업시간</td>
@@ -249,6 +152,13 @@
 				</div>
 			</div>	                   		
     	  </div>
+    	  <br><br><br><br><br><br><br><br>
+    	  <div class="box-area">
+         <p>© petB&B</p>
+         <p>여러분의 만족을 위해 항상 노력하는petB&B입니다.</p>
+         <p>문의사항이 있으시면 언제든지 연락주세요.</p>
+         <p>010-0000-1111</p>
+      </div>
 </body>
 
 
@@ -263,6 +173,10 @@ $(document)
 	showList();
 	showpage();
 	chekJjim();
+	let userid=$('#userid').val();
+    let logid=userid.split("@");
+	   $('#loginid').val(logid[0]);
+
 	var wido,gyeongdo; 
 	$.ajax({
 		type: 'post', 
@@ -404,52 +318,55 @@ function modiPop(id) {
 }
 
 function showList(){
-	$.ajax({
-		type:'post',
-		url:'/doReview',
-		data:{id:$('#pet_id').val(),page:$('#hpage').val()},
-		dataType:'json',
-		success:function(data){
-			$('#tbl_review').empty();
-        	for(let i=0; i< data.length; i++){
-        		let ob=data[i];
-        		let str='<tr><td>'+ob.content+'</td><td>'+ob.writer+'</td><td>'+ob.time+'</td><td class="borad_id" >' + ob['id'] +
-                '</td><td>'+'<a href="#" onclick="modiPop(' + ob.id + ')">수정</a><a href="/rDelet?id=' + ob.id + '">삭제</a></td></tr>';
-				$('#tbl_review').append(str);			
-        	} 
-			
-		}
-	})
-} 
-function showpage(){
-	$.ajax({
-		type:'get',
-		url:'/showpage',
-		data:{id:$('#pet_id').val(),page:$('#hpage').val()},
-		dataType:'text',
-		success:function(data){
-			$('#showpage').empty()
-			//console.log(data)
-			let b=data.slice(1,-1)
-			b=b.replace(/(\s*)/g, "")
-			//console.log(b)
-			let a=b.split(',')
-			//console.log(a)
-			let str='<tr><td>&nbsp;&nbsp;&nbsp;<button id=first>맨처음</button><button id=prev>이전</button>'
-			for(let i=0;i<a.length;i++){
-				str+='<a href="#" id=pagenum value='+a[i]+'>'+a[i]+'&nbsp;</a>'
-			}
-			str+='<button id=next>다음</button><button id=last>마지막</button></td></tr>'
-			$('#showpage').append(str)
-			if($('#hpage').val() ==1){
-				$('#prev').hide()
-			}
-			if($('#hpage').val() ==$('#hlastpage').val()){
-				$('#next').hide()
-			}
-		}
-	})
-}
+	   $.ajax({
+	      type:'post',
+	      url:'/doReview',
+	      data:{id:$('#pet_id').val(),page:$('#hpage').val()},
+	      dataType:'json',
+	      success:function(data){
+	         $('#tbl_review').empty();
+	           for(let i=0; i< data.length; i++){
+	              let ob=data[i];
+	              let str = '<tr><td>'+ob.content+'</td><td>'+ob.writer+'</td><td>'+ob.time+'</td><td class="borad_id" >' + ob['id'] +
+	                '</td><td>';
+	                if ($('#loginid').val()==ob.writer) {
+	                    str +='<a href="#" onclick="modiPop(' + ob.id + ');">수정</a><a href="/rDelet?id=' + ob.id + '">삭제</a></td></tr>';
+	                } 
+	            $('#tbl_review').append(str);         
+	           } 
+	         
+	      }
+	   })
+	}
+	function showpage(){
+	   $.ajax({
+	      type:'get',
+	      url:'/showpage',
+	      data:{id:$('#pet_id').val(),page:$('#hpage').val()},
+	      dataType:'text',
+	      success:function(data){
+	         $('#showpage').empty()
+	         //console.log(data)
+	         let b=data.slice(1,-1)
+	         b=b.replace(/(\s*)/g, "")
+	         //console.log(b)
+	         let a=b.split(',')
+	         //console.log(a)
+	         let str='<tr><td>&nbsp;&nbsp;&nbsp;<button id=first>맨처음</button><button id=prev>이전</button>'
+	         for(let i=0;i<a.length;i++){
+	            str+='<a href="#" id=pagenum value='+a[i]+'>'+a[i]+'&nbsp;</a>'
+	         }
+	         str+='<button id=next>다음</button><button id=last>마지막</button></td></tr>'
+	         $('#showpage').append(str)
+	         if($('#hpage').val() ==1){
+	            $('#prev').hide()
+	         }
+	         if($('#hpage').val() ==$('#hlastpage').val()){
+	            $('#next').hide()
+	         }
+	      }
+	   })
+	}
 
 function chekJjim(){
 	$.ajax({
@@ -697,4 +614,3 @@ function changeCategoryClass(el) {
 </script>
 
 </html>
-        
