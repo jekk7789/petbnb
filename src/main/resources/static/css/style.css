@@ -792,3 +792,9 @@ h1, h2, h3, h4,
 .search.focused .material-icons {
   opacity: 0;
 }
+
+.fc-header-toolbar {
+    padding-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+  }

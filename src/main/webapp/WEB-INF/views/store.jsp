@@ -4,101 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="stylesheet" href="css/store.css" />
 <meta charset="UTF-8">
-<title>상점 찾기</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<title>검색 결과 입니다</title>
 </head>
-<style>
 
-a{
-	text-decoration:none;
-}
-table{
-    border-collapse: collapse;
-}
-body {
-     font-family: "Gowun Dodum", sans-serif;
-     font-weight: 900;
-     font-style: normal;
-    margin: 0;
-}
 
-h2 {
-    color: #333;
-}
-
-a {
-    color: #3498db;
-}
-
-a:hover {
-    color: #2980b9;
-}
-
-table {
-    width: 1000px;
-    margin-top: 20px;
-    border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-}
-
-th, td {
-    padding: 10px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #3498db;
-    color: #fff;
-}
-
-tr:hover {
-    background-color: #f5f5f5;
-}
-
-caption {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    text-align: right;
-}
-button {
-    padding: 8px 12px;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-#btnout {
-    margin-top: 10px;
-    padding: 8px 12px;
-    background-color: #e74c3c;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-#btnout:hover {
-    background-color: #c0392b;
-}
-div.detail {
-    width: 1000px;
-    overflow: auto;
-    margin: auto;
-}
-td.qbutton{
-	width:150px;
-}
-
-</style>
 <body>
-
 <input type=hidden id=hpage value=${page }>
 <input type=hidden id=hlastpage value=${lastpage }>
 <input type=hidden id=hname value=${text }>
@@ -107,32 +26,36 @@ td.qbutton{
 
    <h2>${text }입니다</h2>
    <h3>현재페이지:${page }</h3>
-   	<span>현재날씨</span>
-				    <h3>경기도</h3>
-				    <h3 class="SeoulIcon"  style="width: 10%"></h3>
-				    <h3 class="SeoulNowtemp">현재기온:</h3>
-				    <h3 class="SeoulLowtemp">최저기온:</h3>
-				    <h3 class="SeoulHightemp">최대기온:</h3>
-   <div>
-		<p>이색기들 너네어디감?</p>
-		<form method="get" action="search">
-			<input name="search"><input type="submit" value="&#128269;">
-		</form>
-		<a class="bn5" href="store?text=반려동물용품">애견용품점</a>
-		<a class="bn5" href="store?text=동물병원">동물병원</a>
-		<a class="bn5" href="store?text=동물약국">동물약국</a>
-		<a class="bn5" href="store?text=식당,카페,문예회관">문화시설</a>
-		<a class="bn5" href="store?text=펜션">숙박시설</a>
+   <div class="weatherbackground">
+	<div style="float : left; margin-top: 50px; font-size: 130%">
+		<div class="weather_icon"></div>
+	</div><br>
+
+	<div style="float: right; margin: -5px 0px 0px 60px; font-size: 11pt;">
+		<div class="temp_min"><i class="fa-solid fa-temperature-arrow-down"></i> </div>
+		<div class="temp_max"><i class="fa-solid fa-temperature-arrow-up"></i> </div>
+		<div class="humidity"> <i class="fa-solid fa-droplet"></i></div>
+		<div class="wind"> <i class="fa-solid fa-wind"></i></div>
+		<div class="cloud"><i class="fa-solid fa-cloud"></i></div>
 	</div>
-   <hr>
+
+	<div style="float : right; margin-top : -45px;">
+		<div class="current_temp" style="font-size : 50pt"></div>
+		<div class="weather_description" style="font-size : 20pt"></div>
+		<div class="city" style="font-size : 13pt"></div>
+	</div>
+	
+</div>
+
    
 <div class=detail>
-	<table>
+	<table >
 		<tr><th>번호</th><th>이름</th><th>전화번호</th><th>주소</th></tr>
 		<c:forEach var="list"  items="${alList}">
 			<tr>
 				<td class=qId>${list.id}</td>
 				<td class=qName><a href=/page?id=${list.id}>${list.name}</a></td>
+				
 				<td class=qNumber>${list.number}</td>
 				<td class=qAddress>${list.loadAddress}</td>
 			</tr>
@@ -140,6 +63,7 @@ td.qbutton{
 	</table>  
  
 
+<div class=page>
   <button id=first>맨처음</button>
   <button id=prev>이전</button>
   <c:forEach var="num" items="${showpage }">
@@ -148,15 +72,51 @@ td.qbutton{
   <button id=next>다음</button>
   <button id=last>마지막</button>
   <p>${text }!!</p>
-  <a href="/">홈으로</a>
+ </div>
+ 	
+ 
+ 
+ 
 </div>
-</body>
 
+
+
+
+<footer class="footer01">
+	<div role="contentinfo" class=container>
+	    <table class="tblfooter01">
+	    	<tr>
+		    	<td>
+			    	<address align=center>
+				        © 2024 웹 페이지 제작자
+				        <a href="/dogbnb">도그비앤비</a>
+			    	</address>
+		    	</td>
+		    	<td>
+		    		<a href="/">홈으로 돌아가기</a>
+		    	</td>
+		    	<td>
+	    			<b>천만반려인을 위한 유용한 커뮤니티 사이트입니다</b><br>
+	    			<p>개와 함께 살아보지 않은 사람은 사랑이 무엇인지 충분이 이해할수 없다. -진 힐</p>
+    			</td>
+    			<td>
+		    		<p>고객센터 번호:010-1234-1234</p>
+		    		<p>상담시간  평일 : 09시 ~ 18시
+		    			   주말 : 09시 ~ 13시<p>
+		    	</td>
+	    	</tr>
+	    </table>
+
+	</div>
+</footer>
+
+</body>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
-$(document).ready(function(){
-	convertTime();
+$(document)
+
+.ready(function(){
 	if($('#hpage').val()==1){
 		$('#prev').hide();
 	}
@@ -165,32 +125,6 @@ $(document).ready(function(){
 	}
 })
 
-
-//현재 날짜
-function convertTime() {
-	let now = new Date();
-	let month = now.getMonth() + 1;
-	let date = now.getDate();
-    
-	return month + '월' + date + '일';
-}
-
-let currentTime = convertTime();
-$('.nowtime').append(currentTime);
-
-$.getJSON('https://api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=46b55a9f61cc588200575a3dda8e3069&units=metric',
-    function (WeatherResult) {
-        //기온출력
-        $('.SeoulNowtemp').append(WeatherResult.main.temp);
-        $('.SeoulLowtemp').append(WeatherResult.main.temp_min);
-        $('.SeoulHightemp').append(WeatherResult.main.temp_max);
-
-
-        let weathericonUrl = '<img src= "http://openweathermap.org/img/wn/'
-            					+ WeatherResult.weather[0].icon
-            					+ '.png" alt="' + WeatherResult.weather[0].description + '"/>'
-        $('.SeoulIcon').html(weathericonUrl);
-    })
 .on('click','#prev',function(){
 	let num=$('#hpage').val()
 	console.log(num)
@@ -217,6 +151,50 @@ $.getJSON('https://api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=46b5
 	let num=parseInt($('#hlastpage').val())
 	console.log(num)
 	location.href="/store?page="+num+"&text=${text}&search=${search}"
+})
+
+//날씨
+var weatherIcon = {
+    '01' : "fas fa-sun",
+    '02' : 'fas fa-cloud-sun',
+    '03' : 'fas fa-cloud',
+    '04' : 'fas fa-cloud-meatball',
+    '09' : 'fas fa-cloud-sun-rain',
+    '10' : 'fas fa-cloud-showers-heavy',
+    '11' : 'fas fa-poo-storm',
+    '13' : 'far fa-snowflake',
+    '50' : 'fas fa-smog'
+}
+
+var apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+'Gyeonggi-do'+"&appid="+"cd282412089ea297a4ca92877e7c9dcb";
+$.ajax({
+    url: apiURI,
+    dataType: "json",
+    type: "GET",
+    async: "false",
+    success: function(resp) {
+
+        var $Icon = (resp.weather[0].icon).substr(0,2);
+        var $weather_description = resp.weather[0].main;
+        var $Temp = Math.floor(resp.main.temp- 273.15) + 'º';
+        var $humidity = '습도&nbsp;&nbsp;&nbsp;&nbsp;' + resp.main.humidity+ ' %';
+        var $wind = '바람&nbsp;&nbsp;&nbsp;&nbsp;' +resp.wind.speed + ' m/s';
+        var $city = '서울';
+        var $cloud = '구름&nbsp;&nbsp;&nbsp;&nbsp;' + resp.clouds.all +"%";
+        var $temp_min = '최저 온도&nbsp;&nbsp;&nbsp;&nbsp;' + Math.floor(resp.main.temp_min- 273.15) + 'º';
+        var $temp_max = '최고 온도&nbsp;&nbsp;&nbsp;&nbsp;' + Math.floor(resp.main.temp_max- 273.15) + 'º';
+        
+
+        $('.weather_icon').append('<i class="' + weatherIcon[$Icon] +' fa-5x" style="height : 150px; width : 150px;"></i>');
+        $('.weather_description').prepend($weather_description);
+        $('.current_temp').prepend($Temp);
+        $('.humidity').prepend($humidity);
+        $('.wind').prepend($wind);
+        $('.city').append($city);
+        $('.cloud').append($cloud);
+        $('.temp_min').append($temp_min);
+        $('.temp_max').append($temp_max);   
+    }
 })
 
 </script>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.himedia.pet.DAO.calendarDAO">
+	
+	<!-- 캘린더 추가 -->
+	<insert id="addCalendar">
+		INSERT INTO calendar set title=#{param1},
+								 start=#{param2},
+								 end=#{param3},
+								 backgroundColor=#{param4}
+	</insert>
+</mapper>

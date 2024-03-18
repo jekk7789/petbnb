@@ -10,12 +10,13 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900%7CMontserrat:300,400,500,600,700,800,900"> -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fittext/1.2.0/jquery.fittext.min.js"></script>
+    
+    
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="70">
     
@@ -144,9 +145,12 @@
                 <div class="display-table-cell">
                     <div class="container">
                         <h3>
-							<c:if test="${not empty email}">
-								<p>로그인한 사용자: ${email}님 환영합니다.</p>
-		                    </c:if></h3>
+                        <c:choose>
+						    <c:when test="${not empty email}">
+						           
+						        <p>${email}님 환영합니다.</p>
+						    </c:when>
+						</c:choose>
                         <h1 class="cd-headline letters rotate-2 is-full-width">
                             <span class="cd-words-wrapper">
                                 <b class="is-visible">반려동물</b>
@@ -154,7 +158,6 @@
                             </span>
                         </h1>
                     </div>
-                    
                 </div>
             </div>
             <div class="container go_down_container">
@@ -166,18 +169,19 @@
             </div>
         </div><!--.full_height-->
     </section>
-
-
+    
 </body>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.0/kakao.min.js"
   integrity="sha384-l+xbElFSnPZ2rOaPrU//2FF5B4LB8FiX5q4fXYTlfcG4PGpMkE1vcL7kNXI6Cci0" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/animateHeader.js"></script>
+<script src="js/custom.js"></script>   
     
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/animateHeader.js"></script>
-    <script src="js/custom.js"></script>
+    
 <script>
 const searchEl = document.querySelector('.search')
 const searchInputEl = searchEl.querySelector('input')
@@ -268,6 +272,8 @@ function deleteCookie() {
 	}
 	
 	// 네이버 사용자 프로필 조회
-	naver_id_login.get_naver_userprofile("naverSignInCallback()");
+	naver_id_login.get_naver_userprofile("naverSignInCallback()");		 
+	
 </script>
+
 </html>

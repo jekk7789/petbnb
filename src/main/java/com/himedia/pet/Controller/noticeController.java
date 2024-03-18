@@ -82,7 +82,8 @@ public class noticeController {
 	    
 	    String ori_file_name = null; // 파일이 선택되지 않았을 때의 파일 이름
 	    
-	    if (file != null && !file.equals("")) { // 파일이 선택되었는지 확인
+	    // 파일이 선택되었을 때만 파일을 저장하도록 처리
+	    if (file != null && !file.isEmpty()) {
 	        String savePath = "G:\\디지털java국비\\eclipse\\workspace\\pet\\src\\main\\resources\\static\\image";
 	        String uploadFolderPath = Paths.get(savePath).toString();
 	        System.out.println("uploadFolderPath:" + uploadFolderPath);
@@ -91,6 +92,7 @@ public class noticeController {
 	        String n_image = file.getOriginalFilename();
 	        // 덮어쓰기를 방지하기 위해 고유 파일 이름 생성
 	        ori_file_name = System.currentTimeMillis() + "_" + n_image;
+	        System.out.println(ori_file_name);
 	        
 	        // 서버에 파일 저장
 	        String filePath = Paths.get(uploadFolderPath, ori_file_name).toString();
@@ -99,9 +101,9 @@ public class noticeController {
 	        System.out.println("Uploaded File Name: " + n_image);
 	    }
 	    
-	    int viewsInt = (views != null && !views.equals("")) ? Integer.parseInt(views) : 0;
+	    int viewsInt = (views != null && !views.isEmpty()) ? Integer.parseInt(views) : 0;
 	    int n;
-	    if (id == null || id.equals("")) {         
+	    if (id == null || id.isEmpty()) {         
 	        n = ndao.addNotice(title, writer, ori_file_name, detail, viewsInt, created_at);
 	    } else {
 	        n = ndao.modify(Integer.parseInt(id), title, writer, ori_file_name, detail);

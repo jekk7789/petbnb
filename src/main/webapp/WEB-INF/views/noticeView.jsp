@@ -43,8 +43,9 @@
 	                </div>
 	                <div class="cont">
 	                	<c:if test="${not empty notice.image}">
-					        <img src="image/${notice.image}">
+					        <img src="image/${notice.image}" style="width: 50%;">
 					    </c:if>
+					    <br>
 	                    ${notice.detail}
 	                </div>
 	            </div>
