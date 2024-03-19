@@ -5,52 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>작성하기</title>
-<link href="/css/theme.css" rel="stylesheet" type="text/css">
+<link href="/css/write.css" rel="stylesheet" type="text/css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 </head>
-<style>
-   
-   
-   .layout {
-       width: 80%;
-       max-width: 600px;
-       margin: 20px auto;
-       background-color: #fff;
-       padding: 20px;
-       border-radius: 8px;
-       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-   }
-   
-   .layout label {
-       display: block;
-       font-weight: bold;
-       margin-bottom: 5px;
-   }
-   
-   .layout input[type="text"],
-   .layout textarea {
-       width: 100%;
-       padding: 10px;
-       margin-bottom: 15px;
-       border: 1px solid #ccc;
-       border-radius: 4px;
-       box-sizing: border-box;
-   }
-   
-   .layout textarea {
-       min-height: 150px;
-       resize: vertical;
-   }
-   
-   
-   .layout select {
-       width: 100%;
-       padding: 10px;
-       margin-bottom: 15px;
-       border: 1px solid #ccc;
-       border-radius: 4px;
-       box-sizing: border-box;
-   }
-</style>
+
 
 
 <body>
@@ -63,7 +23,6 @@
  
 <div class="layout" id='data_div'>
       <label>작성하기</label>
-      <input type="hidden" id="pet_id" value=${pid }>
       <input type="hidden" id="idDisplay">
       <input type="text" id="title"  placeholder="제목">
     <input type="text" id="writer"  placeholder="작성자" readonly>
@@ -73,7 +32,7 @@
     <button id="clear" >취소하기</button>
 </div>
 </div>
-</main>
+
 
 </body>
 

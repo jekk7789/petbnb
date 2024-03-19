@@ -4,73 +4,29 @@
     
 <!DOCTYPE html>
 <html>
+<style>
+#data_write{
+	display: none;
+}
+.cid{
+	display: none;
+}
+</style>
 <head>
 <meta charset="UTF-8">
 <title>QnA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/bootstrap.css">
-<link href="/css/board.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/board.css" />
 </head>
+
 <body data-spy="scroll" data-target=".navbar" data-offset="70">
-<style>
-#data_write{
-  display: none;
-}
-.cid{
-  display: none;
-}
-
-</style>
-<body data-spy="scroll" data-target=".navbar" data-offset="70">
-    
-    <section class="home svg_shape bg_image" id="home" >
-        
-        <div class="full_height">
-
-            <nav class="navbar navbar-default nav_scroll navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-
-                        <!-- LOGO -->
-                        <a class="navbar-brand" href="/popupContent" style="color: brown;">petB&B</a>
-
-                    </div>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <c:choose>
-		                            <c:when test="${not empty email}">
-		                                <a href="/logout" style="color: brown;">logout</a>
-		                            </c:when>
-		                            <c:otherwise>
-		                                <a href="/login" class="btn-11" style="color: brown;">login</a>
-		                            </c:otherwise>
-		                        </c:choose>
-                            </li>
-                            <li >
-                                <a href="/notice" style="color: brown;">notice</a>
-                            </li>
-                             <li >
-                                <a href="/Qna" style="color: brown;">Q&A</a>
-                            </li>
-                            <li>
-                                <a href="#services" style="color: brown;">Services</a>
-                            </li>
-                            <li>
-                                <a href="/mypage" style="color: brown;">My page</a>
-                            </li>
-                            <li>
-                                <a href="#contact" style="color: brown;">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+ 
+ <header id="herder">
+  	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+</header>
 
  <h1 class="middle_top_title">QnA</h1>
  <hr class="middle_top_hr">   
@@ -84,11 +40,15 @@
 
 
  <button id="new_write" placeholder="작성하려면 로그인이 필요합니다" disable = "true">Q&A작성</button>
+  <br> <br>
   <div id="review" style="cursor: pointer;">
     
   </div>
- 
-<table id=showpage></table>
+ <br>
+<table id=showpage></table>  
+
+
+
             
 </body>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
@@ -298,11 +258,11 @@ function showpage(){
       dataType:'text',
       success:function(data){
          $('#showpage').empty()
-        /*  $('#showpage').show()
+          $('#showpage').show()
             if(data==""){
                $('#showpage').hide()
             }
-         console.log(data) */
+     
          let b=data.slice(1,-1)
          b=b.replace(/(\s*)/g, "")
          /* console.log(b) */

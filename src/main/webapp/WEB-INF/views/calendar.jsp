@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>달력</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   
   <!-- Bootstrap CSS -->
@@ -17,9 +17,9 @@
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 </head>
 <body>
-
+<input type=text id=userid value=${email }>
 <div id='calendar-container'>    
-    <div id='calendar'></div>  
+    <div id='calendar' id=calList></div>  
 </div>
 <div
       class="modal fade"
@@ -59,13 +59,12 @@
               type="button"
               class="btn btn-secondary"
               data-dismiss="modal"
-            >
-              취소
-            </button>
+            >취소</button>
             <button type="button" class="btn btn-primary" id="saveChanges">
               추가
             </button>
           </div>
+          
         </div>
       </div>
     </div>
@@ -74,8 +73,14 @@
 <!-- Bootstrap JS -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
+var eventId; // eventId 변수를 전역으로 선언하여 모든 함수에서 접근 가능하도록 합니다.
+
 $(document).ready(function(){
-    // calendar element 취득      
+   $('#calList').empty();
+   let userName = $("#userid").val();
+   console.log(userName);
+
+   // calendar element 취득    
     var calendarEl = $('#calendar')[0];      
     // full-calendar 생성하기      
     var calendar = new FullCalendar.Calendar(calendarEl, {        
@@ -96,8 +101,8 @@ $(document).ready(function(){
                     $("#exampleModal").modal("show");
                 }
             },
-            mySaveButton: { // 수정된 부분: mySaveButton 객체 정의 추가
-                text: "저장",
+            mySaveButton: {
+                text: "삭제",
                 
             }
         },
@@ -107,29 +112,40 @@ $(document).ready(function(){
         selectable: true, // 달력 일자 드래그 설정가능        
         nowIndicator: true, // 현재 시간 마크        
         dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)        
-        locale: 'ko', // 한국어 설정        
+        locale: 'ko', // 한국어 설정  
         eventAdd: function(obj) { // 이벤트가 추가되면 발생하는 이벤트          
-            console.log(obj);        
+            eventId = obj.event._def.defId; // eventId를 obj로 수정
         },        
         eventChange: function(obj) { // 이벤트가 수정되면 발생하는 이벤트          
             console.log(obj);        
         },        
         eventRemove: function(obj){ // 이벤트가 삭제되면 발생하는 이벤트          
             console.log(obj);        
-        },        
-        select: function(arg) { 
-            // 캘린더에서 드래그로 이벤트를 생성할 수 있다.          
-            var title = prompt('Event Title:');          
-            if (title) {            
-                calendar.addEvent({              
-                    title: title,              
-                    start: arg.start,              
-                    end: arg.end,              
-                    allDay: arg.allDay            
-                });          
-            }  
-            calendar.unselect();        
-        },        
+        },           
+        eventDrop : function(info) {
+            alert(info.event.title + " was dropped on "
+                    + info.event.start.toISOString());
+
+            if (!confirm("Are you sure about this change?")) {
+                info.revert();
+            }
+        },
+        eventClick: function(info) {
+        	let calId = info.event._def.defId;
+        	console.log(calId);
+        	$.ajax({
+        		type:"POST",
+        		url: "/calRemove",
+        		dataType:"text",
+        		data:{calId:calId}
+        	})
+           if (confirm("이 일정을 삭제하시겠습니까?")) {
+                let eventId = info.event._def.defId;
+                console.log("삭제할 이벤트의 ID:", eventId);
+               info.event.remove();
+            }
+        },
+
         events: [          
             {            
                 title: 'All Day Event',            
@@ -142,58 +158,97 @@ $(document).ready(function(){
             }
         ]      
     }); 
-    // 캘린더 랜더링      
+
+   	// 캘린더 랜더링      
     calendar.render(); 
     console.log(calendar.getEvents());
-
+    CalendarList(calendar);
+   
+    $("#exampleModal").on("hidden.bs.modal", function () {
+        // 모달이 숨겨질 때 입력된 내용 초기화
+        $("#title").val("");
+        $("#start").val("");
+        $("#end").val("");
+        $("#color").val("red"); // 배경색을 기본값으로 설정해도 됩니다.
+    });
+    
     //모달창 이벤트
-	$("#saveChanges").on("click", function () {
-	    var eventData = {
-	        title: $("#title").val(),
-	        start: $("#start").val(),
-	        end: $("#end").val(),
-	        backgroundColor: $("#color").val()
-	    };
-	    let title = eventData.title;
-	    let start = eventData.start;
-	    let end = eventData.end;
-	    let backgroundColor = eventData.backgroundColor;
-	    
-	    console.log(title);
-	    console.log(start);
-	    console.log(end);
-	    console.log(backgroundColor);
-	    
-	    if (eventData.title == "" || eventData.start == "" || eventData.end == "") {
-	        alert("입력하지 않은 값이 있습니다.");
-	    } else if ($("#start").val() > $("#end").val()) {
-	        alert("시간을 잘못입력 하셨습니다.");
-	    } else {
-	        calendar.addEvent({ // 배경색을 포함하여 이벤트 추가
-	            title: title,
-	            start: start,
-	            end: end,
-	            backgroundColor: backgroundColor
-	        });
-	        $("#exampleModal").modal("hide");
-	        
-	        $.ajax({
-	            type: "POST",
-	            url: "/calendar",
-	            dataType: "text",
-	            data: { title: $("#title").val(),
-	                    start: $("#start").val(),
-	                    end: $("#end").val(),
-	                    backgroundColor: $("#color").val() },
-	            success: function(data) {
-	                if (data === "1") {
-	                    alert("등록되었습니다!!");
-	                }
-	            }
-	        });
-	    }
-	});
+   	$("#saveChanges").on("click", function () {
+   		var eventData = {
+   			    eventId: eventId, // eventId를 obj로 수정
+   			    title: $("#title").val(),
+   			    start: $("#start").val(),
+   			    end: $("#end").val(),
+   			    backgroundColor: $("#color").val()
+   		};
+       
+       let calId = eventData.evevtId;
+       let title = eventData.title;
+       let start = eventData.start;
+       let end = eventData.end;
+       let backgroundColor = eventData.backgroundColor;
+       
+       console.log("calId", calId);
+       console.log("userName",userName);
+       console.log("title:",title);
+       console.log("start:",start);
+       console.log("end",end);
+       console.log("backgroundColor:",backgroundColor);
+
+       
+       if (eventData.title == "" || eventData.start == "" || eventData.end == "") {
+           alert("입력하지 않은 값이 있습니다.");
+       } else if ($("#start").val() > $("#end").val()) {
+           alert("시간을 잘못입력 하셨습니다.");
+       } else {
+           calendar.addEvent({
+               title: title,
+               start: start,
+               end: end,
+               backgroundColor: backgroundColor
+           });
+           $("#exampleModal").modal("hide");
+
+           $.ajax({
+               type: "POST",
+               url: "/calendar",
+               dataType: "text",
+               data: { userName: userName,
+                     title: $("#title").val(),
+                       start: $("#start").val(),
+                       end: $("#end").val(),
+                       backgroundColor: $("#color").val() },
+               success: function(data) {
+                   if (data === "1") {
+                       alert("등록되었습니다!!");
+                   }
+               }
+           });
+       }
+   });
 });
+
+function CalendarList(calendar){
+   $.ajax({
+      type:"POST",
+      url: "/CalendarList",
+      dataType: "JSON",
+      data: {},
+      success: function(data){
+         data.forEach(function(eventData) {
+                calendar.addEvent({
+                    title: eventData.title,
+                    start: eventData.start,
+                    end: eventData.end,
+                    backgroundColor: eventData.backgroundColor
+                });
+            });
+        }
+    });
+}
+
+
+
 </script>
 
 </html>

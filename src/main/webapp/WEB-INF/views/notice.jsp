@@ -8,91 +8,100 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>공지사항</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
    	<link rel="stylesheet" href="css/notice.css" />
     <link rel="stylesheet" href="css/noticecss.css" />
     <!-- 다크 모드 스타일 -->
-    <style>
-        body {
-            transition: background-color 0.3s, color 0.3s;
-        }
+<style>
+    body {
+        transition: background-color 0.3s, color 0.3s;
+    }
 
-        .dark-mode {
-            background-color: #0d1021;
-            color: #ffffff;
-        }
-        
+    .dark-mode {
+        background-color: #0d1021;
+        color: #ffffff;
+    }
+    
 
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
 
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: 0.4s;
-        }
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+    }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: #fff;
-            transition: 0.4s;
-        }
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: #fff;
+        transition: 0.4s;
+    }
 
-        input:checked+.slider {
-            background-color: #2196F3;
-        }
+    input:checked+.slider {
+        background-color: #2196F3;
+    }
 
-        input:focus+.slider {
-            box-shadow: 0 0 1px #2196F3;
-        }
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
 
-        input:checked+.slider:before {
-            transform: translateX(26px);
-        }
+    input:checked+.slider:before {
+        transform: translateX(26px);
+    }
 
-        /* Rounded sliders */
-        .slider.round {
-            border-radius: 34px;
-        }
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
 
-        .slider.round:before {
-            border-radius: 50%;
-        }
+    .slider.round:before {
+        border-radius: 50%;
+    }
 
-        /* 버튼 스타일 */
-        .toggle-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #fff;
-            color: #000;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+    /* 버튼 스타일 */
+    .toggle-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #fff;
+        color: #000;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px; /* 원하는 만큼의 여백을 설정하세요 */
+        text-align: center; 
+    }
+</style>
 </head>
 <body>
+ <header id="herder">
+  	<%@ include file="include/header.jsp" %>
+</header>
+
 <input type="hidden" id="hpage" value="${page}">
 <input type="hidden" id="hlastpage" value="${lastpage}">
 <!-- 다크 모드 토글 버튼 -->
@@ -142,6 +151,7 @@
         </div>
     </div>
 </div>
+
 </body>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>

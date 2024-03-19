@@ -6,11 +6,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product Detail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/page.css" />
 <link rel="stylesheet" href="css/kakaomap.css" />
 
 </head>
 <body>
+
+<header id="herder">
+  	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+</header>
+
 <input type=hidden id=jjim_id >
 <input type=hidden id=userid value=${email }>
 <input type=hidden id=hpage value=${page } >
@@ -27,7 +35,8 @@
         <div class="product-options">
             <table>
                 <tr>
-                    <th colspan="3" ><button class="btn-like" id=like>❤️</button><input type="hidden" id="pet_id" value=${id }>
+                    <th colspan="3" ><button class="btn-like" id=like>❤️</button>
+                    <input  id="pet_id" value=${id }>
                     <input type="hidden" id="wido" ><input type="hidden"  id="gyeongdo" >
                     </th>
                 </tr>
@@ -75,11 +84,12 @@
     </div>
    <hr>
     <div>
-        <div class="tab">
+        <div class="tab" >
             <button class="tablinks">기본정보</button>
             <button class="tablinks">리뷰</button>
         </div>   
     </div>
+    
 
     <div id="Container">
 	<!-- 기본정보 s -->
@@ -116,49 +126,27 @@
 		            <li id="FD6" data-order="5"> 
 		                <span class="category_bg restaurant"></span>
 		                음식점
-		            </li>  
-		           
-		            
-		                 
+		            </li>  		           		            		                 
 		        </ul>
 		    </div>
+		      <br><br><br><br><br><br><br><br>
 		</div>
 	</div>
-
 <!-- 리뷰 s -->
         <div id="review">
           <h1>리뷰 </h1>
             <div>
-                <h5>유저리뷰</h5> <button id="new_write" >리뷰작성</button>
+              <button id="new_write" >리뷰작성</button>
                  <div id='data_list' style="cursor: pointer;" >
                  	<table id=tbl_review>
 				 	</table>
                  </div >
-                 
                 	<table id=showpage>
                 	</table>
-
          	</div>
          	
         	
-      	    <!-- <!-- 네이버 리뷰 s -->
-			<div>
-				<div>
-					<h5>네이버 리뷰 <span id="naver_total"></span></h5>
-				</div>
-					<div class="s21_review_listb" id="review_n">				
-					<a href="https://search.naver.com/search.naver?where=post&sm=tab_jum&query=서울 쁘라텟타이" target="_blank">
-					<p class="s21_review_more">+ 더보기</p></a>
-				</div>
-			</div>	                   		
-    	  </div>
-    	  <br><br><br><br><br><br><br><br>
-    	  <div class="box-area">
-         <p>© petB&B</p>
-         <p>여러분의 만족을 위해 항상 노력하는petB&B입니다.</p>
-         <p>문의사항이 있으시면 언제든지 연락주세요.</p>
-         <p>010-0000-1111</p>
-      </div>
+ 
 </body>
 
 
@@ -269,6 +257,25 @@ $(document)
 	showList()
 	showpage()
 })
+.on('click','#delete',function(){
+   let id=$(this).parent().parent().find('td:eq(3)').text();
+   console.log(id);
+    $.ajax({
+      type:'get',
+      url:'/rDelet',
+      data:{id:id},
+      dataType:'text',
+      success:function(data){
+         if(data==1){
+            alert('삭제성공')
+            showList();
+            showpage();
+            return
+         }
+         alert('삭제실패')
+      }
+   }) 
+})
 
 
 $(".tablinks:eq(0)").on("click", function() {      
@@ -278,9 +285,20 @@ $(".tablinks:eq(0)").on("click", function() {
 $(".tablinks:eq(1)").on("click", function() {  
     $("#information").hide(); 
     $("#review").show(); 
-});
-$("#new_write").on("click", function() {      
-	openPop();
+})
+$("#new_write").on("click", function() {
+   
+	let userid = $('#userid').val();
+    console.log("userid"+userid)
+    if(userid == "" || userid ==null){
+        alert('로그인페이지로 이동합니다');
+        location.href="/login";
+        return false
+    } else {
+       $('#new_write').disable = false;
+       openPop()
+       return true
+    }
 });
 $('#data_list').on('click', '#tbl_review tr', function() {
     var reviewContent = $(this).find('td:eq(0)').text();
@@ -310,11 +328,11 @@ $('#data_list').on('click', '#tbl_review tr', function() {
 } */
 
 function openPop(){
-  var popup = window.open('http://localhost:8081/review', '네이버팝업', 'width=700px,height=800px,scrollbars=yes');
+  var popup = window.open('http://localhost:8081/review?pid='+ ${id }, '리뷰', 'width=700px,height=800px,scrollbars=yes');
  
 } 
 function modiPop(id) {
-    var popup = window.open('http://localhost:8081/review?id=' + id, '네이버팝업', 'width=700px,height=800px,scrollbars=yes');
+    var popup = window.open('http://localhost:8081/review?id=' + id, '리뷰', 'width=700px,height=800px,scrollbars=yes');
 }
 
 function showList(){
@@ -327,11 +345,13 @@ function showList(){
 	         $('#tbl_review').empty();
 	           for(let i=0; i< data.length; i++){
 	              let ob=data[i];
+	     
 	              let str = '<tr><td>'+ob.content+'</td><td>'+ob.writer+'</td><td>'+ob.time+'</td><td class="borad_id" >' + ob['id'] +
 	                '</td><td>';
 	                if ($('#loginid').val()==ob.writer) {
-	                    str +='<a href="#" onclick="modiPop(' + ob.id + ');">수정</a><a href="/rDelet?id=' + ob.id + '">삭제</a></td></tr>';
-	                } 
+	                	$('.modipop').show();
+	                    str +='<a href="#" onclick="modiPop(' + ob.id + ');">수정</a><a href="#" id="delete">삭제</a></td></tr></td></tr>';
+	                } 	              
 	            $('#tbl_review').append(str);         
 	           } 
 	         
@@ -352,6 +372,7 @@ function showList(){
 	         //console.log(b)
 	         let a=b.split(',')
 	         //console.log(a)
+	         
 	         let str='<tr><td>&nbsp;&nbsp;&nbsp;<button id=first>맨처음</button><button id=prev>이전</button>'
 	         for(let i=0;i<a.length;i++){
 	            str+='<a href="#" id=pagenum value='+a[i]+'>'+a[i]+'&nbsp;</a>'

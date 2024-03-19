@@ -44,6 +44,8 @@
 	    overflow: hidden;
 	    border: 1px solid #634522;
 	    background-color: #634522;
+	    display: flex;
+	    justify-content: center;
 	}
 	
 	.tab button {
@@ -54,8 +56,10 @@
 	    cursor: pointer;
 	    padding: 14px 16px;
 	    transition: 0.3s;
+	    width: 200px; 
+	    height: 50px;
+	    font-size: 15px;
 	}
-	
 	/* 리뷰 리스트 테이블 스타일 */
 	#tbl_review {
 	    width: 100%;
@@ -151,37 +155,38 @@
 		display:none;
 	}
 	/* 박스 영역 스타일 */
-.box-area {
-    background-color: #f0f0f0;
-    border: 2px solid #ddd;
-    padding: 20px;
-    margin-top: 20px;
-    text-align: center;
-}
-
-.box-area p {
-    font-family: 'Nanum Pen Script', sans-serif;
-    font-size: 20px;
-    margin: 10px 0;
-    line-height: 1.5;
-}
-.btn-like {
-     color: transparent;
-     text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 #000;
-     border: none;
-     background-color: transparent;
+	.box-area {
+	    background-color: #f8f1e5;
+	    border: 2px solid #ddd;
+	    padding: 20px;
+	    margin-top: 20px;
+	    text-align: center;
+	}
+	
+	.box-area p {
+	    font-family: 'Nanum Pen Script', sans-serif;
+	    font-size: 20px;
+	    margin: 10px 0;
+	    line-height: 1.5;
+	}
+	.btn-like {
+		color: transparent;
+		text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 #000;
+		border: none;
+		background-color: transparent;
    }
    .btn-like:hover {
-     text-shadow: 0 0 0 #ea0;
+		text-shadow: 0 0 0 #ea0;
    }
    .btn-like.done {
-     color: inherit;
-     text-shadow: 0;
+		color: inherit;
+		text-shadow: 0;
    }
    .btn-like.done:hover {
-     color: transparent;
-     text-shadow: 0 0 0 #777;
+		color: transparent;
+		text-shadow: 0 0 0 #777;
    }
+
 
 
 
