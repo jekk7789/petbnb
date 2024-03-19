@@ -57,6 +57,9 @@
                             <li>
                                 <a href="/Qna" style="color: #B29079;">Q&A</a>
                             </li>
+                            <li >
+                                <a href="/calendar" style="color: #B29079;">Calendar</a>
+                            </li>
                             <li>
                                 <a href="/mypage" style="color: #B29079;">mypage</a>
                             </li>

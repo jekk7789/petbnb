@@ -27,6 +27,7 @@ public class CalendarController {
         return "calendar";
     }
     
+    //일정 추가
     @PostMapping("/calendar")
     @ResponseBody
     public String calendar(HttpServletRequest req) {
@@ -43,12 +44,13 @@ public class CalendarController {
         System.out.println(backgroundColor);
         
         HttpSession sess = req.getSession();
-      sess.setAttribute("userName", userName);
+        sess.setAttribute("userName", userName);
         int n = cdao.addCalendar(userName, title, start, end, backgroundColor);
         
         return ""+1;
     }
     
+    //일정 보기
     @PostMapping("/CalendarList")
     @ResponseBody
     public JSONArray doCalendar(HttpServletRequest req) {
@@ -71,5 +73,19 @@ public class CalendarController {
         return ja;
     }
     
+    //일정 삭제
+    @PostMapping("/calRemove")
+    @ResponseBody
+    public String calRemove(HttpServletRequest req) {
+    	String title = req.getParameter("title");
+    	System.out.println("title은 일정제목"+title);
+    	String titleNum = cdao.getCal_id(title);
+    	System.out.println("titleNum은 아이디"+titleNum);
+    	
+    	int n = cdao.delCalendar(Integer.parseInt(titleNum));
+    	System.out.println("n은 지울번호"+n);
+    	return ""+n;
+    	
+    }
     
 }

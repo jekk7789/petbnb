@@ -16,4 +16,11 @@
       select * from calendar where userName= #{param1};
    </select>
    
+   <select id="getCal_id" resultType="String">
+   	select id from calendar where title=#{param1}
+   </select>
+   <delete id="delCalendar">
+   	delete from calendar where id=#{param1}
+   </delete>
+   
 </mapper>

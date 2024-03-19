@@ -15,14 +15,50 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 <title>검색 결과 입니다</title>
 </head>
+<style>
+.city1{
+    width: 200px;
+    height: 32px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+}
 
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content,.dropdown-content2 {
+  display: none;
+  background-color: #f9f9f9;
+  min-width: 250px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  position: absolute;
+  z-index: 1;
+}
+
+.dropdown-content a,.dropdown-content2 a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+</style>
 
 <body>
 <input type=hidden id=hpage value=${page }>
 <input type=hidden id=hlastpage value=${lastpage }>
 <input type=hidden id=hname value=${text }>
 <input type=hidden id=hsearch value=${search }>
-
+<input type=hidden id=hcity value=${city }>
+<input type=hidden id=hciGunGu value=${ciGunGu }>
 
    <h2>${text }입니다</h2>
    <h3>현재페이지:${page }</h3>
@@ -46,7 +82,22 @@
 	</div>
 	
 </div>
-
+<form method="post" action="/citysearch">
+<input type=hidden name=text value=${text }>
+   <div class="navigation" style="text-align:center">   
+         <div class="dropdown">
+            시,도<input class="city1" name=city  id=city readonly />
+         	<div class="dropdown-content">
+         	</div>
+         </div>
+         <div class="dropdown">
+            시,군,구<input class=city1 name=ciGunGu id=ciGunGu readonly>
+           <div class="dropdown-content2">
+         </div>
+         </div>
+         <button id=citysearch>&#128269;</button>      
+   </div> 
+ </form>
    
 <div class=detail>
 	<table >
@@ -67,7 +118,7 @@
   <button id=first>맨처음</button>
   <button id=prev>이전</button>
   <c:forEach var="num" items="${showpage }">
-  	<a href="/store?page=${num }&text=${text}&search=${search}">${num }&nbsp;</a>
+     <a href="/store?page=${num }&text=${text}&search=${search}&city=${city}&ciGunGu=${ciGunGu}">${num }&nbsp;</a>
   </c:forEach>
   <button id=next>다음</button>
   <button id=last>마지막</button>
@@ -115,7 +166,6 @@
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
 $(document)
-
 .ready(function(){
 	if($('#hpage').val()==1){
 		$('#prev').hide();
@@ -123,35 +173,95 @@ $(document)
 	if($('#hpage').val() == $('#hlastpage').val()){
 		$('#next').hide();
 	}
+	 cityList()
+})
+.on('click','#city',function(){
+   $('.dropdown-content').css('display','block')
+   $("div.dropdown-content").mouseleave(function(){
+      $('.dropdown-content').css('display','none')
+   })
+})
+.on('click','#ciGunGu',function(){
+   $('.dropdown-content2').css('display','block')
+   $("div.dropdown-content2").mouseleave(function(){
+      $('.dropdown-content2').css('display','none')
+   })
+})
+
+.on('click','.cityname',function(){
+   let n=$(this).text()
+   console.log("n"+n)
+   $.ajax({
+      type:'get',
+      url:'ciGunGuList',
+      data:{city:n},
+      dataType:'json',
+      success:function(data){
+          $('.dropdown-content2').empty()
+          for(i=0;i<data.length;i++){
+               let ob=data[i]
+               let str='<a href="#" class="ciGunGuname">'+ob['ciGunGu']+'</a>'
+               $('.dropdown-content2').append(str)
+               
+            }
+          return
+      }
+   })
+   $('#city').val(n)
+   $('.dropdown-content').css('display','none')
+})
+.on('click','.ciGunGuname',function(){
+   let n=$(this).text()
+   $('#ciGunGu').val(n)
+   $('.dropdown-content2').css('display','none')
 })
 
 .on('click','#prev',function(){
-	let num=$('#hpage').val()
-	console.log(num)
-	let page=num-1
-	console.log(page)
-	location.href="/store?page="+page+"&text=${text}&search=${search}";
+   let num=$('#hpage').val()
+   console.log(num)
+   let page=num-1
+   console.log(page)
+   location.href="/store?page="+page+"&text=${text}&search=${search}&city=${city}&ciGunGu=${ciGunGu}";
 })
 
 .on("click","#next",function(){
-	let num=parseInt($('#hpage').val())
-	console.log(num)
-	let page=num+1
-	console.log(page)
-	location.href="/store?page="+page+"&text=${text}&search=${search}"
+   let num=parseInt($('#hpage').val())
+   console.log(num)
+   let page=num+1
+   console.log(page)
+   location.href="/store?page="+page+"&text=${text}&search=${search}&city=${city}&ciGunGu=${ciGunGu}"
 })
 
 .on("click","#first",function(){
-	let num=1
-	console.log(num)
-	location.href="/store?page="+num+"&text=${text}&search=${search}"
+   let num=1
+   console.log(num)
+   location.href="/store?page="+num+"&text=${text}&search=${search}&city=${city}&ciGunGu=${ciGunGu}"
 })
 
 .on("click","#last",function(){
-	let num=parseInt($('#hlastpage').val())
-	console.log(num)
-	location.href="/store?page="+num+"&text=${text}&search=${search}"
+   let num=parseInt($('#hlastpage').val())
+   console.log(num)
+   location.href="/store?page="+num+"&text=${text}&search=${search}&city=${city}&ciGunGu=${ciGunGu}"
 })
+
+function cityList(){
+   $.ajax({
+      type:'get',
+      url:'/cityList',
+      data:{},
+      dataType:'json',
+      success:function(data){
+            for(i=0;i<data.length;i++){
+               let ob=data[i]
+               let str='<a href="#" class="cityname">'+ob['city']+'</a>'
+               $('.dropdown-content').append(str) 
+         }
+            return
+         console.log("실패")
+      }
+   })
+}
+
 
 //날씨
 var weatherIcon = {

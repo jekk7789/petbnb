@@ -191,8 +191,8 @@ $(document)
         	gyeongdo = data.gyeongdo;
 	    }
         
-	}).done(function() {// ajax 호출 완료 후에 실행되는 코드
-		$('#wido').val(wido);  // 위도 경도를 바로 넣으면 왜 값이 안나오는지 확인하기.
+	}).done(function() {
+		$('#wido').val(wido);  
 		$('#gyeongdo').val(gyeongdo);
 		map();
 		map2();

@@ -16,17 +16,17 @@ public interface dataDAO {
    
 //a 행거로 카테고리별 목록 뽑아오기
    ArrayList<dataDTO> getHos(String name,int page);      
-
+   ArrayList<dataDTO> citygetHos(String name,int page,String city);
    //문화시설 - 카페,문예회관,음식점 3가지 모아서
    ArrayList<dataDTO> getTotal(String name,String name1,String name2,int page);
-   
+   ArrayList<dataDTO> citygetTotal(String str,int page,String city);
    String hospital(String name);
    
    //카테고리별 페이징만들기 총갯수구하기
    int getHos_cnt(String name);
-
+   int citygetHos_cnt(String name,String city);
    int getTotal_cnt(String name,String name1,String name2);
-   
+   int citygetTotal_cnt(String str,String city);
    //상세페이지 찾아오기
    ArrayList<dataDTO> getInf(int id);
    //찜하기
@@ -45,6 +45,7 @@ public interface dataDAO {
    int rUpdate(String content, int id);
    boardDTO reLoad(int idDisplay);
    int reviewTotal(int id);
+
    
 	//Qna 게시판
 	int QnaWrite(String title,String writer, String content);

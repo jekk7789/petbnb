@@ -9,6 +9,7 @@
   
   <!-- Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/calendar.css" rel="stylesheet">
   
   <!-- fullcalendar CDN -->
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
@@ -17,7 +18,10 @@
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 </head>
 <body>
-<input type=text id=userid value=${email }>
+<input type=hidden id=userid value=${email }>
+<input type=hidden id=hid value=${id }>
+
+
 <div id='calendar-container'>    
     <div id='calendar' id=calList></div>  
 </div>
@@ -79,6 +83,7 @@ $(document).ready(function(){
    $('#calList').empty();
    let userName = $("#userid").val();
    console.log(userName);
+   console.log($('#hid').val())
 
    // calendar element 취득    
     var calendarEl = $('#calendar')[0];      
@@ -90,7 +95,7 @@ $(document).ready(function(){
         slotMaxTime: '20:00', // Day 캘린더에서 종료 시간        
         // 해더에 표시할 툴바        
         headerToolbar: {          
-            left: 'prev,next today myCustomButton mySaveButton',          
+            left: 'prev,next today myCustomButton',          
             center: 'title',          
             right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'        
         },
@@ -100,12 +105,9 @@ $(document).ready(function(){
                 click: function() {
                     $("#exampleModal").modal("show");
                 }
-            },
-            mySaveButton: {
-                text: "삭제",
-                
             }
         },
+        
         initialView: 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)        
         navLinks: true, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크        
         editable: true, // 수정 가능?        
@@ -132,31 +134,25 @@ $(document).ready(function(){
         },
         eventClick: function(info) {
         	let calId = info.event._def.defId;
+        	let title = info.event._def.title;
         	console.log(calId);
+        	console.log('이게누르면 삭제냐?');
+        	console.log($('#title').val());
+        	console.log(title);
+        	
         	$.ajax({
         		type:"POST",
         		url: "/calRemove",
         		dataType:"text",
-        		data:{calId:calId}
+        		data:{title:title}
         	})
            if (confirm("이 일정을 삭제하시겠습니까?")) {
                 let eventId = info.event._def.defId;
                 console.log("삭제할 이벤트의 ID:", eventId);
                info.event.remove();
+               alert("삭제완료");
             }
-        },
-
-        events: [          
-            {            
-                title: 'All Day Event',            
-                start: '2024-03-18',          
-            },          
-            {            
-                title: 'Long Event',            
-                start: '2024-03-20',            
-                end: '2024-03-24'          
-            }
-        ]      
+        }
     }); 
 
    	// 캘린더 랜더링      
@@ -175,20 +171,20 @@ $(document).ready(function(){
     //모달창 이벤트
    	$("#saveChanges").on("click", function () {
    		var eventData = {
-   			    eventId: eventId, // eventId를 obj로 수정
+//    			    eventId: eventId, // eventId를 obj로 수정
    			    title: $("#title").val(),
    			    start: $("#start").val(),
    			    end: $("#end").val(),
    			    backgroundColor: $("#color").val()
    		};
        
-       let calId = eventData.evevtId;
+//        let calId = eventData.evevtId;
        let title = eventData.title;
        let start = eventData.start;
        let end = eventData.end;
        let backgroundColor = eventData.backgroundColor;
        
-       console.log("calId", calId);
+//        console.log("calId", calId);
        console.log("userName",userName);
        console.log("title:",title);
        console.log("start:",start);
