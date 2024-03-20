@@ -734,7 +734,7 @@ h1, h2, h3, h4,
 
 @media (min-width: 992px) {
   .navigation {
-  	border: solid 1px;
+  	
     position: absolute;
     width: 50%;
     top: 60%;

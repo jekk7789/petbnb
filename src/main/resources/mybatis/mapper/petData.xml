@@ -20,7 +20,7 @@
    delete from board where id=#{param1}
 </delete>
 <update id="rUpdate">
-   UPDATE board set content=#{param1},rating=#{param2},created=sysdate() where id=#{param2}
+   UPDATE board set content=#{param1},rating=#{param2},created=sysdate() where id=#{param3}
 </update>
 <select id="reLoad" resultType="com.himedia.pet.DTO.boardDTO">
    SELECT writer, content,rating from board where id=#{param1}

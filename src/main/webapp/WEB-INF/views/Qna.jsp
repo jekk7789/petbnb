@@ -20,6 +20,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/bootstrap.css">
 <link rel="stylesheet" href="css/board.css" />
+<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="70">

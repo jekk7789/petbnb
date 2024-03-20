@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,13 +54,13 @@ li a:hover {
               <ul >
                   <li>
                       <c:choose>
-                    <c:when test="${not empty email}">
-                        <a href="/logout" style="color: #B29079;">logout</a>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="/login" class="btn-11" style="color: #B29079;">login</a>
-                    </c:otherwise>
-                </c:choose>
+						<c:when test="${not empty email}">
+							<a href="/logout" style="color: #B29079;">logout</a>
+						</c:when>
+						<c:otherwise>
+							<a href="/login" class="btn-11" style="color: #B29079;">login</a>
+						</c:otherwise>
+                	 </c:choose>
                   </li>
                   <li >
                       <a href="/" style="color: #B29079;">home</a>

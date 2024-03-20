@@ -9,6 +9,7 @@
     <title>공지사항</title>
     <link rel="stylesheet" href="css/notice.css" />
     <link rel="stylesheet" href="css/noticecss.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 </head>
 <body>
 	<form method="get" action="/noticeWrite">

@@ -9,11 +9,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 <title>작성하기</title>
 </head>
 <style>
-
-
 .rate { display: inline-block;border: 0;margin-right: 15px;}
 .rate > input {display: none;}
 .rate > label {float: right;color: #ddd}
@@ -87,6 +86,12 @@ $("#do_write").on('click', function(){
     if($('#writer').val() === "" || $('#content').val() === "" || $('input[name=rating]:checked').val() === ""){
         alert("빈 칸에 값을 입력해주세요.");
     } else {
+    	let writer = $('#writer').val();
+        let content = $('#content').val();
+        let rating = $('input[name=rating]:checked').val();
+        
+        let message = "작성자: " + writer + "\n내용: " + content + "\n평점: " + rating;
+        alert(message);
         $.ajax({
             type: 'post', 
             url: '/doWrite',
@@ -94,11 +99,13 @@ $("#do_write").on('click', function(){
                 pName: $('#pet_id').val(),
                 writer: $('#writer').val(), 
                 content: $('#content').val(),
-                idDisplay: $('#idDisplay').val(),
-                rating: $('input[name=rating]:checked').val()
+                rating: $('input[name=rating]:checked').val(),
+                idDisplay: $('#idDisplay').val()
+                
             }, 
-            dataType: 'text',
+            dataType: 'json',
             success: function(data) {
+            	console.log(data)
                 if(data == 1){
                     alert('성공');
                     $('#content').val('');
@@ -135,7 +142,7 @@ function roda(){
            
            if (data.rating !== undefined) {
                let rating = parseFloat(data.rating);
-               let ratingRadioId = "rating" + Math.round(rating * 2); // 별점 반올림     
+               let ratingRadioId = "rating" + Math.round(rating * 2); 
                $("#" + ratingRadioId).prop("checked", true);
            		
            }

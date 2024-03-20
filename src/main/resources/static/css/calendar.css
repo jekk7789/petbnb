@@ -34,7 +34,7 @@ h2 {
 }
 
 a {
-    color: #634522;
+    color: black;
 }
 
 a:hover {
@@ -42,7 +42,7 @@ a:hover {
 }
 
 table {
-    width: 1000px;
+    height
     margin-top: 20px;
     border-collapse: collapse;
     background-color: #fff;
@@ -56,6 +56,8 @@ th, td {
 }
 td{
 background-color:#f6f5ec;
+	
+
 }
 
 th {
@@ -111,13 +113,3 @@ td.qbutton{
 	width:150px;
 }
 
-.weatherbackground {
-    background-image: url("/image/sky.jpg");
-    background-size: cover; /* 배경 이미지를 컨테이너에 맞게 조정 */
-    background-position: center; /* 배경 이미지를 가운데로 정렬 */
-    width: 100%;
-    padding: 40px;
-    color: #fff;
-    height: 220px;
-    width: 30%;
-}

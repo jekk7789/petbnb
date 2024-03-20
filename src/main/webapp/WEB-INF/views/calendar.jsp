@@ -13,6 +13,7 @@
   
   <!-- fullcalendar CDN -->
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+  <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
   <!-- fullcalendar 언어 CDN -->
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
@@ -20,9 +21,11 @@
 <body>
 <input type=hidden id=userid value=${email }>
 <input type=hidden id=hid value=${id }>
+<header id="herder">
+  	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+</header>
 
-
-<div id='calendar-container'>    
+<div id='calendar-container' style="margin-top: 20px;">    
     <div id='calendar' id=calList></div>  
 </div>
 <div
@@ -88,7 +91,8 @@ $(document).ready(function(){
    // calendar element 취득    
     var calendarEl = $('#calendar')[0];      
     // full-calendar 생성하기      
-    var calendar = new FullCalendar.Calendar(calendarEl, {        
+    var calendar = new FullCalendar.Calendar(calendarEl, {   
+    	googleCalendarApiKey: "AIzaSyCFHbhV_LurvUTgClzZhkCbaojUOLG94Z0",
         height: '700px',        
         expandRows: true, // 화면에 맞게 높이 재설정        
         slotMinTime: '08:00', // Day 캘린더에서 시작 시간        
@@ -132,6 +136,13 @@ $(document).ready(function(){
                 info.revert();
             }
         },
+        eventSources: [
+        	{
+        		googleCalendarId : 'ko.south_korea#holiday@group.v.calendar.google.com'
+                    , color: 'white'   // an option!
+                    , textColor: 'red' // an option!
+        	}
+        ],
         eventClick: function(info) {
         	let calId = info.event._def.defId;
         	let title = info.event._def.title;

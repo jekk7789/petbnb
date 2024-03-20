@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>petbnb</title>
+<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 </head>
 <body>
 <input type=hidden id=text value=${text }>

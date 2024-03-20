@@ -13,46 +13,18 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 <title>검색 결과 입니다</title>
 </head>
 <style>
-.city1{
-    width: 200px;
-    height: 32px;
-    font-size: 15px;
-    border: 0;
-    border-radius: 15px;
-    outline: none;
-    padding-left: 10px;
-    background-color: rgb(233, 233, 233);
-}
 
-
-.dropdown {
-  display: inline-block;
-  position: relative;
-}
-
-.dropdown-content,.dropdown-content2 {
-  display: none;
-  background-color: #f9f9f9;
-  min-width: 250px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  position: absolute;
-  z-index: 1;
-}
-
-.dropdown-content a,.dropdown-content2 a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {background-color: #f1f1f1}
 </style>
+</head>
 
 <body>
+<header id="herder">
+  	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+</header>
 <input type=hidden id=hpage value=${page }>
 <input type=hidden id=hlastpage value=${lastpage }>
 <input type=hidden id=hname value=${text }>
@@ -60,12 +32,14 @@
 <input type=hidden id=hcity value=${city }>
 <input type=hidden id=hciGunGu value=${ciGunGu }>
 
-   <h2>${text }입니다</h2>
-   <h3>현재페이지:${page }</h3>
-   <div class="weatherbackground">
-	<div style="float : left; margin-top: 50px; font-size: 130%">
-		<div class="weather_icon"></div>
-	</div><br>
+<h2>${text }입니다</h2>
+<h3>현재페이지:${page }</h3>
+
+<div class="weather-container">
+  <div class="weatherbackground" style="margin-bottom: 20px;">
+    <div style="float: left; margin-top: 50px; font-size: 130%">
+      <div class="weather_icon"></div>
+    </div><br>
 
 	<div style="float: right; margin: -5px 0px 0px 60px; font-size: 11pt;">
 		<div class="temp_min"><i class="fa-solid fa-temperature-arrow-down"></i> </div>
@@ -125,15 +99,7 @@
   <button id=last>마지막</button>
   <p>${text }!!</p>
  </div>
- 	
- 
- 
- 
 </div>
-
-
-
-
 <footer class="footer01">
 	<div role="contentinfo" class=container>
 	    <table class="tblfooter01">

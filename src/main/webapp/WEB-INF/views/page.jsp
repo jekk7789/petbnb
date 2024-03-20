@@ -11,8 +11,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/page.css" />
 <link rel="stylesheet" href="css/kakaomap.css" />
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 </head>
+<style>
+.rate { 
+    display: inline-block;
+    border: 0;
+    margin-right: 15px;
+    
+}
+
+.rate > input {
+    display: none;
+}
+
+.rate > label {
+    float: right;
+    color: #ddd;
+    
+}
+
+.rate > label:before {
+    display: inline-block;
+    font-size: 1rem;
+    padding: .3rem .2rem;
+    margin: 0;
+    font-family: FontAwesome;
+    content: "\f005 ";
+}
+
+.rate .half:before {
+    content: "\f089 ";
+    position: absolute;
+    padding-right: 0;
+}
+  
+ 
+</style>
 <body>
 
 <header id="herder">
@@ -139,14 +175,12 @@
               <button id="new_write" >리뷰작성</button>
                  <div id='data_list' style="cursor: pointer;" >
                  	<table id=tbl_review>
+                 	
 				 	</table>
                  </div >
                 	<table id=showpage>
                 	</table>
-         	</div>
-         	
-        	
- 
+        </div>
 </body>
 
 
@@ -258,8 +292,8 @@ $(document)
 	showpage()
 })
 .on('click','#delete',function(){
-   let id=$(this).parent().parent().find('td:eq(3)').text();
-   console.log(id);
+   let id=$(this).parent().parent().find('td:eq(4)').text();
+   console.log("id:",id);
     $.ajax({
       type:'get',
       url:'/rDelet',
@@ -335,29 +369,53 @@ function modiPop(id) {
     var popup = window.open('http://localhost:8081/review?id=' + id, '리뷰', 'width=700px,height=800px,scrollbars=yes');
 }
 
+/* function displayRating(rating) {
+    let starsHtml = '<fieldset class="rate">';
+    let fullStars = Math.floor(rating);
+    let halfStar = (rating - fullStars) >= 0.5;
+    console.log("별:", fullStars);
+    console.log("반 별:", halfStar);
+    for (let i = 1; i <= 5; i++) {
+        if (i <= fullStars) {
+            // 별
+            starsHtml += '<input type="text" id="rating' + i + '" name="rating" value="' + i + '" checked><label for="rating' + i + '" title="' + i + '점" style="color:blue;"></label>';
+            console.log("풀별:", starsHtml)
+        } else if (halfStar && (i === fullStars + 1)) {
+            // 반별
+            starsHtml += '<input type="text" id="rating' + i + '" name="rating" value="' + (i - 0.5) + '" checked><label class="half" for="rating' + i + '" title="' + (i - 0.5) + '점" style="color: blue;"></label>';
+            console.log("반별:", starsHtml)
+        }
+    }
+    
+    starsHtml += '</fieldset>';
+    return starsHtml;
+} */
+
 function showList(){
-	   $.ajax({
-	      type:'post',
-	      url:'/doReview',
-	      data:{id:$('#pet_id').val(),page:$('#hpage').val()},
-	      dataType:'json',
-	      success:function(data){
-	         $('#tbl_review').empty();
-	           for(let i=0; i< data.length; i++){
-	              let ob=data[i];
-	     
-	              let str = '<tr><td>'+ob.content+'</td><td>'+ob.writer+'</td><td>'+ob.rating+'</td><td>'+ob.time+'</td><td class="borad_id" >' + ob['id'] +
-	                '</td><td>';
-	                if ($('#loginid').val()==ob.writer) {
-	                	$('.modipop').show();
-	                    str +='<a href="#" onclick="modiPop(' + ob.id + ');">수정</a><a href="#" id="delete">삭제</a></td></tr></td></tr>';
-	                } 	              
-	            $('#tbl_review').append(str);         
-	           } 
-	         
-	      }
-	   })
-	}
+    $.ajax({
+        type: 'post',
+        url: '/doReview',
+        data: {id: $('#pet_id').val(), page: $('#hpage').val()},
+        dataType: 'json',
+        success: function(data) {
+        	console.log(data)
+            $('#tbl_review').empty();
+            for(let i = 0; i < data.length; i++) {
+                let ob = data[i];
+                /* let rating = displayRating(ob.rating); */
+                let str = '<tr><td>' + ob.content + '</td><td>' + ob.writer + '</td><td>' + ob.rating + '</td><td>' + ob.time + '</td><td class="borad_id">' + ob.id + '</td><td>';
+                
+                if ($('#loginid').val() == ob.writer) {
+                    $('.modipop').show();
+                    str += '<a href="#" onclick="modiPop(' + ob.id + ');">수정</a><a href="#" id="delete">삭제</a></td></tr>';
+                }
+                
+                $('#tbl_review').append(str);
+            }
+        }
+    });
+}
+
 	function showpage(){
 	   $.ajax({
 	      type:'get',

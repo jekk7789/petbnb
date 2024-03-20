@@ -272,9 +272,12 @@ public class HomeController {
       int n=0;
       if(idDisplay == null || idDisplay.equals("")) {
          n = ddao.write(Integer.parseInt(pName),writer,content,rating);
+         System.out.println("n"+n);
       } else {
          n = ddao.rUpdate(content,rating,Integer.parseInt(idDisplay));
+         System.out.println("n"+n);
       }
+      System.out.println("n"+n);
       return ""+n;
    }
    @PostMapping("/doReview") // 리뷰 로딩
@@ -320,9 +323,9 @@ public class HomeController {
    @ResponseBody
    public String rDelet(HttpServletRequest req) {
       String id=req.getParameter("id");
-       int n=ddao.rDelete(Integer.parseInt(id));
+      int n=ddao.rDelete(Integer.parseInt(id));
        
-       return ""+n; 
+      return ""+n; 
    }
    
    

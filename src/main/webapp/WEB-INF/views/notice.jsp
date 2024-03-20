@@ -13,6 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
    	<link rel="stylesheet" href="css/notice.css" />
     <link rel="stylesheet" href="css/noticecss.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
     <!-- 다크 모드 스타일 -->
 <style>
     body {

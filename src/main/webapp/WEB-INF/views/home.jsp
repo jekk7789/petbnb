@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fittext/1.2.0/jquery.fittext.min.js"></script>
+    
     
     
 </head>
@@ -202,6 +204,13 @@ searchInputEl.addEventListener('blur', function(){
   searchEl.classList.remove('focused')
   searchInputEl.setAttribute('placeholder','')
 })
+
+window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            searchInputEl.value = '';
+            document.cookie = 'search=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        }
+    });
 Kakao.init('d129ecc6b869c11eb7e257e7089bcf6b');
 
 //카카오로그아웃  

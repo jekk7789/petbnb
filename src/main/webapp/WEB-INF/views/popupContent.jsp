@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>petB&B</title>
 <link rel="stylesheet" href="/css/popupContent.css">
+<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 <script language="JavaScript">
         function setCookie( name, value, expiredays ) {
             var todayDate = new Date();
