@@ -102,9 +102,10 @@
 <div class=detail>
 	<table >
 		<tr><th>번호</th><th>이름</th><th>전화번호</th><th>주소</th></tr>
-		<c:forEach var="list"  items="${alList}">
+		<c:forEach var="list"  items="${alList}" varStatus="status">
 			<tr>
-				<td class=qId>${list.id}</td>
+				<%-- <td class=qId>${list.id}</td> --%>
+				<td>${tblnum[status.index]}</td>
 				<td class=qName><a href=/page?id=${list.id}>${list.name}</a></td>
 				
 				<td class=qNumber>${list.number}</td>

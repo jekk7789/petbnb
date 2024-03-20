@@ -34,17 +34,21 @@ public interface dataDAO {
    int chekJjim(int uid,int pid);
    int getJjimid(int uid,int pid);
    void delJjim(int jjim_id);
+   //찜목록 불러오기
+   ArrayList<dataDTO> jjimList(int id);
+   String getjjim_id(String title);
    
    
 //상세페이지+리뷰페이징
    dataDTO view(int id);
-   int write(int pName, String writer, String content);
+   int write(int pName, String writer, String content, String rating);
    
    ArrayList<boardDTO> reviewLoad(int pName,int start);
    int rDelete(int id);
-   int rUpdate(String content, int id);
+   int rUpdate(String content,String rating,int id);
    boardDTO reLoad(int idDisplay);
    int reviewTotal(int id);
+   
 
    
 	//Qna 게시판

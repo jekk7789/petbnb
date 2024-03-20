@@ -346,7 +346,7 @@ function showList(){
 	           for(let i=0; i< data.length; i++){
 	              let ob=data[i];
 	     
-	              let str = '<tr><td>'+ob.content+'</td><td>'+ob.writer+'</td><td>'+ob.time+'</td><td class="borad_id" >' + ob['id'] +
+	              let str = '<tr><td>'+ob.content+'</td><td>'+ob.writer+'</td><td>'+ob.rating+'</td><td>'+ob.time+'</td><td class="borad_id" >' + ob['id'] +
 	                '</td><td>';
 	                if ($('#loginid').val()==ob.writer) {
 	                	$('.modipop').show();
@@ -446,7 +446,7 @@ function map2(){
 	var mapContainer2 = document.getElementById('map2'), // 지도를 표시할 div 
     mapOption2 = {
 		center: new kakao.maps.LatLng($('#wido').val(),$('#gyeongdo').val()),
-        level: 5 // 지도의 확대 레벨
+        level: 4 // 지도의 확대 레벨
     }; 
     console.log(mapContainer2);
     

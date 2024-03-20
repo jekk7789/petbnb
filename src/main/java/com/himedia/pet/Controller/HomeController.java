@@ -191,6 +191,13 @@ public class HomeController {
          a.add(showpage);
          if(showpage==lastpage) break;
       }
+      ArrayList<Integer> tblnum= new ArrayList<Integer>();
+      for(int i=1;i<=10;i++) {
+          start++;
+          tblnum.add(start);
+       }
+      System.out.println(tblnum);
+      model.addAttribute("tblnum",tblnum);
       
       //페이지를 위한 모델들
       model.addAttribute("showpage",a);
@@ -261,11 +268,12 @@ public class HomeController {
       String writer = req.getParameter("writer");
       String content = req.getParameter("content");
       String idDisplay = req.getParameter("idDisplay");
+      String rating = req.getParameter("rating");
       int n=0;
       if(idDisplay == null || idDisplay.equals("")) {
-         n = ddao.write(Integer.parseInt(pName),writer,content);
+         n = ddao.write(Integer.parseInt(pName),writer,content,rating);
       } else {
-         n = ddao.rUpdate(content,Integer.parseInt(idDisplay));
+         n = ddao.rUpdate(content,rating,Integer.parseInt(idDisplay));
       }
       return ""+n;
    }
@@ -287,7 +295,7 @@ public class HomeController {
             pageno=req.getParameter("page");
          }
          int page=Integer.parseInt(pageno);
-
+         
          int start=(page-1)*10;
          
            ArrayList<boardDTO> data = ddao.reviewLoad(petId,start);
@@ -297,9 +305,11 @@ public class HomeController {
                jo.put("id", data.get(i).id);
                jo.put("writer", data.get(i).writer);
                jo.put("content", data.get(i).content);
+               jo.put("rating", data.get(i).rating);
                jo.put("time", data.get(i).created);
                ja.add(jo);
            }
+			/* System.out.println(ja); */
            return ja.toJSONString();
        } catch (NumberFormatException e) { // 숫자로 변환할 수 없는 경우에 대한 예외 처리.
            e.printStackTrace(); //
@@ -314,16 +324,21 @@ public class HomeController {
        
        return ""+n; 
    }
+   
+   
    @PostMapping("/reLoad") // 수정할 리뷰 로딩
    @ResponseBody
    public String reviewLoad(HttpServletRequest req) {
       int idDisplay = Integer.parseInt(req.getParameter("idDisplay")); 
-      
       boardDTO ddto2 = ddao.reLoad(idDisplay);
       JSONObject jo = new JSONObject();   
       jo.put("writer", ddto2.writer);
-       jo.put("content",ddto2.content);
-                 
+      jo.put("content",ddto2.content);
+      jo.put("rating", ddto2.rating);
+      
+      
+      System.out.println("수정할 리뷰 내용: "+ jo);
+      
       return jo.toJSONString();
    }
    
@@ -468,6 +483,13 @@ public class HomeController {
          a.add(showpage);
          if(showpage==lastpage) break;
       }
+      ArrayList<Integer> tblnum= new ArrayList<Integer>();
+      for(int i=1;i<=10;i++) {
+          start++;
+          tblnum.add(start);
+       }
+      System.out.println(tblnum);
+      model.addAttribute("tblnum",tblnum);
       model.addAttribute("showpage",a);
       model.addAttribute("page",page);
       model.addAttribute("lastpage",lastpage);
@@ -475,7 +497,36 @@ public class HomeController {
    }
    
    
-   
+   //찜목록으로 이동하기
+   @GetMapping("/myjjim")
+   public String myjjim(HttpServletRequest req) {
+      return "myjjim";
+   }
+   //찜목록 제이슨으로 띄우기
+   @GetMapping("/showjjim")
+   @ResponseBody
+   public String showJJim(HttpServletRequest req) {
+      String email = req.getParameter("email");
+      System.out.println("email은 이멜"+email);
+      String emailId = ddao.getjjim_id(email);
+      System.out.println("emailid는 아이디"+emailId);
+      JSONArray ja = new JSONArray();
+      
+      ArrayList<dataDTO> alJJim = ddao.jjimList(Integer.parseInt(emailId));
+      System.out.println(alJJim);
+      for(int i=0;i<alJJim.size();i++) {
+         JSONObject jo = new JSONObject();
+         jo.put("id",alJJim.get(i).getId());
+         jo.put("name",alJJim.get(i).getName());
+         System.out.println(jo);
+          jo.put("number",alJJim.get(i).getNumber());
+          jo.put("loadAddress",alJJim.get(i).getLoadAddress());
+       
+         ja.add(jo);
+      }
+      System.out.println(ja);
+      return ja.toJSONString();
+   }
    
    
    

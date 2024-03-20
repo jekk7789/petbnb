@@ -8,4 +8,5 @@ public class boardDTO {
 	public String content;
 	public String writer;
 	public String created;
+	public String rating;
 }
