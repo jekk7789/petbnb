@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>my jjim</title>
 <link href="css/store.css" rel="stylesheet">
+<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 <style>
 #data_write{
 	display: none;
@@ -14,7 +15,6 @@
 .cid{
 	display: none;
 }
-
 </style>
 
 </head>

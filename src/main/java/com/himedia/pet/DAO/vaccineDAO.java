@@ -15,4 +15,7 @@ public interface vaccineDAO {
    ArrayList<vpetDTO> petload(String loginid);
    vpetDTO petchoice(int petId);
    String dateadd(String petbirth, int num);
+   int pmodify(int petId, String petno, String petname, String birth);
+   int pdelete(String petId);
+
 }

@@ -11,10 +11,16 @@
      select id,petnumber, petname, petbirth from petAdd where loginid=#{param1}
  </select>
  <select id="petchoice" resultType="com.himedia.pet.DTO.vpetDTO">
-     select id,petnumber, petname, petbirth from petAdd where id=#{param1}
+     select petnumber, petname, petbirth from petAdd where id=#{param1}
  </select>
  <select id="dateadd" resultType="String">
      select  DATE_ADD(#{param1}, INTERVAL #{param2} WEEK)
  </select>
+  <update id="pmodify" >
+     update petAdd set petnumber=#{param2},petname=#{param3},petbirth=#{param4} where id=#{param1}
+ </update>
+ <delete id="pdelete">
+    delete from petAdd where id=#{param1}
+ </delete>
 </mapper>
    

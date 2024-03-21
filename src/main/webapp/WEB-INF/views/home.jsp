@@ -160,6 +160,7 @@
                             <span class="cd-words-wrapper">
                                 <b class="is-visible">반려동물</b>
                                 <b>서비스 이용하기</b>
+                                <b>도그비앤비입니다</b>
                             </span>
                         </h1>
                     </div>

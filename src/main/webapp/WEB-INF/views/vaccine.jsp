@@ -162,7 +162,7 @@
                       <td >생일</td><td id='petbirth'></td>
                   </tr>
                   <tr>
-                      <td >동물등록번호</td><tdid='number'></td>
+                      <td >동물등록번호</td><td id='number'></td>
                   </tr>
                   <tr>
                       <td colspan=2><button type="button" id="btnMypet">반려견 등록 및 선택을 해주세요.</button>
@@ -178,9 +178,10 @@
             <div class="s21_shot_list_bx">
             <dl class="s21_shot_dl">
                <dt><span></span>종합예방접종 (DHPPL)</dt>
+                <dd><span>접종주기</span>6~14주차에 2주 간격으로 각 1번씩 총 5회. 이후 매년마다 추가 접종</dd>
             </dl>
                <p class="s21_shot_pbx">
-            <table id=tbl_vaccine>
+            <table >
                <tr>
                   <td>1차</td><td class=ehppl ></td>
                </tr>
@@ -203,9 +204,17 @@
             <div class="s21_shot_list_bx">
             <dl class="s21_shot_dl">
                <dt><span></span>코로나 장염</dt>
-               <dd><span>접종주기</span>6, 8주차에 각 1번씩 총 2회.이후 매년마다 추가 접종</dd>                     
+               <dd><span>접종주기</span>6, 8주차에 각 1번씩 총 2회.이후 매년마다 추가 접종</dd>                          
             </dl>
-            <p class="s21_shot_pbx">파보장염과 유사. 설사,구토, 열이 있고 식욕이 없어짐.</p>
+            <p class="s21_shot_pbx"></p>
+               <table >
+               <tr>
+                  <td>1차</td><td class=covid ></td>
+               </tr>
+               <tr>
+                  <td>2차</td><td class=covid ></td>
+               </tr>
+            </table>
             </div>
          
          
@@ -214,7 +223,16 @@
                <dt><span></span>켄넬코프</dt>
                <dd><span>접종주기</span>10, 12주차에 각 1번씩 총 2회.이후 매년마다 추가 접종</dd>
             </dl>
-            <p class="s21_shot_pbx">기관/기관지염. 공기를 통해 감염. <br />마른 기침을 발생하여 폐렴으로 진행되기도 함.</p>
+            <p class="s21_shot_pbx">
+               <table >
+               <tr>
+                  <td>1차</td><td class=cough ></td>
+               </tr>
+               <tr>
+                  <td>2차</td><td class=cough ></td>
+               </tr>
+            </table>
+            </p>
                </div>
                
                
@@ -223,9 +241,13 @@
                <dt><span></span>광견병</dt>                     
                <dd><span>접종주기</span>16주차 이후 매년마다 추가 접종.</dd>                     
             </dl>
-            <p class="s21_shot_pbx">행동이 난폭해지고 공격적으로 변함.<br />
-                              개는 사람처럼 한번 접종하면 평생동안 면역을 갖지 못함.<br />
-                              1년에 1회이상 추가 접종을 진행해야함.</p>
+            <p class="s21_shot_pbx">
+               <table >
+               <tr>
+                  <td>1차</td><td class=Rabies ></td>
+               </tr>
+            </table>
+            </p>
          </div>
                
                   
@@ -234,26 +256,18 @@
                <dt><span></span>인플루엔자(신종플루)</dt>                     
                <dd><span>접종주기</span>14,16주차에 각 1번씩 총 2회. 이후 매년마다 추가 접종</dd>                     
             </dl>
-            <p class="s21_shot_pbx">감염률이 높기 때문에, 강아지가 많이 모이는 곳에 가는 경우에는 접종을 권장.</p>
+            <p class="s21_shot_pbx">
+               <table >
+               <tr>
+                  <td>1차</td><td class=influenza ></td>
+               </tr>
+               <tr>
+                  <td>2차</td><td class=influenza ></td>
+               </tr>
+            </table>
+            </p>
          </div>
                   
-                  
-                  <div class="s21_shot_list_bx">
-                  <dl class="s21_shot_dl">
-                     <dt>기생충 구충(내부)</dt>                     
-                     <dd><span>투여주기</span>4주차에 구충제 투여. 3개월마다 투여</dd>                     
-                  </dl>
-                  <p class="s21_shot_pbx">반려동물의 몸속에 들어가면 장 속에만 머물지 않고 장기를 뚫고 혈관을 따라 이동하며 각종 문제를 일으킴.</p>
-               </div>
-                  
-                  
-                  <div class="s21_shot_list_bx">
-                  <dl class="s21_shot_dl">
-                     <dt>심장사상충</dt>
-                     <dd><span>투여주기</span>모기발생기(5~11월) 매월 1회 투여</dd>
-                  </dl>
-                  <p class="s21_shot_pbx">모기를 타고 강아지의 혈관에 침투. 보통 폐동맥에 기생하기 시작해 수가 많아지면 심장까지 침범해 생명을 앗아감.</p>
-               </div>
       </div>
           
     </div>
@@ -278,13 +292,14 @@
          </div>
          
          <div class="s21_shot_card_text_pop">
-            <p><input type="text" class="pet_input" id="dog_no" placeholder="등록번호" value=""></p>
+            <p>
+            <input type="text" class="pet_input" id="dog_no" placeholder="등록번호" value=""></p>
             <p><input type="text" class="pet_input" id="dog_name" placeholder="반려견이름" value=""></p>
          <div>
          <div>
-         <select name="birthY" id="birthY" class="pet_select" ></select>
-         <select name="birthM" id="birthM" class="pet_select" ></select>
-         <select name="birthD" id="birthD" class="pet_select" ></select>
+         <select name="birthY" id="birthY" class="pet_select" ></select>년
+         <select name="birthM" id="birthM" class="pet_select" ></select>월
+         <select name="birthD" id="birthD" class="pet_select" ></select>일
          </div>
          <div class='petlist' >
          <table class='tbldog'>
@@ -304,7 +319,7 @@
 <script>   
 $(document)
 .ready(function(){
-   $("#information").hide();
+   $("#review").hide();
    setDateBox();
    petload();
    
@@ -358,7 +373,38 @@ $(document)
           $('#petname').text(data.name); 
           $('#number').text(data.number); 
           $('#petbirth').text(data.birth); 
+          
+          $('#dog_no').val(data.number); 
+          $('#dog_name').val(data.name); 
+//           $('#dog_id').val(data.id); 
+//           console.log(data.birth);
+          let birth=data.birth;
+           let pbirth=birth.split("-");
+//            console.log(pbirth[0]);
+          
+           
+           $('#birthY option').each(function(){
+             if($(this).text()==pbirth[0]){
+                $(this).prop('selected',true)  
+                return false;
+             }
+          }) 
+          $('#birthM option').each(function(){
+             if($(this).text()==pbirth[1]){
+                $(this).prop('selected',true)  
+                return false;
+             }
+          }) 
+          $('#birthY option').each(function(){
+             if($(this).text()==pbirth[2]){
+                $(this).prop('selected',true)  
+                return false;
+             }
+          })
+          
+          
        }
+          
     })
    
 })
@@ -372,16 +418,21 @@ $(document)
        data:{petbirth:petbirth},
        dataType:'json',
        success:function(data){
-          for(var i=0; i<data.length; i++){ 
-             /* console.log(data[i]); */
-             console.log(i);
-              
-          /*    $(".ehppl:eq(0)").text(data[0]);
-             $(".ehppl:eq(1)").text(data[1]);
-             $(".ehppl:eq(2)").text(data[2]);
-             $(".ehppl:eq(3)").text(data[3]);
-             $(".ehppl:eq(4)").text(data[4]); */
-          } 
+           for(let i=0; i<5; i++){ 
+              $(".ehppl:eq("+i+")").text(data[i]);
+              if(i<2){
+                 $(".covid:eq("+i+")").text(data[i]);
+              }
+            }  
+           $(".cough:eq(0)").text(data[2]);
+           $(".cough:eq(1)").text(data[3]);
+           $(".influenza:eq(0)").text(data[4]);
+           $(".influenza:eq(1)").text(data[5]);
+           $(".Rabies").text(data[5]);
+           
+           
+            
+
        }
     })
   
@@ -389,7 +440,45 @@ $(document)
     DHPPL1.setDate(DHPPL1.getDate() + (6 * 7)); // 6주는 일수로 환산하여 더하기
     console.log( DHPPL1.toISOString().split('T')[0]);
     $('#ehppl').text(DHPPL1.toISOString().split('T')[0]); */
- });
+ })
+.on('click','#modify',function(){
+   var petId = $(this).closest('tr').find('input#petid').val();
+   let birth =$("#birthY").val()+$("#birthM").val()+$("#birthD").val();
+   console.log(birth);
+   
+     $.ajax({
+          type:'post',
+          url:'petmodify',
+          data:{petId:petId, petno:$('#dog_no').val(), petname:$('#dog_name').val(),birth:birth },
+          dataType:'text',
+          success:function(data){
+            console.log(data);
+             if(data==1){
+                alert("성공");
+                petload();
+             }
+          }
+     })  
+   
+})
+.on('click','#delete',function(){
+   var petId = $(this).closest('tr').find('input#petid').val();
+   
+     $.ajax({
+          type:'post',
+          url:'petdelete',
+          data:{petId:petId},
+          dataType:'text',
+          success:function(data){
+            console.log(data);
+             if(data==1){
+                alert("성공");
+                petload();
+             }
+          }
+     })  
+   
+});
 
 function setDateBox(){
    var dt = new Date();
@@ -397,32 +486,36 @@ function setDateBox(){
    var month = dt.getMonth() + 1;
 
    for (var y = year; y >= (year - 10); y--) {
-         $("#birthY").append("<option value='" + y + "'>" + y + "년" + "</option>");
+         $("#birthY").append("<option value='" + y + "'>" + y +"</option>");
    }
    for (var i = 1; i <= 12; i++) {
          var paddedMonth = String(i).padStart(2, '0'); // 월을 두 자리로 표시
-         $("#birthM").append("<option value='" + paddedMonth + "'>" + paddedMonth + "월" + "</option>");
+         $("#birthM").append("<option value='" + paddedMonth + "'>" + paddedMonth + "</option>");
    }
    for (var i = 1; i <= 31; i++) {
          var paddedDay = String(i).padStart(2, '0'); // 일을 두 자리로 표시
-         $("#birthD").append("<option value='" + paddedDay + "'>" + paddedDay + "일" + "</option>");
+         $("#birthD").append("<option value='" + paddedDay + "'>" + paddedDay + "</option>");
    } 
    }
 function petload(){
+   
    $.ajax({
       type:'post',
       url:'petload',
       data:{loginid:$('#userid').val()},
       dataType:'json',
       success:function(data){
+         $('.tbldog').empty();
           for(var i=0; i<data.length; i++){
                let ob=data[i];
-               let str='<tr><td colspan=2>'+ob.name+'</td>'+
-                     '<td rowspan=3 ><input id=petid value="'+ob.id+'"></input><button id="choice">선택</button><button id=modify>수정</button><button id=delete>삭제</button></td></tr>'+
-                     '<tr><td>생일</td><td>'+ob.birth+'</td></tr><tr><td>동물등록번호</td><td>'+ob.number+'</td></tr>';
+               
+               let str = '<tr><td>' + ob.name + '</td><td></td>' +
+                '<td rowspan="3"><input id="petid" value="' + ob.id + '"></input><button id="choice">선택</button><button id="modify">수정</button><button id="delete">삭제</button></td></tr>' +
+                '<tr><td>생일</td><td>' + ob.birth + '</td></tr><tr><td>동물등록번호</td><td>' + ob.number + '</td></tr>';
+
               $('.tbldog').append(str);
-          } 
-      }      
+          }
+      }
    })
             
 }
