@@ -11,7 +11,7 @@
 
 <!-- 리뷰 -->
 <insert id="write">
-   INSERT into board set pNAme=#{param1},writer=#{param2},content=#{param3},rating=#{param4},created=sysdate()
+   INSERT into board set pNAme=#{param1},writer=#{param2},content=#{param3},rating=#{param4},created=sysdate(),userId=#{param5}
 </insert>
 <select id="reviewLoad" resultType="com.himedia.pet.DTO.boardDTO">
    SELECT id, writer, content,rating, created from board where pName=#{param1} limit #{param2},10
@@ -28,6 +28,16 @@
 <select resultType="_int" id="reviewTotal">
    select count(*) from board where pName like #{param1}
 </select>
+
+<!-- 리뷰목록 불러오기 -->
+<select id="reviewList" resultType="com.himedia.pet.DTO.boardDTO">
+    select c.id,a.content,a.writer,a.rating
+      from  board a,login b,petdata c
+      where a.userId=b.id
+      and a.pName=c.id
+      and a.userId=#{param1}  
+</select>
+
 
 <!-- 찜 -->
 <insert id="jjim">
@@ -52,7 +62,9 @@
    and a.userid=#{param1}   
 </select>
 
-  <select id="getjjim_id" resultType="String">
+
+  <!-- 찜 이메일로 아이디가져오기 -->
+  <select id="getjjim_id" resultType="string">
       select id from login where email=#{param1}
   </select>
 

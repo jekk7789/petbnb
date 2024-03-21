@@ -14,7 +14,7 @@ public interface dataDAO {
    ArrayList<dataDTO> searchList(String input,int page);
    int searchTotal(String input);
    
-//a 행거로 카테고리별 목록 뽑아오기
+   //a 행거로 카테고리별 목록 뽑아오기
    ArrayList<dataDTO> getHos(String name,int page);      
    ArrayList<dataDTO> citygetHos(String name,int page,String city);
    //문화시설 - 카페,문예회관,음식점 3가지 모아서
@@ -34,14 +34,18 @@ public interface dataDAO {
    int chekJjim(int uid,int pid);
    int getJjimid(int uid,int pid);
    void delJjim(int jjim_id);
+   
    //찜목록 불러오기
-   ArrayList<dataDTO> jjimList(int id);
    String getjjim_id(String title);
+   ArrayList<dataDTO> jjimList(int id);
+   
+   //리뷰목록 불러오기
+   ArrayList<boardDTO> reviewList(int id);
    
    
 //상세페이지+리뷰페이징
    dataDTO view(int id);
-   int write(int pName, String writer, String content, String rating);
+   int write(int pName, String writer, String content, String rating, int id);
    
    ArrayList<boardDTO> reviewLoad(int pName,int start);
    int rDelete(int id);

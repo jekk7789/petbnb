@@ -4,10 +4,10 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.himedia.pet.DAO.QnaDAO">
 
-	<!-- Qna-->
-	<insert id="QnaWrite">
-	   INSERT into Questions set title=#{param1},writer=#{param2},content=#{param3},created_at=sysdate()
-	</insert>
+   <!-- Qna-->
+   <insert id="QnaWrite">
+      INSERT into Questions set title=#{param1},writer=#{param2},content=#{param3},created_at=sysdate(),userId=#{param4}
+   </insert>
 	<select id="QnaLoad" resultType="com.himedia.pet.DTO.QnaDTO">
 	   SELECT id, title, writer, content, created_at from Questions limit #{param1},10
 	</select> 
@@ -32,4 +32,12 @@
 	<delete id="commentDelete"> 
 	   delete from Answers where id=#{param1} 
 	</delete>
+	
+	<!-- QNA 목록 불러오기 -->
+	<select id="qnaList" resultType="com.himedia.pet.DTO.QnaDTO">
+	   select a.title,a.content,a.writer
+	   from questions a, login b
+	   where a.userId=b.id
+	   and a.userId=#{param1}
+	</select>
 </mapper>

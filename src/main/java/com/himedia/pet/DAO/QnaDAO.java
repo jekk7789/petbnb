@@ -10,7 +10,7 @@ import com.himedia.pet.DTO.QnaDTO;
 @Mapper
 public interface QnaDAO {
 	//Qna 게시판
-	int QnaWrite(String title,String writer, String content);
+	int QnaWrite(String title,String writer, String content, int id);
 	ArrayList<QnaDTO> QnaLoad(int start); 
 	int QnaTotal();
 	int Qmodify(String title, String content, int id);
@@ -19,4 +19,7 @@ public interface QnaDAO {
 	ArrayList<AnswersDTO> QnAanswer();
 	int commentModify(int parseInt, String comment);
 	int commentDelete(int parseInt);
+	
+	//qna 목록 불러오기
+    ArrayList<QnaDTO> qnaList(int id);
 }

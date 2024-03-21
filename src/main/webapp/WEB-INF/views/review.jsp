@@ -100,7 +100,8 @@ $("#do_write").on('click', function(){
                 writer: $('#writer').val(), 
                 content: $('#content').val(),
                 rating: $('input[name=rating]:checked').val(),
-                idDisplay: $('#idDisplay').val()
+                idDisplay: $('#idDisplay').val(),
+                userId: $('#userid').val()
                 
             }, 
             dataType: 'json',

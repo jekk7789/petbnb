@@ -59,7 +59,8 @@ $("#do_write").on('click',function(){
       type: 'post', 
         url: '/addQna',
         data: {title:$('#title').val(),writer:$('#writer').val(), 
-             content:$('#content').val()}, 
+             content:$('#content').val(),
+             userId: $('#userid').val()}, 
         dataType: 'text',
         success: function(data) {
            if(data==1){

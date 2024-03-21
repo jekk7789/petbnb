@@ -132,9 +132,9 @@
 		<div id="information">
 		    <h1>기본정보(지도)</h1>
 		    <div class="map_wrap">
-		        <div id="map2" style="width:100%;height:500px;position:relative;overflow:hidden;"></div>
+		        <div id="map2" style="width:1700px;height:700px;position:relative;overflow:hidden; margin-left: 70px; margin-bottom: 50px;"></div>
 		        
-		        <ul id="category">
+		        <ul id="category" style="margin-left: 70px;">
 		            <li id="CT1" data-order="0"> 
 		                <span class="category_bg bank"></span>
 		                문화시설
@@ -165,9 +165,10 @@
 		            </li>  		           		            		                 
 		        </ul>
 		    </div>
-		      <br><br><br><br><br><br><br><br>
+		      
 		</div>
 	</div>
+	
 <!-- 리뷰 s -->
         <div id="review">
           <h1>리뷰 </h1>
@@ -181,6 +182,7 @@
                 	<table id=showpage>
                 	</table>
         </div>
+        
 </body>
 
 
@@ -504,7 +506,7 @@ function map2(){
 	var mapContainer2 = document.getElementById('map2'), // 지도를 표시할 div 
     mapOption2 = {
 		center: new kakao.maps.LatLng($('#wido').val(),$('#gyeongdo').val()),
-        level: 4 // 지도의 확대 레벨
+        level: 5 // 지도의 확대 레벨
     }; 
     console.log(mapContainer2);
     

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.himedia.pet.DAO.LoginDAO;
 import com.himedia.pet.DAO.QnaDAO;
 import com.himedia.pet.DAO.dataDAO;
 import com.himedia.pet.DTO.AnswersDTO;
@@ -23,6 +24,7 @@ public class QnaController {
    
    @Autowired dataDAO ddao;
    @Autowired QnaDAO qdao;
+   @Autowired LoginDAO ldao;
    
    @PostMapping("/doQna") // Qna로딩
    @ResponseBody
@@ -74,9 +76,10 @@ public class QnaController {
       String title=req.getParameter("title");
       String writer = req.getParameter("writer");
       String content = req.getParameter("content");
+      String userId = req.getParameter("userId");
       
-   
-      int n = qdao.QnaWrite(title, writer, content);
+      int id = ldao.getuserid(userId);
+      int n = qdao.QnaWrite(title, writer, content, id);
 //         n = ddao.rUpdate(content,Integer.parseInt(idDisplay));
       return ""+n;
    }

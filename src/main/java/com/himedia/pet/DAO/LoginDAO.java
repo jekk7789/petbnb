@@ -28,5 +28,8 @@ public interface LoginDAO {
     int getuserid(String email);
     int adLogin(String email);
     ArrayList<LoginDTO> updateMyList(int id);
+    
+    
+    
 }
 

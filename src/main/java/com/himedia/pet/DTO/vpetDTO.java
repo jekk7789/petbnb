@@ -8,6 +8,7 @@ public class vpetDTO {
    int id;
    String petnumber;
    String varchar;
-   String perbirth;
+   String petbirth;
+   String petname;
 
 }

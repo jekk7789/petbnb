@@ -35,6 +35,12 @@ dependencies {
 	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	
+	// JUnit5
+    testImplementation("org.junit.platform:junit-platform-launcher:1.5.2") 
+	testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
+	
+	implementation 'io.github.flashvayne:chatgpt-spring-boot-starter:1.0.4'
 }
 
 tasks.named('test') {

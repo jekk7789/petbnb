@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-	<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 </head>
 <style>
 
@@ -66,12 +65,12 @@
 	    		
 	    			<tr>
 	    				<td>
-	    					<a href="/">핫플레이스 바로가기</a>
+	    					<a href="/">화제의 장소</a>
 	    				</td>
 	    			</tr>
 	    			<tr>
 	    				<td>
-	    					<a href="/">MD의 여행추천코스!</a>
+	    					<a href="calendar">일정 등록하기</a>
 	    				</td>
 	    			</tr>
     				<tr>
@@ -88,7 +87,7 @@
 	    <input type="radio" name="tab" id="work"/>
 	    <section class="work">
 	    <br>
-	      <h1>게시판</h1>
+	      <h1>Q&A</h1>
 	      <label for="work"></label>
 	      <br><br>
 	      <div class=my03>
@@ -100,7 +99,12 @@
 	      		</tr>
       			<tr>
 	      			<td>
-	      				<a href="notice">게시판으로 이동하기</a>
+	      				<a href="myjjim">찜 목록으로 이동하기</a>
+	      			</td>
+	      		</tr>
+      			<tr>
+	      			<td>
+	      				<a href="myjjim">내가 쓴 리뷰로 이동하기</a>
 	      			</td>
 	      		</tr>
 	      	</table>

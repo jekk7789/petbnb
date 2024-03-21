@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.himedia.pet.DAO.LoginDAO;
+import com.himedia.pet.DAO.QnaDAO;
 import com.himedia.pet.DAO.cityDAO;
 import com.himedia.pet.DAO.dataDAO;
 import com.himedia.pet.DTO.LoginDTO;
+import com.himedia.pet.DTO.QnaDTO;
 import com.himedia.pet.DTO.boardDTO;
 import com.himedia.pet.DTO.cityDTO;
 import com.himedia.pet.DTO.dataDTO;
@@ -33,6 +35,9 @@ public class HomeController {
    @Autowired
    private cityDAO cdao;
    
+   @Autowired
+   private QnaDAO qdao;
+   
    @GetMapping("/")
    public String goHome() {
       return "popupContent";
@@ -45,6 +50,11 @@ public class HomeController {
    @GetMapping("/popupContent")
    public String popupContent() {
       return "popupContent";
+   }
+   
+   @GetMapping("chatAI")
+   public String chatAI() {
+	   return "chatAI";
    }
    
    @GetMapping("/review")
@@ -269,9 +279,13 @@ public class HomeController {
       String content = req.getParameter("content");
       String idDisplay = req.getParameter("idDisplay");
       String rating = req.getParameter("rating");
+      String userId = req.getParameter("userId");
+      
+      int id = ldao.getuserid(userId);
+      
       int n=0;
       if(idDisplay == null || idDisplay.equals("")) {
-         n = ddao.write(Integer.parseInt(pName),writer,content,rating);
+         n = ddao.write(Integer.parseInt(pName),writer,content,rating, id);
          System.out.println("n"+n);
       } else {
          n = ddao.rUpdate(content,rating,Integer.parseInt(idDisplay));
@@ -505,30 +519,60 @@ public class HomeController {
    public String myjjim(HttpServletRequest req) {
       return "myjjim";
    }
-   //찜목록 제이슨으로 띄우기
-   @GetMapping("/showjjim")
+ //찜목록 제이슨으로 띄우기 리뷰,qna,찜 모두 가능
+   @GetMapping("/myList")
    @ResponseBody
    public String showJJim(HttpServletRequest req) {
-      String email = req.getParameter("email");
-      System.out.println("email은 이멜"+email);
+      String userid = req.getParameter("userid");
+      System.out.println("userid는"+userid);
+      String data = req.getParameter("data");
+      
+      System.out.println("data는 "+data);
+      String email = req.getParameter("userid");
       String emailId = ddao.getjjim_id(email);
-      System.out.println("emailid는 아이디"+emailId);
       JSONArray ja = new JSONArray();
       
-      ArrayList<dataDTO> alJJim = ddao.jjimList(Integer.parseInt(emailId));
-      System.out.println(alJJim);
-      for(int i=0;i<alJJim.size();i++) {
-         JSONObject jo = new JSONObject();
-         jo.put("id",alJJim.get(i).getId());
-         jo.put("name",alJJim.get(i).getName());
-         System.out.println(jo);
-          jo.put("number",alJJim.get(i).getNumber());
-          jo.put("loadAddress",alJJim.get(i).getLoadAddress());
-       
-         ja.add(jo);
+      if(data.equals("1")) {
+         int id=ldao.getuserid(userid);
+         ArrayList<boardDTO> alReview = ddao.reviewList(id);
+            for(int i=0;i<alReview.size();i++) {
+               JSONObject jo = new JSONObject();
+               jo.put("id",alReview.get(i).getId());
+               jo.put("content",alReview.get(i).getContent());
+              jo.put("writer",alReview.get(i).getWriter());
+              jo.put("rating",alReview.get(i).getRating());
+               ja.add(jo);
+            }
+            return ja.toJSONString();
+
+      } else if(data.equals("2")){
+         int id = ldao.getuserid(userid);
+         ArrayList<QnaDTO> alQNA = qdao.qnaList(id);
+            for(int i=0;i<alQNA.size();i++) {
+               JSONObject jo = new JSONObject();
+               jo.put("id",alQNA.get(i).getId());
+               jo.put("content",alQNA.get(i).getContent());
+               jo.put("title",alQNA.get(i).getTitle());
+              jo.put("writer",alQNA.get(i).getWriter());
+               ja.add(jo);
+            }
+            return ja.toJSONString();
+
+      } else if(data.equals("3")){
+         ArrayList<dataDTO> alJJim = ddao.jjimList(Integer.parseInt(emailId));
+         for(int i=0;i<alJJim.size();i++) {
+            JSONObject jo = new JSONObject();
+            jo.put("id",alJJim.get(i).getId());
+            jo.put("name",alJJim.get(i).getName());
+           jo.put("number",alJJim.get(i).getNumber());
+           jo.put("loadAddress",alJJim.get(i).getLoadAddress());
+            ja.add(jo);
+         }
+            return ja.toJSONString();
+      } 
+         else {
+         return "0";
       }
-      System.out.println(ja);
-      return ja.toJSONString();
    }
    
    

@@ -32,17 +32,14 @@
 <input type=hidden id=hcity value=${city }>
 <input type=hidden id=hciGunGu value=${ciGunGu }>
 
-<h2>${text }입니다</h2>
-<h3>현재페이지:${page }</h3>
-
-<div class="weather-container">
-  <div class="weatherbackground" style="margin-bottom: 20px;">
+<div class="weather-container" >
+  <div class="weatherbackground" style="margin-bottom: 10px; color:#634522">
     <div style="float: left; margin-top: 50px; font-size: 130%">
       <div class="weather_icon"></div>
     </div><br>
 
-	<div style="float: right; margin: -5px 0px 0px 60px; font-size: 11pt;">
-		<div class="temp_min"><i class="fa-solid fa-temperature-arrow-down"></i> </div>
+	<div style="float: right; margin: -5px 0px 0px 60px; font-size: 11pt; color:#634522">
+		<div class="temp_min" ><i class="fa-solid fa-temperature-arrow-down"></i> </div>
 		<div class="temp_max"><i class="fa-solid fa-temperature-arrow-up"></i> </div>
 		<div class="humidity"> <i class="fa-solid fa-droplet"></i></div>
 		<div class="wind"> <i class="fa-solid fa-wind"></i></div>
