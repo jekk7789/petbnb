@@ -79,7 +79,7 @@ background:#f8f1e5;
 .my02 {
   margin: 30;
   font-size: 30px;
-  transform: translate(50ch,2mm);
+  transform: translate(52ch,2mm);
   text-align: center;
   color:#634522;
   transition: transform 500ms;
@@ -127,9 +127,9 @@ height:auto;
 transform: translate(83ch,30mm);
 }
 .image04{
-width:600px;
+width:800px;
 height:auto;
-transform: translate(75ch,30mm);
+transform: translate(65ch,30mm);
 }
 .image05{
 width:400px;

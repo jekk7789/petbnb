@@ -59,8 +59,8 @@
             
             <div class="s21_shot_list_bx">
             <dl class="s21_shot_dl">
-               <dt><span></span>종합예방접종 (DHPPL)</dt>
-               <dd><span>접종주기</span>6~14주차에 2주 간격으로 각 1번씩 총 5회. 이후 매년마다 추가 접종</dd>
+               <dt>종합예방접종 (DHPPL)</dt>
+               <dd><span>*접종주기: </span>6~14주차에 2주 간격으로 각 1번씩 총 5회. 이후 매년마다 추가 접종</dd>
             </dl>
                <p class="s21_shot_pbx">
                홍역 : 전염성 강함. 치사율이 높고 신경계 관련 후유증 발생.<br />
@@ -73,8 +73,8 @@
             
             <div class="s21_shot_list_bx">
             <dl class="s21_shot_dl">
-               <dt><span></span>코로나 장염</dt>
-               <dd><span>접종주기</span>6, 8주차에 각 1번씩 총 2회.이후 매년마다 추가 접종</dd>                     
+               <dt>코로나 장염</dt>
+               <dd><span>*접종주기: </span>6, 8주차에 각 1번씩 총 2회.이후 매년마다 추가 접종</dd>                     
             </dl>
             <p class="s21_shot_pbx">파보장염과 유사. 설사,구토, 열이 있고 식욕이 없어짐.</p>
             </div>
@@ -82,8 +82,8 @@
          
             <div class="s21_shot_list_bx">
             <dl class="s21_shot_dl">            
-               <dt><span></span>켄넬코프</dt>
-               <dd><span>접종주기</span>10, 12주차에 각 1번씩 총 2회.이후 매년마다 추가 접종</dd>
+               <dt>켄넬코프</dt>
+               <dd><span>*접종주기: </span>10, 12주차에 각 1번씩 총 2회.이후 매년마다 추가 접종</dd>
             </dl>
             <p class="s21_shot_pbx">기관/기관지염. 공기를 통해 감염. <br />마른 기침을 발생하여 폐렴으로 진행되기도 함.</p>
                </div>
@@ -91,8 +91,8 @@
                
          <div class="s21_shot_list_bx">
             <dl class="s21_shot_dl">
-               <dt><span></span>광견병</dt>                     
-               <dd><span>접종주기</span>16주차 이후 매년마다 추가 접종.</dd>                     
+               <dt>광견병</dt>                     
+               <dd><span>*접종주기: </span>16주차 이후 매년마다 추가 접종.</dd>                     
             </dl>
             <p class="s21_shot_pbx">행동이 난폭해지고 공격적으로 변함.<br />
                               개는 사람처럼 한번 접종하면 평생동안 면역을 갖지 못함.<br />
@@ -102,8 +102,8 @@
                   
             <div class="s21_shot_list_bx">
             <dl class="s21_shot_dl">
-               <dt><span></span>인플루엔자(신종플루)</dt>                     
-               <dd><span>접종주기</span>14,16주차에 각 1번씩 총 2회. 이후 매년마다 추가 접종</dd>                     
+               <dt>인플루엔자(신종플루)</dt>                     
+               <dd><span>*접종주기: </span>14,16주차에 각 1번씩 총 2회. 이후 매년마다 추가 접종</dd>                     
             </dl>
             <p class="s21_shot_pbx">감염률이 높기 때문에, 강아지가 많이 모이는 곳에 가는 경우에는 접종을 권장.</p>
          </div>
@@ -112,7 +112,7 @@
                   <div class="s21_shot_list_bx">
                   <dl class="s21_shot_dl">
                      <dt>기생충 구충(내부)</dt>                     
-                     <dd><span>투여주기</span>4주차에 구충제 투여. 3개월마다 투여</dd>                     
+                     <dd><span>*투여주기: </span>4주차에 구충제 투여. 3개월마다 투여</dd>                     
                   </dl>
                   <p class="s21_shot_pbx">반려동물의 몸속에 들어가면 장 속에만 머물지 않고 장기를 뚫고 혈관을 따라 이동하며 각종 문제를 일으킴.</p>
                </div>
@@ -121,7 +121,7 @@
                   <div class="s21_shot_list_bx">
                   <dl class="s21_shot_dl">
                      <dt>심장사상충</dt>
-                     <dd><span>투여주기</span>모기발생기(5~11월) 매월 1회 투여</dd>
+                     <dd><span>*투여주기: </span>모기발생기(5~11월) 매월 1회 투여</dd>
                   </dl>
                   <p class="s21_shot_pbx">모기를 타고 강아지의 혈관에 침투. 보통 폐동맥에 기생하기 시작해 수가 많아지면 심장까지 침범해 생명을 앗아감.</p>
                </div>
@@ -131,13 +131,13 @@
       <div class="s21_shot_important">
          <h3>※ 백신 접종 시 참고 사항</h3>
          <ul>
-            <li><span class="li_pd">-</span>접종 후 알러지 반응이 나타날 수 있기에, 최소 30분에서 길게는 2시간 까지 관찰을 해주세요.</li>
-            <li><span class="li_pd">-</span>이전에 접종한 이력이 있는 백신이고 별 문제 없었다고 해도, 추가 접종 시 얼마든지 알러지 반응이 나타날 수 있기에 매번 추가 접종 시 마다 관찰이 필요합니다.</li>
-            <li><span class="li_pd">-</span>백신은 동물병원 마감시간 직전 보다, 2시간 정도 여유있게 맞춰야 아나필라시스 쇼크 발생 시 원활한 대처가 가능합니다.</li>
-            <li><span class="li_pd">-</span>필수 예방접종은 다음 해부터 추가 접종 시 예방접종별로 1대씩만(1차) 맞으면 됩니다.(생후 약 6주에 시작하는 최초 접종 시에만 1~5차에 걸쳐 진행)</li>
-            <li><span class="li_pd">-</span>크게 걱정하지 않아도 되는 부작용은 기운이 없다거나, 밥을 조금 덜 먹는다거나, 미열이 있다거나 하는 경우입니다.</li>
-            <li><span class="li_pd">-</span>즉각 병원으로 데려가야 하는 부작용은 "급성 아나필라시스 쇼크"라 해서, 얼굴이 붓고 피부에 발진이 일어나는 경우입니다.<Br><span class="pd20"></span>(눈 주위가 부으면서 눈이 작아진다 싶으면 얼굴이 붓는 것입니다.)</li>
-            <li><span class="li_pd">-</span>모유를 먹고 자란 아이는 어미로부터 면역항체를 물려 받아 충분한 면역력을 형성하게 됩니다. <Br><span class="pd20"></span>이를 모체이행항체라 부르는데, 너무 어린 시기에 백신 접종 시 오히려 모체이행항체로 인해 백신 효과가 무효화 될 우려가 있습니다.<Br><span class="pd20"></span>출생 6~7주 사이가 되면 모체이행항체로 형성된 면역력이 약해져 질병에 노출되게 되는데,<Br><span class="pd20"></span>이 때 백신을 통해 면역력을 형성해야 모체이행항체로부터 방해도 받지 않고 백신 효과도 누릴 수 있게됩니다.</li>
+            <li><span class="li_pd"></span>접종 후 알러지 반응이 나타날 수 있기에, 최소 30분에서 길게는 2시간 까지 관찰을 해주세요.</li><br>
+            <li><span class="li_pd"></span>이전에 접종한 이력이 있는 백신이고 별 문제 없었다고 해도, 추가 접종 시 얼마든지 알러지 반응이 나타날 수 있기에 매번 추가 접종 시 마다 관찰이 필요합니다.</li><br>
+            <li><span class="li_pd"></span>백신은 동물병원 마감시간 직전 보다, 2시간 정도 여유있게 맞춰야 아나필라시스 쇼크 발생 시 원활한 대처가 가능합니다.</li><br>
+            <li><span class="li_pd"></span>필수 예방접종은 다음 해부터 추가 접종 시 예방접종별로 1대씩만(1차) 맞으면 됩니다.(생후 약 6주에 시작하는 최초 접종 시에만 1~5차에 걸쳐 진행)</li><br>
+            <li><span class="li_pd"></span>크게 걱정하지 않아도 되는 부작용은 기운이 없다거나, 밥을 조금 덜 먹는다거나, 미열이 있다거나 하는 경우입니다.</li><br>
+            <li><span class="li_pd"></span>즉각 병원으로 데려가야 하는 부작용은 "급성 아나필라시스 쇼크"라 해서, 얼굴이 붓고 피부에 발진이 일어나는 경우입니다.<Br><span class="pd20"></span>(눈 주위가 부으면서 눈이 작아진다 싶으면 얼굴이 붓는 것입니다.)</li><br>
+            <li><span class="li_pd"></span>모유를 먹고 자란 아이는 어미로부터 면역항체를 물려 받아 충분한 면역력을 형성하게 됩니다. <Br><span class="pd20"></span>이를 모체이행항체라 부르는데, 너무 어린 시기에 백신 접종 시 오히려 모체이행항체로 인해 백신 효과가 무효화 될 우려가 있습니다.<Br><span class="pd20"></span>출생 6~7주 사이가 되면 모체이행항체로 형성된 면역력이 약해져 질병에 노출되게 되는데,<Br><span class="pd20"></span>이 때 백신을 통해 면역력을 형성해야 모체이행항체로부터 방해도 받지 않고 백신 효과도 누릴 수 있게됩니다.</li><br>
          </ul>
       </div>
   </div>
@@ -148,15 +148,16 @@
 <div id="review">
    <h1>예방접종안내 </h1>
      <div >
-          
-      <div class="pet_add">
+          <button type="button" id="btnMypet">반려견 등록 및 선택을 해주세요.</button>
+          <button id=dododo>예방접종보기</button>
+      <div class="pet_add" >
           <div class='dog'>
-              <img src="image/강아지그림.jpg" alt="강아지그림" width="200" height="150">
+              <img src="image/vaccine02.jpg" alt="강아지그림" width="200" height="150">
           </div>
           <div class='dog'>
               <table id='tbldog2'>
                 <tr>
-                     <td colspan=2 id='petname'></td>
+                     <td>이름</td><td id='petname'></td>
                   </tr>
                   <tr>
                       <td >생일</td><td id='petbirth'></td>
@@ -164,10 +165,10 @@
                   <tr>
                       <td >동물등록번호</td><td id='number'></td>
                   </tr>
-                  <tr>
+                 <!--  <tr>
                       <td colspan=2><button type="button" id="btnMypet">반려견 등록 및 선택을 해주세요.</button>
                       <button id=dododo>예방접종보기</button></td>
-                  </tr> 
+                  </tr>  -->
               </table>
           </div>
       </div>
@@ -177,8 +178,8 @@
             
             <div class="s21_shot_list_bx">
             <dl class="s21_shot_dl">
-               <dt><span></span>종합예방접종 (DHPPL)</dt>
-                <dd><span>접종주기</span>6~14주차에 2주 간격으로 각 1번씩 총 5회. 이후 매년마다 추가 접종</dd>
+               <dt>종합예방접종 (DHPPL)</dt>
+                <dd><span>*접종주기: </span>6~14주차에 2주 간격으로 각 1번씩 총 5회. 이후 매년마다 추가 접종</dd>
             </dl>
                <p class="s21_shot_pbx">
             <table >
@@ -203,8 +204,8 @@
             
             <div class="s21_shot_list_bx">
             <dl class="s21_shot_dl">
-               <dt><span></span>코로나 장염</dt>
-               <dd><span>접종주기</span>6, 8주차에 각 1번씩 총 2회.이후 매년마다 추가 접종</dd>                          
+               <dt>코로나 장염</dt>
+               <dd><span>*접종주기: </span>6, 8주차에 각 1번씩 총 2회.이후 매년마다 추가 접종</dd>                          
             </dl>
             <p class="s21_shot_pbx"></p>
                <table >
@@ -220,8 +221,8 @@
          
             <div class="s21_shot_list_bx">
             <dl class="s21_shot_dl">            
-               <dt><span></span>켄넬코프</dt>
-               <dd><span>접종주기</span>10, 12주차에 각 1번씩 총 2회.이후 매년마다 추가 접종</dd>
+               <dt>켄넬코프</dt>
+               <dd><span>*접종주기: </span>10, 12주차에 각 1번씩 총 2회.이후 매년마다 추가 접종</dd>
             </dl>
             <p class="s21_shot_pbx">
                <table >
@@ -238,8 +239,8 @@
                
          <div class="s21_shot_list_bx">
             <dl class="s21_shot_dl">
-               <dt><span></span>광견병</dt>                     
-               <dd><span>접종주기</span>16주차 이후 매년마다 추가 접종.</dd>                     
+               <dt>광견병</dt>                     
+               <dd><span>*접종주기: </span>16주차 이후 매년마다 추가 접종.</dd>                     
             </dl>
             <p class="s21_shot_pbx">
                <table >
@@ -253,8 +254,8 @@
                   
          <div class="s21_shot_list_bx">
             <dl class="s21_shot_dl">
-               <dt><span></span>인플루엔자(신종플루)</dt>                     
-               <dd><span>접종주기</span>14,16주차에 각 1번씩 총 2회. 이후 매년마다 추가 접종</dd>                     
+               <dt>인플루엔자(신종플루)</dt>                     
+               <dd><span>*접종주기: </span>14,16주차에 각 1번씩 총 2회. 이후 매년마다 추가 접종</dd>                     
             </dl>
             <p class="s21_shot_pbx">
                <table >
@@ -302,8 +303,7 @@
          <select name="birthD" id="birthD" class="pet_select" style="width:90px;"></select>일
          </div>
          <div class='petlist' >
-         <table class='tbldog'>
-         </table>
+         <table class='tbldog'></table>
          </div>
       </div>
       <br>
@@ -440,8 +440,9 @@ $(document)
                 return false;
              }
           })   
-          
+          $('.pet_add').show();
        }
+       
           
     })
    
@@ -456,6 +457,10 @@ $(document)
        data:{petbirth:petbirth},
        dataType:'json',
        success:function(data){
+          if (data.includes(null)) {
+              alert("반려동물은 선택해주세요.");
+              return
+          }
            for(let i=0; i<5; i++){ 
               $(".ehppl:eq("+i+")").text(data[i]);
               if(i<2){
@@ -468,9 +473,6 @@ $(document)
            $(".influenza:eq(1)").text(data[5]);
            $(".Rabies").text(data[5]);
            
-           
-            
-
        }
     }) 
   
@@ -514,7 +516,8 @@ function setDateBox(){ //날짜 옵션 값 넣기
          var day = String(i).padStart(2, '0'); // 일을 두 자리로 표시
          $("#birthD").append("<option value='" + day + "'>" + day + "</option>");
    } 
-   }
+}
+
 function petload(){ // 등록한 펫 리스트 
    
    $.ajax({
@@ -547,5 +550,7 @@ function petload(){ // 등록한 펫 리스트
  
 
 
+</body>
+</html>
 </body>
 </html>

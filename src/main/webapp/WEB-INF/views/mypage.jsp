@@ -57,7 +57,7 @@
 	    <input type="radio" name="tab" id="about"/>
 	    <section class="about">
 	    <br>
-	      <h1 >추천장소</h1>
+	      <h1 >일정 등록하기</h1>
 	      <label for="about"></label>
 	      <br><br>
 	    	<div class=my02>
@@ -65,12 +65,12 @@
 	    		
 	    			<tr>
 	    				<td>
-	    					<a href="/">화제의 장소</a>
+	    					<a href="calendar">내 달력으로 가기</a>
 	    				</td>
 	    			</tr>
 	    			<tr>
 	    				<td>
-	    					<a href="calendar">일정 등록하기</a>
+	    					<a href="vaccine">예방접종하러가기</a>
 	    				</td>
 	    			</tr>
     				<tr>
@@ -81,7 +81,7 @@
 	    		</table>
 	    	</div>
 	    	<div>
-	    		<img class="image04" src="image/mypage04.jpg">
+	    		<img class="image04" src="image/vaccine01.jpg">
 	    	</div>
 	    </section>
 	    <input type="radio" name="tab" id="work"/>

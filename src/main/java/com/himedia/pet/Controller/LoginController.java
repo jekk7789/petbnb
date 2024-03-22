@@ -121,6 +121,7 @@ public class LoginController {
         String password = req.getParameter("password");
         int n = ldao.log(email, password); // 사용자 인증을 시도합니다.
         
+        
         if (n == 1) { 
             session.setAttribute("email", email);
             

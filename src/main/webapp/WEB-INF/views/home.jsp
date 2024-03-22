@@ -187,8 +187,9 @@
 <script src="js/animateHeader.js"></script>
 <script src="js/custom.js"></script>   
     
-    
+   
 <script>
+
 const searchEl = document.querySelector('.search')
 const searchInputEl = searchEl.querySelector('input')
 

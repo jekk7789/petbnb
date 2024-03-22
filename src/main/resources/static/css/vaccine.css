@@ -64,6 +64,9 @@
    a {
        color: #634522;
    }
+   dt{
+      text-align: center;
+   }
 /* 테이블 스타일 */
 
    table {
@@ -71,6 +74,7 @@
        border-collapse: collapse;
        background-color: #fff;
        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+       
    }
    
    th, td {
@@ -100,6 +104,7 @@
        border: none;
        cursor: pointer;
    }
+
    
    /* 박스 영역 스타일 */
    .box-area {
@@ -185,6 +190,7 @@
        border-radius: 5px; /* 테두리를 둥글게 만듦 */
        padding: 20px; /* 내부 여백 추가 */
        margin-top: 30px; /* 중요 정보 위에 약간의 여백 추가 */
+       
    }
    
    /* 중요 정보 제목 스타일 */
@@ -196,11 +202,13 @@
    /* 중요 정보 목록 스타일 */
    .s21_shot_important ul {
        margin-left: 20px; /* 중요 정보 목록의 왼쪽 여백 설정 */
+       text-align: left;
    }
    
    /* 중요 정보 항목 스타일 */
    .s21_shot_important li {
        margin-bottom: 10px; /* 중요 정보 항목 아래에 약간의 여백 추가 */
+      
    }
    
    /* 중요 정보 항목 마커 스타일 */
@@ -217,10 +225,12 @@
        padding-top: 10px; /* 선 위에 여백 추가 */
    }
     .pet_add {
+        /*display: none;*/
         display: flex; /* 자식 요소를 수평으로 배치하기 위해 flexbox를 사용 */
     }
-    .dog {
-        width: 50%; /* 부모 요소의 절반 크기로 설정하여 동일한 너비로 배치 */
+   
+     .dog {
+        width: 49.2%; /* 부모 요소의 절반 크기로 설정하여 동일한 너비로 배치 */
         height: 400px; /* 테이블과 이미지의 높이를 동일하게 지정 */
         box-sizing: border-box; /* 요소의 크기를 padding과 border를 포함하여 계산 */
         padding: 10px; /* 테이블과 이미지 주위에 여백 추가 */
@@ -321,8 +331,9 @@
         box-sizing: border-box;
     }
     .pet_add_popup {
-    height: 80%; /* 높이를 화면의 80%로 설정합니다. */
-    overflow-y: auto; /* 필요한 경우 수직 스크롤을 추가합니다. */
+      width: 50%;
+       height: 80%; /* 높이를 화면의 80%로 설정합니다. */
+       overflow-y: auto; /* 필요한 경우 수직 스크롤을 추가합니다. */
 }
 
    

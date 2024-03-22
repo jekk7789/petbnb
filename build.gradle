@@ -23,6 +23,7 @@ repositories {
 }
 
 dependencies {
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 	runtimeOnly 'mysql:mysql-connector-java:8.0.25'
@@ -36,13 +37,14 @@ dependencies {
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 	
-	// JUnit5
-    testImplementation("org.junit.platform:junit-platform-launcher:1.5.2") 
-	testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
-	
-	implementation 'io.github.flashvayne:chatgpt-spring-boot-starter:1.0.4'
+	//implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+compileJava {
+    options.compilerArgs << "-parameters"
+}
+

@@ -9,5 +9,6 @@ public class LoginDTO {
 	String kakaoId;
 	String naverId;
 	String googleId;
+	String admin;
 }
 
