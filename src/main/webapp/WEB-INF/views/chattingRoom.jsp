@@ -6,11 +6,25 @@
   <meta charset="UTF-8">
   <title>Websocket Tutorial</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./css/style1.css">
+	 
 
+<style>
+.floating-chat expand enter{
+		width:1000px;
+		height:auto;
+		transform: translate(80ch,25mm);
+}
+.showid{
+	
+}
+
+</style>
 </head>
 <body>
 <input type=text id=userid value=${email }>
+<input type=text id=admin value=${admin }>
 <div class="floating-chat expand enter">
+	<b class="showid" id=showid style="font-size:20px">${email } 님 안녕하세요</b>
     <i class="fa fa-comments" aria-hidden="true"></i>
     <div class="chat">
         <div class="header">
@@ -32,27 +46,26 @@
 </body>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
+$(document)
+.ready(function(){
+	
+	let q=setInterval(function(){
 
-$(document).ready(function(){
-	   let userid=$('#userid').val();
-		console.log(userid)
-		$.ajax({
-			type:'get',
-		    url:'/chatting',
-			data:{email:userid},
-			dataType:'text',
-			success:function(){
-				alert("성공~");
-			}
-	   })
-	})
+		$('#showid').fadeToggle();
+		},3000)
+		
+		
+})
 
 </script>
-<script src="javascript">
-	
-    const username = [[${name}]];
+<script type="text/javascript">
+   let userid=$('#userid').val();
+   console.log(userid)
+   let admin=$('#admin').val();
+   console.log(admin)
+    const username = [[userid]];
 
-    const websocket = new WebSocket("ws://localhost:8080/ws/chat");
+    const websocket = new WebSocket("ws://192.168.0.37:8081/ws/chat");
     websocket.onmessage = onMessage;
     websocket.onopen = onOpen;
     websocket.onclose = onClose;

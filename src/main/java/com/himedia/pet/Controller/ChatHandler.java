@@ -15,7 +15,7 @@ public class ChatHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        if(numSet.size()>=3){
+        if(numSet.size()>=5){
             WebSocketSession oldSession = numSet.iterator().next();
             oldSession.sendMessage(new TextMessage("채팅이 종료되었습니다."));
             numSet.remove(numSet.iterator().next());
