@@ -274,8 +274,9 @@ function deleteCookie() {
 	        url: "/naverLogin",
 	        data: { email: email, naverId: id },
 	        success: function(data) {
+	        	var referrer = document.referrer
 	            if(data === '1'){
-	            	window.location.href = '/home';
+	            	window.location.href = referrer;
 	            }
 	        },
 	        error: function(xhr, status, error) {

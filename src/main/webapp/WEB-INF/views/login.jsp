@@ -104,10 +104,11 @@ function kakaoLogin() {
 						    "email":response.kakao_account.email},
 					dataType :"text",
 					success : function(data){
+						var referrer = document.referrer
 						if(data=='1'){
 							// 로그인
 								
-							 window.location.href='/home'		    							
+							 window.location.href=referrer;		    							
 						} else {
 							alert('카카오 회원가입 실패. 일반계정으로 로그인하시기 바랍니다.');
 						}
@@ -204,8 +205,9 @@ function handleCredentialResponse(response) {
         url: "/googleLogin",
         data: { email: email, googleId: id },
         success: function(data) {
+        	var referrer = document.referrer
             if (data === '1') {
-                location.href = "/home";
+                location.href = referrer;
             }
         },
         error: function(xhr, status, error) {

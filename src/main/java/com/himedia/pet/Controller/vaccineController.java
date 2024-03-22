@@ -31,14 +31,12 @@ public class vaccineController {
     @ResponseBody
       public String addpet(HttpServletRequest req) {
       String num = req.getParameter("num");
-      System.out.println(num);
+      String petId = req.getParameter("petId");
       if (num== null || num.isEmpty()) {
          num="정보없음";
       }
       String name= req.getParameter("name");
-      System.out.println(name);
       String birth = req.getParameter("birth");
-      System.out.println(birth);
       String loginid= req.getParameter("loginid");
       System.out.println(loginid);
       
@@ -47,6 +45,7 @@ public class vaccineController {
       return ""+n;
          
     }
+
     @PostMapping("/petload") // 펫 리스트 띄우기
     @ResponseBody
       public String loadpet(HttpServletRequest req) {
@@ -76,7 +75,7 @@ public class vaccineController {
       jo.put("name",bdto.getPetname());
       jo.put("number",bdto.getPetnumber());
       jo.put("birth",bdto.getPetbirth());
-      System.out.println(jo); 
+
       return jo.toJSONString();
      
     }
@@ -86,15 +85,38 @@ public class vaccineController {
        List<String> date = new ArrayList<> ();
         String petbirth = req.getParameter("petbirth");
         
-        for(int num=6; num<17; num+=2) {
+        for(int num=6; num<19; num+=2) {
 //           System.out.println(num);
            String n = vdao.dateadd(petbirth, num);
 //           System.out.println(n);
            date.add(n);
         }
-        System.out.println(date);
+     
         return date;
     }
+    @PostMapping("/petmodify") // 펫 정보 수정하기 
+    @ResponseBody
+    public String petmodify(HttpServletRequest req) {
+        String petId = req.getParameter("petId");
+        String petno = req.getParameter("petno");
+        String petname = req.getParameter("petname");
+        String birth = req.getParameter("birth");
+
+        int n = vdao.pmodify(Integer.parseInt(petId), petno, petname, birth);
+        System.out.println("Modified rows: " +n);
+        
+        return ""+n;
+    }
+    @PostMapping("/petdelete") // 펫 정보 삭제하기 
+    @ResponseBody
+    public String petdeletey(HttpServletRequest req) {
+        String petId = req.getParameter("petId");
+     
+        int n = vdao.pdelete(petId);
+        
+        return ""+n;
+    }
+
 
     
 }

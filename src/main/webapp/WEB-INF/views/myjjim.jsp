@@ -61,25 +61,25 @@ $(document)
 })
 
 .on('click', '.myjjim', function() {
-	let data = $(this).find('input').val();
-	if(data=='1'){
-  		$('#tblreview').show();
-  		$('#tblqna').hide();
-  		$('#tbljjim').hide();
-  	}else if(data=='2'){
-  		$('#tblqna').show();
-  		$('#tblreview').hide();
-  		$('#tbljjim').hide();
-  	}else if(data=='3'){
-  		$('#tblreview').hide();
-  		$('#tbljjim').show();
-  		$('#tblqna').hide();
-  	} else{
-  		alert('실패')
-  		return
-  	}
-
-})
+   let ndx = $(this).index();
+   if(ndx==0){
+      if($('#tblreview').is(':visible')) $('#tblreview').hide();
+      else $('#tblreview').show();
+        $('#tblqna').hide();
+        $('#tbljjim').hide();
+      
+   } else if(ndx==1){
+      $('#tblreview').hide();
+        if($('#tblqna').is(':visible')) $('#tblqna').hide();
+        else $('#tblqna').show();
+        $('#tbljjim').hide();
+      
+   }else if(ndx==2){
+      $('#tblreview').hide();
+        $('#tblqna').hide();
+        if($('#tbljjim').is(':visible')) $('#tbljjim').hide();
+        else $('#tbljjim').show();
+	}
 
 function showjjim(){
 	$('#tbljjim').empty();

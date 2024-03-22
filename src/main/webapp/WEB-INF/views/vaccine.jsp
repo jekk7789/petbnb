@@ -25,8 +25,8 @@
 <header id="herder">
      <%@ include file="/WEB-INF/views/include/header.jsp" %>
 </header>
-<input id=userid value=${email }>
-<input id=pbirth >
+<input type=hidden id=userid value=${email }>
+<!-- <input id=pbirth > -->
 <div class="container">
    
    <div class="s21_event_m_top pr">
@@ -251,7 +251,7 @@
          </div>
                
                   
-            <div class="s21_shot_list_bx">
+         <div class="s21_shot_list_bx">
             <dl class="s21_shot_dl">
                <dt><span></span>인플루엔자(신종플루)</dt>                     
                <dd><span>접종주기</span>14,16주차에 각 1번씩 총 2회. 이후 매년마다 추가 접종</dd>                     
@@ -266,10 +266,10 @@
                </tr>
             </table>
             </p>
-         </div>
-                  
-      </div>
-          
+         </div>     
+      
+      
+      </div>         
     </div>
        
          
@@ -280,7 +280,7 @@
    <!-- pet add popup -->
    <div class="pet_add_popup" id="pet_add_popup">
       <div>
-         <span class="close_shot" onClick="$('#pet_add_popup').hide()" style="cursor: pointer;">&times;</span>
+         <span class="close_shot" style="cursor: pointer;">&times;</span>
          <h2>내 반려견 등록</h2>
       </div>
       <div class="modal-body_shot">
@@ -293,13 +293,13 @@
          
          <div class="s21_shot_card_text_pop">
             <p>
-            <input type="text" class="pet_input" id="dog_no" placeholder="등록번호" value=""></p>
-            <p><input type="text" class="pet_input" id="dog_name" placeholder="반려견이름" value=""></p>
+            <label>등록번호:</label><input type="text" class="pet_input" id="dog_no" placeholder="등록번호" value=""></p>
+            <p><label>반려견이름:</label><input type="text" class="pet_input" id="dog_name" placeholder="반려견이름" value=""></p>
          <div>
          <div>
          <select name="birthY" id="birthY" class="pet_select" ></select>년
-         <select name="birthM" id="birthM" class="pet_select" ></select>월
-         <select name="birthD" id="birthD" class="pet_select" ></select>일
+         <select name="birthM" id="birthM" class="pet_select" style="width:90px;"></select>월
+         <select name="birthD" id="birthD" class="pet_select" style="width:90px;"></select>일
          </div>
          <div class='petlist' >
          <table class='tbldog'>
@@ -307,7 +307,7 @@
          </div>
       </div>
       <br>
-      <button id="btn_add" >등록하기</button>
+      <button id="btn_add" >등록하기</button><button id="btn_clear" >취소하기</button>
    </div>
 
  </div>
@@ -323,26 +323,31 @@ $(document)
    setDateBox();
    petload();
    
-   var savedData = localStorage.getItem('selectedPet');
-   if (savedData) {
-       var data = JSON.parse(savedData);
-       $('#petname').text(data.name);
-       $('#number').text(data.number);
-       $('#petbirth').text(data.birth);
-   }
+//    var savedData = localStorage.getItem('selectedPet');
+//    if (savedData) {
+//        var data = JSON.parse(savedData);
+//        $('#petname').text(data.name);
+//        $('#number').text(data.number);
+//        $('#petbirth').text(data.birth);
+//    }
   
 })
 .on('click','.tablinks:eq(0)',function(){
    $("#review").hide(); 
-    $("#information").show(); 
+   $("#information").show(); 
 })
 .on('click','.tablinks:eq(1)',function(){
    $("#information").hide(); 
     $("#review").show(); 
 })
-.on('click','#btn_add',function(){
+.on('click','#btn_add',function(){ //펫 등록 
    let birth =$("#birthY").val()+$("#birthM").val()+$("#birthD").val();
-   
+   var petId = $(this).closest('tr').find('input#petid').val();
+   if($('#userid').val()==''){
+      alert("로그인을 해주십시오.");
+   } else if($('#dog_name').val()==''){
+      alert("이름을 입력해주세요."); 
+   } else{
    $.ajax({
       type:'post',
       url:'petadd',
@@ -350,17 +355,52 @@ $(document)
       dataType:'text',
       success:function(data){
          if(data==1){
-            console.log("성공");
+            alert("등록이 완료되었습니다.")
             petload();
          }
       }
    })  
+   }
    
 })
-.on('click','#btnMypet',function(){
-   $('#pet_add_popup').show();
+.on('click','#modify',function(){ //펫 수정
+   var petId = $(this).closest('tr').find('input#petid').val();
+   let birth =$("#birthY").val()+$("#birthM").val()+$("#birthD").val();
+   console.log(birth);
+   
+   if($('#dog_name').val()==''){
+      alert("이름을 입력해주세요")
+   } else{
+     $.ajax({
+          type:'post',
+          url:'petmodify',
+          data:{petId:petId, petno:$('#dog_no').val(), petname:$('#dog_name').val(),birth:birth },
+          dataType:'text',
+          success:function(data){
+            console.log(data);
+             if(data==1){
+                alert("성공");
+                petload();
+             }
+          }
+     })  
+   }
+   
 })
-.on('click', '#choice', function() {
+.on('click','#btnMypet',function(){ //팝업창 열기
+   $('#pet_add_popup').show();
+   
+})
+.on('click','.close_shot',function(){ //팝업창 닫기
+   $('#dog_no,#dog_name').val("");
+   $('.pet_select').find('option:first').prop('selected', true);//처음 옵션값으로 돌아가기
+   $('#pet_add_popup').hide()
+})
+.on('click','#btn_clear',function(){ 
+   $('#dog_no,#dog_name').val("");
+   $('.pet_select').find('option:first').prop('selected', true);
+})
+.on('click', '#choice', function() { // 등록한 펫 선택
     var petId = $(this).closest('tr').find('input#petid').val();
  
     $.ajax({
@@ -369,7 +409,7 @@ $(document)
        data:{petId:petId},
        dataType:'json',
        success:function(data){
-          localStorage.setItem('selectedPet', JSON.stringify(data));
+//           localStorage.setItem('selectedPet', JSON.stringify(data));
           $('#petname').text(data.name); 
           $('#number').text(data.number); 
           $('#petbirth').text(data.birth); 
@@ -381,8 +421,7 @@ $(document)
           let birth=data.birth;
            let pbirth=birth.split("-");
 //            console.log(pbirth[0]);
-          
-           
+                     
            $('#birthY option').each(function(){
              if($(this).text()==pbirth[0]){
                 $(this).prop('selected',true)  
@@ -400,15 +439,14 @@ $(document)
                 $(this).prop('selected',true)  
                 return false;
              }
-          })
-          
+          })   
           
        }
           
     })
    
 })
-.on('click','#dododo',function(){
+.on('click','#dododo',function(){ //펫 백신 날짜 계산하기
     /* var petbirth = new Date($('#petbirth').text()); */
     var petbirth = $('#petbirth').text();
     
@@ -434,34 +472,14 @@ $(document)
             
 
        }
-    })
+    }) 
   
     /* var DHPPL1 = new Date(petbirth.getTime());
     DHPPL1.setDate(DHPPL1.getDate() + (6 * 7)); // 6주는 일수로 환산하여 더하기
     console.log( DHPPL1.toISOString().split('T')[0]);
     $('#ehppl').text(DHPPL1.toISOString().split('T')[0]); */
  })
-.on('click','#modify',function(){
-   var petId = $(this).closest('tr').find('input#petid').val();
-   let birth =$("#birthY").val()+$("#birthM").val()+$("#birthD").val();
-   console.log(birth);
-   
-     $.ajax({
-          type:'post',
-          url:'petmodify',
-          data:{petId:petId, petno:$('#dog_no').val(), petname:$('#dog_name').val(),birth:birth },
-          dataType:'text',
-          success:function(data){
-            console.log(data);
-             if(data==1){
-                alert("성공");
-                petload();
-             }
-          }
-     })  
-   
-})
-.on('click','#delete',function(){
+.on('click','#delete',function(){ //등록한 펫 삭제하기
    var petId = $(this).closest('tr').find('input#petid').val();
    
      $.ajax({
@@ -480,24 +498,24 @@ $(document)
    
 });
 
-function setDateBox(){
+function setDateBox(){ //날짜 옵션 값 넣기
    var dt = new Date();
    var year = dt.getFullYear();
    var month = dt.getMonth() + 1;
 
-   for (var y = year; y >= (year - 10); y--) {
-         $("#birthY").append("<option value='" + y + "'>" + y +"</option>");
+   for (var i = year; i >= (year - 10); i--) {
+         $("#birthY").append("<option value='" + i + "'>" + i +"</option>");
    }
    for (var i = 1; i <= 12; i++) {
-         var paddedMonth = String(i).padStart(2, '0'); // 월을 두 자리로 표시
-         $("#birthM").append("<option value='" + paddedMonth + "'>" + paddedMonth + "</option>");
+         var month = String(i).padStart(2, '0'); // 월을 두 자리로 표시
+         $("#birthM").append("<option value='" + month + "'>" + month + "</option>");
    }
    for (var i = 1; i <= 31; i++) {
-         var paddedDay = String(i).padStart(2, '0'); // 일을 두 자리로 표시
-         $("#birthD").append("<option value='" + paddedDay + "'>" + paddedDay + "</option>");
+         var day = String(i).padStart(2, '0'); // 일을 두 자리로 표시
+         $("#birthD").append("<option value='" + day + "'>" + day + "</option>");
    } 
    }
-function petload(){
+function petload(){ // 등록한 펫 리스트 
    
    $.ajax({
       type:'post',
@@ -510,7 +528,7 @@ function petload(){
                let ob=data[i];
                
                let str = '<tr><td>' + ob.name + '</td><td></td>' +
-                '<td rowspan="3"><input id="petid" value="' + ob.id + '"></input><button id="choice">선택</button><button id="modify">수정</button><button id="delete">삭제</button></td></tr>' +
+                '<td rowspan="3"><input type="hidden" id="petid" value="' + ob.id + '"></input><button id="choice">선택</button><button id="modify">수정</button><button id="delete">삭제</button></td></tr>' +
                 '<tr><td>생일</td><td>' + ob.birth + '</td></tr><tr><td>동물등록번호</td><td>' + ob.number + '</td></tr>';
 
               $('.tbldog').append(str);
@@ -529,7 +547,5 @@ function petload(){
  
 
 
-</body>
-</html>
 </body>
 </html>
