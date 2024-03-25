@@ -81,7 +81,7 @@
 	    		</table>
 	    	</div>
 	    	<div>
-	    		<img class="image04" src="image/vaccine01.jpg">
+	    		<img class="image04" src="image/vaccine03.jpg">
 	    	</div>
 	    </section>
 	    <input type="radio" name="tab" id="work"/>
@@ -136,7 +136,7 @@
 				<img class="image05" src="image/mypage05.jpg">
 			</div>		  
 		 
-
+		
 	    </section>
 	
 	    

@@ -24,7 +24,7 @@
 <header id="herder">
   	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 </header>
-
+<input type=hidden id=userid value=${email }>
 <div id='calendar-container' style="margin-top: 20px;">    
     <div id='calendar' id=calList></div>  
 </div>
@@ -182,26 +182,28 @@ $(document).ready(function(){
     //모달창 이벤트
    	$("#saveChanges").on("click", function () {
    		var eventData = {
-//    			    eventId: eventId, // eventId를 obj로 수정
    			    title: $("#title").val(),
    			    start: $("#start").val(),
    			    end: $("#end").val(),
    			    backgroundColor: $("#color").val()
    		};
        
-//        let calId = eventData.evevtId;
        let title = eventData.title;
        let start = eventData.start;
        let end = eventData.end;
        let backgroundColor = eventData.backgroundColor;
        
-//        console.log("calId", calId);
        console.log("userName",userName);
        console.log("title:",title);
        console.log("start:",start);
        console.log("end",end);
        console.log("backgroundColor:",backgroundColor);
-
+		
+       if($('#userid').val() == "" || $('#userid').val() ==null){
+           alert('로그인페이지로 이동합니다');
+           location.href="/login";
+           return false
+       }
        
        if (eventData.title == "" || eventData.start == "" || eventData.end == "") {
            alert("입력하지 않은 값이 있습니다.");
@@ -227,6 +229,7 @@ $(document).ready(function(){
                        backgroundColor: $("#color").val() },
                success: function(data) {
                    if (data === "1") {
+                	   
                        alert("등록되었습니다!!");
                    }
                }

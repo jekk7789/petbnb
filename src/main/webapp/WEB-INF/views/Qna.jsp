@@ -79,11 +79,15 @@ $(document)
 
     }
 })
-.on('click', '#data_list', function() {
-   let click = $(this); // 클릭된 요소를 변수에 저장
-    click.next().toggle(300);// 클릭된 요소의 다음 요소를 토글
+.on('click', '#data_list', function() {        
+    let dataList = $(this); // 클릭된 요소를 변수에 저장
+    let dataWrite = dataList.next('#data_write'); // 클릭된 요소의 다음 #data_write를 변수에 저장
+    dataWrite.slideToggle(300); 
+    $('#review').find('.announcement').not(dataList).next('#data_write').slideUp(300);
+    // 클릭된 #data_list가 아닌 다른 모든 #data_list 요소의 다음 #data_write를 닫습니다.
     commentLoad(this); // 클릭된 qna에 답글 표시
 })
+
 .on('click','#pagenum',function(){
    let a=$(this).text()
    a=a.replace(/(\s*)/g, "")

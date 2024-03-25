@@ -5,31 +5,37 @@
 <head>
   <meta charset="UTF-8">
   <title>Websocket Tutorial</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./css/style1.css">
-	 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="./css/style1.css">
+    
 
 <style>
-.floating-chat expand enter{
-		width:1000px;
-		height:auto;
-		transform: translate(80ch,25mm);
-}
+
 .showid{
-	
+opacity:0.3;
 }
 
 </style>
 </head>
 <body>
-<input type=text id=userid value=${email }>
-<input type=text id=admin value=${admin }>
+<input type=hidden id=userid value=${email }>
+<input type=hidden id=admin value=${admin }>
+<header id="herder">
+     <%@ include file="/WEB-INF/views/include/header.jsp" %>
+</header>
+<div class="head01"> 
+ <h1 >도그비앤비 채팅방</h1>
+ <a href="/" style=color:#00491e>홈으로</a>
+</div>
 <div class="floating-chat expand enter">
-	<b class="showid" id=showid style="font-size:20px">${email } 님 안녕하세요</b>
+   <b class="showid" id=showid style="font-size:20px">${email } 님 안녕하세요</b>
     <i class="fa fa-comments" aria-hidden="true"></i>
+   
     <div class="chat">
         <div class="header">
             <span class="title">
-                Chat or Die
+                Chat or Cat
             </span>
         </div>
         <ul id="msgArea" class="messages">
@@ -38,7 +44,17 @@
             <div id="opinion" class="text-box" contenteditable="true" disabled="true" onkeyup="enterkey()"></div>
         </div>
     </div>
+  
 </div>
+
+<div>
+  <video class="chatMovie01" autoplay loop  muted style="height: auto; width: auto;">
+      <source src="image/chatMovie01.mp4"></source>
+   
+   </video>
+</div>
+
+
 <!-- partial -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="./js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -48,13 +64,13 @@
 <script>
 $(document)
 .ready(function(){
-	
-	let q=setInterval(function(){
+   
+   let q=setInterval(function(){
 
-		$('#showid').fadeToggle();
-		},3000)
-		
-		
+      $('#showid').fadeToggle();
+      },3000)
+      
+      
 })
 
 </script>

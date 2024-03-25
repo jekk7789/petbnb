@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fittext/1.2.0/jquery.fittext.min.js"></script>
     
     
@@ -173,7 +174,12 @@
                     </a>
                 </div>
             </div>
-        </div><!--.full_height-->
+        </div>
+        <div class="floating-button">
+        	<span class="move-myWebSite">
+        		<a class="myWebSite-btn" href="/chattingRoom"></a>
+        	</span>
+        </div>
     </section>
     
 </body>
@@ -186,7 +192,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/animateHeader.js"></script>
 <script src="js/custom.js"></script>   
-    
+
    
 <script>
 

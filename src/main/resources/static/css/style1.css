@@ -5,8 +5,22 @@
 }
 
 body {
-  background: skyblue;
+  background-image:url('/image/modern-1.jpg');
+  background-repeat: no-repeat;
+  background-size:cover;
   font: 12px/16px "Noto Sans", sans-serif;
+}
+
+
+.head01{
+  margin: 30;
+  font-size: 30px;
+  transform: translate(3.5ch,40mm);
+  text-align: center;
+  color:darkgreen;
+  transition: transform 500ms;
+  transform-style: preserve-3d;
+
 }
 
 .floating-chat {
@@ -19,7 +33,7 @@ body {
   bottom: 10px;
   /*right: 10px;*/
   width: 40px;
-  height: 40px;
+  height: 80px;
   transform: translateY(70px);
   transition: all 250ms ease-out;
   border-radius: 50%;
@@ -28,6 +42,8 @@ body {
   background: -webkit-linear-gradient(-45deg, #183850 0, #183850 25%, #192C46 50%, #22254C 75%, #22254C 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
+  left: 40%;
+  transform: translateX(-50%);
 }
 .floating-chat.enter:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -154,7 +170,7 @@ body {
 }
 .floating-chat .chat .messages li.other:before {
   right: -45px;
-  background-image: "/image/1710731868987_sky.jpg";
+  background-image: url(/image/강아지그림.jpg);
 }
 .floating-chat .chat .messages li.other:after {
   border-right: 10px solid transparent;
@@ -170,7 +186,7 @@ body {
 }
 .floating-chat .chat .messages li.self:before {
   left: -45px;
-  background-image: "강아지그림.jpg";
+  background-image: url(/image/배경.png);
 }
 .floating-chat .chat .messages li.self:after {
   border-left: 10px solid transparent;

@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="css/page.css" />
 <link rel="stylesheet" href="css/kakaomap.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
 <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 </head>
 <style>
@@ -52,7 +53,7 @@
 <body>
 
 <header id="herder">
-  	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+     <%@ include file="/WEB-INF/views/include/header.jsp" %>
 </header>
 
 <input type=hidden id=jjim_id >
@@ -60,19 +61,24 @@
 <input type=hidden id=hpage value=${page } >
 <input type=hidden id=hlastpage value=${lastpage }>
 <input type=hidden id=loginid >
-
-    <header>	<h1 id="shop-name"></h1>	</header>
-
+<div class="floating-button">
+        	<span class="move-myWebSite">
+        		<a class="myWebSite-btn" href="/chattingRoom"></a>
+        	</span>
+        </div>
+    <header>   <h1 id="shop-name"></h1>   </header>
+	
     <div class="container">
     
         <div class="product-map">
-            <p><div id="map" style="width:500px;height:400px;"></div></p> 
+            <p><div id="map" style="width:1000px;height:600px;"></div></p> 
         </div>
+        
         <div class="product-options">
             <table>
                 <tr>
                     <th colspan="3" ><button class="btn-like" id=like>❤️</button>
-                    <input  id="pet_id" value=${id }>
+                    <input type="hidden" id="pet_id" value=${id }>
                     <input type="hidden" id="wido" ><input type="hidden"  id="gyeongdo" >
                     </th>
                 </tr>
@@ -102,19 +108,19 @@
                     <td colspan="2" id='petben'></td>
                 </tr>
                 <tr >
-				    <td rowspan="3">
-				     <img src="https://appdata.hungryapp.co.kr/images/hatdog/img/travel/icon_dog_line.png?ver=2" alt="아이콘" />
-				     <p id='pet_size'></p>
-				    </td>
-				  <td>
-				     <img src="https://appdata.hungryapp.co.kr/images/hatdog/img/travel/icon_door_line.png?ver=2" alt="아이콘" />
+                <td rowspan="3">
+                <i class="fa-solid fa-dog"></i>
+                 <p id='pet_size'></p>
+                </td>
+              <td>
+                 <i class="fa-solid fa-door-open"></i>
                      <p id='area'></p>
-				  </td>
-				  <td>
-                     <img src="https://appdata.hungryapp.co.kr/images/hatdog/img/travel/icon_door_line.png?ver=2" alt="아이콘" />
-				     <p id='parking'></p>
-				  </td>
-				</tr>
+              </td>
+              <td>
+                    <i class="fa-solid fa-square-parking"></i>
+                 <p id='parking'></p>
+              </td>
+            </tr>
             </table>
         </div>
     </div>
@@ -127,60 +133,59 @@
     </div>
     
 
-    <div id="Container">
-	<!-- 기본정보 s -->
-		<div id="information">
-		    <h1>기본정보(지도)</h1>
-		    <div class="map_wrap">
-		        <div id="map2" style="width:1700px;height:700px;position:relative;overflow:hidden; margin-left: 70px; margin-bottom: 50px;"></div>
-		        
-		        <ul id="category" style="margin-left: 70px;">
-		            <li id="CT1" data-order="0"> 
-		                <span class="category_bg bank"></span>
-		                문화시설
-		            </li>       
-		            <li id="AT4" data-order="1"> 
-		                <span class="category_bg attractions"></span>
-		                관광명소
-		            </li>  
-		            <li id="HP8" data-order="2"> 
-		                <span class="category_bg hospital"></span>
-		                병원
-		            </li> 
-		            <li id="PM9" data-order="2"> 
-		                <span class="category_bg pharmacy"></span>
-		                약국
-		            </li> 
-		            <li id="AD5" data-order="3"> 
-		                <span class="category_bg accommodation"></span>
-		                숙박
-		            </li>  
-		             <li id="CE7" data-order="4"> 
-		                <span class="category_bg cafe"></span>
-		                카페
-		            </li>  
-		            <li id="FD6" data-order="5"> 
-		                <span class="category_bg restaurant"></span>
-		                음식점
-		            </li>  		           		            		                 
-		        </ul>
-		    </div>
-		      
-		</div>
-	</div>
-	
+    <div id="Container2">
+   <!-- 기본정보 s -->
+      <div id="information">
+          <h1>기본정보(지도)</h1>
+          <div class="map_wrap">
+              <div id="map2" style="width:1700px;height:700px;position:relative;overflow:hidden; margin-left: 70px; margin-bottom: 50px;"></div>
+              
+              <ul id="category" style="margin-left: 70px;">
+                  <li id="CT1" data-order="0"> 
+                      <span class="category_bg bank"></span>
+                      문화시설
+                  </li>       
+                  <li id="AT4" data-order="1"> 
+                      <span class="category_bg attractions"></span>
+                      관광명소
+                  </li>  
+                  <li id="HP8" data-order="2"> 
+                      <span class="category_bg hospital"></span>
+                      병원
+                  </li> 
+                  <li id="PM9" data-order="2"> 
+                      <span class="category_bg pharmacy"></span>
+                      약국
+                  </li> 
+                  <li id="AD5" data-order="3"> 
+                      <span class="category_bg accommodation"></span>
+                      숙박
+                  </li>  
+                   <li id="CE7" data-order="4"> 
+                      <span class="category_bg cafe"></span>
+                      카페
+                  </li>  
+                  <li id="FD6" data-order="5"> 
+                      <span class="category_bg restaurant"></span>
+                      음식점
+                  </li>                                                            
+              </ul>
+          </div>     
+      </div>
+   </div>
+   
 <!-- 리뷰 s -->
         <div id="review">
           <h1>리뷰 </h1>
             <div>
               <button id="new_write" >리뷰작성</button>
                  <div id='data_list' style="cursor: pointer;" >
-                 	<table id=tbl_review>
-                 	
-				 	</table>
+                    <table id=tbl_review>
+                    
+                </table>
                  </div >
-                	<table id=showpage>
-                	</table>
+                   <table id=showpage>
+                   </table>
         </div>
         
 </body>
@@ -193,105 +198,105 @@
 
 $(document)
 .ready(function(){
-	$("#review").hide();
-	showList();
-	showpage();
-	chekJjim();
-	let userid=$('#userid').val();
+   $("#review").hide();
+   showList();
+   showpage();
+   chekJjim();
+   let userid=$('#userid').val();
     let logid=userid.split("@");
-	   $('#loginid').val(logid[0]);
+      $('#loginid').val(logid[0]);
 
-	var wido,gyeongdo; 
-	$.ajax({
-		type: 'post', 
+   var wido,gyeongdo; 
+   $.ajax({
+      type: 'post', 
         url: '/doload',
         data: {id:$('#pet_id').val()}, 
         dataType: 'json',
         success: function(data) {
-        	if(data.homepage!='정보없음'){
-        		$('#homepage2').text(data.homepage);
-        		$("#homepage2").attr("href", data.homepage);
-        	} else{
-        		$('#homepage').text(data.homepage);
-        	}
-        	$('#shop-name').text(data.name);
-        	$('#localAddress').text(data.localAddress);
-        	$('#number').text(data.number);
-        	$('#operating_time').text(data.time);
-        	$('#holiday').text(data.holiday);
-        	$('#petben').text(data.petben);
-        	$('#pet_size').text(data.size);
-        	$('#parking').text(data.parking);  
-        	$('#area').text(data.areain+'/'+data.areaout); 
-        	wido = data.wido; 
-        	gyeongdo = data.gyeongdo;
-	    }
+           if(data.homepage!='정보없음'){
+              $('#homepage2').text(data.homepage);
+              $("#homepage2").attr("href", data.homepage);
+           } else{
+              $('#homepage').text(data.homepage);
+           }
+           $('#shop-name').text(data.name);
+           $('#localAddress').text(data.localAddress);
+           $('#number').text(data.number);
+           $('#operating_time').text(data.time);
+           $('#holiday').text(data.holiday);
+           $('#petben').text(data.petben);
+           $('#pet_size').text(data.size);
+           $('#parking').text(data.parking);  
+           $('#area').text(data.areain+'/'+data.areaout); 
+           wido = data.wido; 
+           gyeongdo = data.gyeongdo;
+       }
         
-	}).done(function() {
-		$('#wido').val(wido);  
-		$('#gyeongdo').val(gyeongdo);
-		map();
-		map2();
-		
+   }).done(function() {
+      $('#wido').val(wido);  
+      $('#gyeongdo').val(gyeongdo);
+      map();
+      map2();
+      
     })  
-	 	
+       
 })
 
 .on('click','#like',function(){
-	$.ajax({
-		type:'post',
-		url:'like',
-		data:{id:$('#pet_id').val(),userid:$('#userid').val(),jjim_id:$('#jjim_id').val()},
-		dataType:'text',
-		success:function(data){
-			if(data>0){
-				alert('찜')
-				$(".btn-like").toggleClass("done");
-				$('#jjim_id').val(data)
-				return 
-			} else if(data=='-1') {
-				$(".btn-like").toggleClass("done");
-				$('#jjim_id').val("")
-				return
-			}
-			alert('실패')
-		}
-		
-	})
+   $.ajax({
+      type:'post',
+      url:'like',
+      data:{id:$('#pet_id').val(),userid:$('#userid').val(),jjim_id:$('#jjim_id').val()},
+      dataType:'text',
+      success:function(data){
+         if(data>0){
+            alert('찜')
+            $(".btn-like").toggleClass("done");
+            $('#jjim_id').val(data)
+            return 
+         } else if(data=='-1') {
+            $(".btn-like").toggleClass("done");
+            $('#jjim_id').val("")
+            return
+         }
+         alert('실패')
+      }
+      
+   })
 })
 
-	
+   
 .on('click','#pagenum',function(){
-	let a=$(this).text()
-	a=a.replace(/(\s*)/g, "")
-	$('#hpage').val(a)
-	//console.log($('#hpage').val()+'s')
-	showList()
-	showpage()
+   let a=$(this).text()
+   a=a.replace(/(\s*)/g, "")
+   $('#hpage').val(a)
+   //console.log($('#hpage').val()+'s')
+   showList()
+   showpage()
 })
 .on('click','#prev',function(){
-	let num=$('#hpage').val()-1
-	$('#hpage').val(num)
-	showList()
-	showpage()
+   let num=$('#hpage').val()-1
+   $('#hpage').val(num)
+   showList()
+   showpage()
 })
 .on('click','#next',function(){
-	let num=parseInt($('#hpage').val())+1
-	$('#hpage').val(num)
-	showList()
-	showpage()
+   let num=parseInt($('#hpage').val())+1
+   $('#hpage').val(num)
+   showList()
+   showpage()
 })
 .on('click','#first',function(){
-	let num=1
-	$('#hpage').val(num)
-	showList()
-	showpage()
+   let num=1
+   $('#hpage').val(num)
+   showList()
+   showpage()
 })
 .on('click','#last',function(){
-	let num=parseInt($('#hlastpage').val())
-	$('#hpage').val(num)
-	showList()
-	showpage()
+   let num=parseInt($('#hlastpage').val())
+   $('#hpage').val(num)
+   showList()
+   showpage()
 })
 .on('click','#delete',function(){
    let id=$(this).parent().parent().find('td:eq(4)').text();
@@ -324,7 +329,7 @@ $(".tablinks:eq(1)").on("click", function() {
 })
 $("#new_write").on("click", function() {
    
-	let userid = $('#userid').val();
+   let userid = $('#userid').val();
     console.log("userid"+userid)
     if(userid == "" || userid ==null){
         alert('로그인페이지로 이동합니다');
@@ -345,22 +350,22 @@ $('#data_list').on('click', '#tbl_review tr', function() {
 });
 
 /* function doReview(){
-	$.ajax({
-		type: 'post', 
+   $.ajax({
+      type: 'post', 
         url: '/doReview',
         data: {id:$('#pet_id').val()}, 
         dataType: 'json',
         success: function(data) {
-        	$('#tbl_review').empty();
-        	for(let i=0; i< data.length; i++){
-        		let ob=data[i];
-        		let str='<tr><td>'+ob['content']+'</td><td>'+ob['writer']+'</td><td>'+ob['time']+'</td><td class="borad_id" >' + ob['id'] +
+           $('#tbl_review').empty();
+           for(let i=0; i< data.length; i++){
+              let ob=data[i];
+              let str='<tr><td>'+ob['content']+'</td><td>'+ob['writer']+'</td><td>'+ob['time']+'</td><td class="borad_id" >' + ob['id'] +
                 '</td><td>'+'<a href="#" onclick="modiPop(' + ob['id'] + ')">수정</a><a href="/rDelet?id=' + ob['id'] + '">삭제</a></td></tr>';
-				$('#tbl_review').append(str);			
-        	} 
-     	 $("#data_list").html(JSON.stringify(data));   	
-	    }
-	});
+            $('#tbl_review').append(str);         
+           } 
+         $("#data_list").html(JSON.stringify(data));      
+       }
+   });
 } */
 
 function openPop(){
@@ -400,7 +405,7 @@ function showList(){
         data: {id: $('#pet_id').val(), page: $('#hpage').val()},
         dataType: 'json',
         success: function(data) {
-        	console.log(data)
+           console.log(data)
             $('#tbl_review').empty();
             for(let i = 0; i < data.length; i++) {
                 let ob = data[i];
@@ -418,83 +423,83 @@ function showList(){
     });
 }
 
-	function showpage(){
-	   $.ajax({
-	      type:'get',
-	      url:'/showpage',
-	      data:{id:$('#pet_id').val(),page:$('#hpage').val()},
-	      dataType:'text',
-	      success:function(data){
-	         $('#showpage').empty()
-	         //console.log(data)
-	         let b=data.slice(1,-1)
-	         b=b.replace(/(\s*)/g, "")
-	         //console.log(b)
-	         let a=b.split(',')
-	         //console.log(a)
-	         
-	         let str='<tr><td>&nbsp;&nbsp;&nbsp;<button id=first>맨처음</button><button id=prev>이전</button>'
-	         for(let i=0;i<a.length;i++){
-	            str+='<a href="#" id=pagenum value='+a[i]+'>'+a[i]+'&nbsp;</a>'
-	         }
-	         str+='<button id=next>다음</button><button id=last>마지막</button></td></tr>'
-	         $('#showpage').append(str)
-	         if($('#hpage').val() ==1){
-	            $('#prev').hide()
-	         }
-	         if($('#hpage').val() ==$('#hlastpage').val()){
-	            $('#next').hide()
-	         }
-	      }
-	   })
-	}
+   function showpage(){
+      $.ajax({
+         type:'get',
+         url:'/showpage',
+         data:{id:$('#pet_id').val(),page:$('#hpage').val()},
+         dataType:'text',
+         success:function(data){
+            $('#showpage').empty()
+            //console.log(data)
+            let b=data.slice(1,-1)
+            b=b.replace(/(\s*)/g, "")
+            //console.log(b)
+            let a=b.split(',')
+            //console.log(a)
+            
+            let str='<tr><td>&nbsp;&nbsp;&nbsp;<button id=first>맨처음</button><button id=prev>이전</button>'
+            for(let i=0;i<a.length;i++){
+               str+='<a href="#" id=pagenum value='+a[i]+'>'+a[i]+'&nbsp;</a>'
+            }
+            str+='<button id=next>다음</button><button id=last>마지막</button></td></tr>'
+            $('#showpage').append(str)
+            if($('#hpage').val() ==1){
+               $('#prev').hide()
+            }
+            if($('#hpage').val() ==$('#hlastpage').val()){
+               $('#next').hide()
+            }
+         }
+      })
+   }
 
 function chekJjim(){
-	$.ajax({
-		type:'post',
-		url:'cheklike',
-		data:{id:$('#pet_id').val(),userid:$('#userid').val()},
-		dataType:'text',
-		success:function(data){
-			if(data>0){
-				$(".btn-like").toggleClass("done");
-				$('#jjim_id').val(data)
-				console.log($('#jjim_id').val())
-				return 
-			}
-		}
-		
-	})	
+   $.ajax({
+      type:'post',
+      url:'cheklike',
+      data:{id:$('#pet_id').val(),userid:$('#userid').val()},
+      dataType:'text',
+      success:function(data){
+         if(data>0){
+            $(".btn-like").toggleClass("done");
+            $('#jjim_id').val(data)
+            console.log($('#jjim_id').val())
+            return 
+         }
+      }
+      
+   })   
 }
 
 
 
 /* -------------------카카오맵 api----------------- */
   function map(){
-		var container = document.getElementById('map');
-	    var options = {
-	       center: new kakao.maps.LatLng($('#wido').val(),$('#gyeongdo').val()),
-	       level: 3
-	    };
-	    
-	    var map = new kakao.maps.Map(container, options);
-	    
-	  	//지도 컨트롤
-		var mapTypeControl = new kakao.maps.MapTypeControl();
-	    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-	    var zoomControl = new kakao.maps.ZoomControl();
-	    
-	    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-	    var markerPosition  = new kakao.maps.LatLng($('#wido').val(),$('#gyeongdo').val());
-	    console.log(markerPosition);
-	    var marker = new kakao.maps.Marker({
-	        position: markerPosition
-	    });
-	    
-	    
-	    
-	    marker.setMap(map);
-	}
+      var container = document.getElementById('map');
+       var options = {
+          center: new kakao.maps.LatLng($('#wido').val(),$('#gyeongdo').val()),
+          level: 3
+       };
+       
+       var map = new kakao.maps.Map(container, options);
+       
+        //지도 컨트롤
+      var mapTypeControl = new kakao.maps.MapTypeControl();
+       map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+       var zoomControl = new kakao.maps.ZoomControl();
+       
+       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+       var markerPosition  = new kakao.maps.LatLng($('#wido').val(),$('#gyeongdo').val());
+       console.log(markerPosition);
+       var marker = new kakao.maps.Marker({
+           position: markerPosition
+       });
+       
+       
+       
+       marker.setMap(map);
+   }
   
 /* ----------------------------카테고리 표시 ---------------------- */
 var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
@@ -503,9 +508,9 @@ var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}),
     currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
  
 function map2(){
-	var mapContainer2 = document.getElementById('map2'), // 지도를 표시할 div 
+   var mapContainer2 = document.getElementById('map2'), // 지도를 표시할 div 
     mapOption2 = {
-		center: new kakao.maps.LatLng($('#wido').val(),$('#gyeongdo').val()),
+      center: new kakao.maps.LatLng($('#wido').val(),$('#gyeongdo').val()),
         level: 5 // 지도의 확대 레벨
     }; 
     console.log(mapContainer2);
