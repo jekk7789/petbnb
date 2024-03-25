@@ -53,7 +53,7 @@
         ]]>
     </select>
     
-    <select id="getuserid" resultType="_int">
+    <select id="getuserid" resultType="java.lang.Integer">
       select id from login where email=#{param1} 
    </select>
    

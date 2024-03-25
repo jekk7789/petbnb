@@ -71,9 +71,11 @@ li a:hover {
                   <li>
                       <a href="/Qna" style="color: #B29079;">Q&A</a>
                   </li>
-                  <li>
-                      <a href="/mypage" style="color: #B29079;">mypage</a>
-                  </li>
+                  <c:if test="${not empty email}">
+					<li>
+						<a href="/mypage" style="color: #B29079;">mypage</a>
+					</li>
+				  </c:if>
           
               </ul>
           </div>

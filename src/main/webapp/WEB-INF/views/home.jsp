@@ -63,9 +63,13 @@
                             <li >
                                 <a href="/calendar" style="color: #B29079;">Calendar</a>
                             </li>
+							
+							<c:if test="${not empty email}">
                             <li>
                                 <a href="/mypage" style="color: #B29079;">mypage</a>
                             </li>
+                            </c:if>
+                            
                             <li style="margin-bottom: 10px;"> 
                                 <form method="get" action="search">
                                     <div class="search">
@@ -296,5 +300,41 @@ function deleteCookie() {
 	naver_id_login.get_naver_userprofile("naverSignInCallback()");		 
 	
 </script>
-
+<script>
+Notification.requestPermission();
+var permission = Notification.requestPermission();
+console.log(permission)
+//알림 권한 요청
+    function getNotificationPermission() {
+        // 브라우저 지원 여부 체크
+        if (!("Notification" in window)) {
+            alert("데스크톱 알림을 지원하지 않는 브라우저입니다.");
+        }
+        // 데스크탑 알림 권한 요청
+        Notification.requestPermission(function (result) {
+            // 권한 거절
+            if(result == 'denied') {
+                Notification.requestPermission();
+                alert('알림을 차단하셨습니다.\n브라우저의 사이트 설정에서 변경하실 수 있습니다.');
+                return false;
+            }
+            else if (result == 'granted'){
+                alert('알림을 허용하셨습니다.');
+            }
+        });
+    }
+new Notification("환영합니다.", {body:'저희 홈페이지에 와주셔서 감사합니다.'});
+// 알림 띄우기
+function notify(msg) {
+	var options = {
+		body: msg
+	}        
+	// 데스크탑 알림 요청    
+	var notification = new Notification("DororongJu", options);        
+	// 3초뒤 알람 닫기    
+	setTimeout(function(){        
+		notification.close();    
+		}, 3000);
+	}
+</script>
 </html>

@@ -62,12 +62,12 @@
 <input type=hidden id=hlastpage value=${lastpage }>
 <input type=hidden id=loginid >
 <div class="floating-button">
-        	<span class="move-myWebSite">
-        		<a class="myWebSite-btn" href="/chattingRoom"></a>
-        	</span>
+           <span class="move-myWebSite">
+              <a class="myWebSite-btn" href="/chattingRoom"></a>
+           </span>
         </div>
     <header>   <h1 id="shop-name"></h1>   </header>
-	
+   
     <div class="container">
     
         <div class="product-map">
@@ -113,7 +113,7 @@
                  <p id='pet_size'></p>
                 </td>
               <td>
-                 <i class="fa-solid fa-door-open"></i>
+               <i class="fa-solid fa-door-open"></i>
                      <p id='area'></p>
               </td>
               <td>

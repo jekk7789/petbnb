@@ -147,21 +147,26 @@ $(document)
 //Qna삭제
 .on('click','#btnbDelete',function(){
    let id=$(this).parent().find('input#uniq').val();
-      
-   $.ajax({
-      type:'post', url:'/QnaDelete',
-      data:{uniq:id},
-      dataType:'text',
-      success:function(data){
-         if(data==1){
-            alert('성공하였습니다')
-            showList();
-            showpage();
-         } else{
-            alert('실패하였습니다')
+   if(confirm('삭제하시겠습니까')){
+   
+      $.ajax({
+         type:'post', url:'/QnaDelete',
+         data:{uniq:id},
+         dataType:'text',
+         success:function(data){
+            if(data==1){
+               alert("삭제완료")
+               showList();
+              showpage();   
+           } 
          }
-      }
-   })   
+
+        }) 
+   }    else {
+              alert('실패하였습니다')
+              location.reload();
+              return;
+           }  
 })
 //답변 작성
 .on('click','#btnComment',function(){
