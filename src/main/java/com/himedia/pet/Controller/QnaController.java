@@ -44,7 +44,7 @@ public class QnaController {
             JSONObject jo = new JSONObject();
             jo.put("id",data.get(i).getId());
             jo.put("title", data.get(i).getTitle());
-            jo.put("writer", data.get(i).getWriter());
+            jo.put("email", data.get(i).getEmail());
             jo.put("content", data.get(i).getContent());
             jo.put("time", data.get(i).getCreated_at());
             ja.add(jo);
@@ -74,12 +74,11 @@ public class QnaController {
    @ResponseBody
    public String addQna(HttpServletRequest req) {
       String title=req.getParameter("title");
-      String writer = req.getParameter("writer");
       String content = req.getParameter("content");
       String userId = req.getParameter("userId");
       
       int id = ldao.getuserid(userId);
-      int n = qdao.QnaWrite(title, writer, content, id);
+      int n = qdao.QnaWrite(title, id, content);
 //         n = ddao.rUpdate(content,Integer.parseInt(idDisplay));
       return ""+n;
    }
@@ -127,6 +126,7 @@ public class QnaController {
    @ResponseBody
    public String QnaDelete(HttpServletRequest req) {
        int uniq = Integer.parseInt(req.getParameter("uniq"));
+          int a = qdao.qnacommentdelete(uniq);
         int n = qdao.QDelete(uniq);
        
        return ""+n;
@@ -142,7 +142,7 @@ public class QnaController {
          jo.put("id",answer.get(i).getId());
          jo.put("content", answer.get(i).getContent());
          jo.put("question_id",answer.get(i).getQuestion_id());
-         jo.put("awriter",answer.get(i).getWriter_answer());
+         jo.put("email",answer.get(i).getEmail());
          ja.add(jo);
       }
       return ja.toJSONString();
@@ -155,10 +155,11 @@ public class QnaController {
        String awriter = req.getParameter("login");
        String comment = req.getParameter("comment");
        String comment_id=req.getParameter("comment_id");
+       int id=ldao.getuserid(awriter);
        int n ;
        
        if(comment_id == "" || comment_id.equals("")) {
-         n = qdao.comment(Qnaid, awriter, comment);
+         n = qdao.comment(Qnaid, id, comment);
          return ""+n;
       } else {
          qdao.commentModify(Integer.parseInt(comment_id), comment);
@@ -179,4 +180,3 @@ public class QnaController {
       }
        
    }
-

@@ -136,7 +136,7 @@
     <div id="Container2">
    <!-- 기본정보 s -->
       <div id="information">
-          <h1>기본정보(지도)</h1>
+          <h1>주변 추천명소</h1>
           <div class="map_wrap">
               <div id="map2" style="width:1700px;height:700px;position:relative;overflow:hidden; margin-left: 70px; margin-bottom: 50px;"></div>
               
@@ -409,10 +409,12 @@ function showList(){
             $('#tbl_review').empty();
             for(let i = 0; i < data.length; i++) {
                 let ob = data[i];
-                /* let rating = displayRating(ob.rating); */
-                let str = '<tr><td>' + ob.content + '</td><td>' + ob.writer + '</td><td>' + ob.rating + '</td><td>' + ob.time + '</td><td class="borad_id">' + ob.id + '</td><td>';
+                let logid=ob.email.split("@");
                 
-                if ($('#loginid').val() == ob.writer) {
+                /* let rating = displayRating(ob.rating); */
+                let str = '<tr><td>' + ob.content + '</td><td>' + logid[0] + '</td><td>' + ob.rating + '</td><td>' + ob.time + '</td><td class="borad_id">' + ob.id + '</td><td>';
+                
+                if ($('#loginid').val() == logid[0]) {
                     $('.modipop').show();
                     str += '<a href="#" onclick="modiPop(' + ob.id + ');">수정</a><a href="#" id="delete">삭제</a></td></tr>';
                 }

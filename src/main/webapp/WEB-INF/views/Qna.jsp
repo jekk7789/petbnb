@@ -6,10 +6,10 @@
 <html>
 <style>
 #data_write{
-	display: none;
+   display: none;
 }
 .cid{
-	display: none;
+   display: none;
 }
 </style>
 <head>
@@ -26,7 +26,7 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="70">
  
  <header id="herder">
-  	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+     <%@ include file="/WEB-INF/views/include/header.jsp" %>
 </header>
 
  <h1 class="middle_top_title">QnA</h1>
@@ -179,7 +179,7 @@ $(document)
    } else {
        $.ajax({
         type:'post', url:'/doComment', 
-        data:{uniq:id,login:$('#loginid').val(),comment:comment,comment_id:comment_id}, 
+        data:{uniq:id,login:$('#userid').val(),comment:comment,comment_id:comment_id}, 
         dataType:'text',
         success:function(data){        
            if(data==1){
@@ -225,19 +225,20 @@ $(document)
          $('#review').empty();
            for(let i=0; i< data.length; i++){
               let ob=data[i];
+              let logid=ob.email.split("@");
               let str='<div class="announcement" id="data_list" style="cursor: pointer;">' +
                 '<span>제목:'+ob.title+'</span>' +
-               '<div><span>작성자: '+ob.writer+'</span>' +
+               '<div><span>작성자: '+logid[0]+'</span>' +
                 '<span>작성시각: '+ob.time+'</span>' +
                '</div>' +
                '</div>' +
                '<div class="announcement" id="data_write">' +
                    '<input type="text" id="uniq" value="' + ob['id'] + '" class="cid">' +
                     '<label>제목</label><input type="text" id="title" value="' + ob.title + '">' +
-                    '<label>작성자</label><input type="text" id="writer" value="' + ob.writer + '" readonly>' +
+                    '<label>작성자</label><input type="text" id="writer" value="' + logid[0] + '" readonly>' +
                     '<label>내용</label><textarea id="content">' + ob.content + '</textarea>';
               
-                    if ($('#loginid').val()==ob.writer) {
+                    if ($('#loginid').val()==logid[0]) {
                         str += '<button id="btnbModify" >수정하기</button>&nbsp'+
                         '<button id="btnbDelete" >삭제하기</button>';
                     }
@@ -246,7 +247,7 @@ $(document)
                     '<label class="cid">답변</label>'+'<textarea id="comment2" class="cid" readonly></textarea>'+
                     '<label class="cid">답변자</label>'+'<input type="text" id="awriter"  class="cid" readonly>';
 
-                    if ($('#admin').val() == 1) {  	
+                    if ($('#admin').val() == 1) {     
                         str += '<label>답변달기</label>'+'<textarea id="comment"></textarea>'+
                         '<button id="btnComment" >답변하기</button>&nbsp'+
                         '<button id="btnDelete_coment" >답변삭제하기</button>';
@@ -331,18 +332,20 @@ function commentLoad(click) {
         data: {uniq: uniq}, 
         dataType: 'json',
         success: function(data) {
-        	 $('.cid').hide();
+            $('.cid').hide();
             var found = false; // 응답 데이터에 있는지 여부를 추적
             for (let i = 0; i < data.length; i++) {
+               
                 if (data[i]['question_id'] == uniq) {
                     found = true;  // id가 일치하는 경우 found를 true로 설정
+                    let logid=data[i]['email'].split("@")
                     id.val(data[i]['id']);
                     comment2.val(data[i]['content']); 
                     comment.val(data[i]['content']); 
-	                    if(data[i]['content']!=''){ //조건식.
-	                    	$('.cid').show();
-	                    }
-                    awriter.val(data[i]['awriter']);
+                       if(data[i]['content']!=''){ //조건식.
+                          $('.cid').show();
+                       }
+                    awriter.val(logid[0]);
                     break;
             }
          }

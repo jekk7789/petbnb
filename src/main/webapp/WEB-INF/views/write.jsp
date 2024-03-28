@@ -44,9 +44,11 @@ $(document)
 .ready(function(){
    getIdFromURL();
    displayId();
+   
    if($('#idDisplay').val() != ''){
       roda(); 
    }
+   
    let userid=$('#userid').val()
    let id=userid.split("@")
    $('#writer').val(id[0])

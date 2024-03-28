@@ -45,8 +45,7 @@ public interface dataDAO {
    
 //상세페이지+리뷰페이징
    dataDTO view(int id);
-   int write(int pName, String writer, String content, String rating, int id);
-   
+   int write(int pName,int userId, String content, String rating);
    ArrayList<boardDTO> reviewLoad(int pName,int start);
    int rDelete(int id);
    int rUpdate(String content,String rating,int id);
@@ -55,14 +54,14 @@ public interface dataDAO {
    
 
    
-	//Qna 게시판
-	int QnaWrite(String title,String writer, String content);
-	ArrayList<QnaDTO> QnaLoad(int start); 
-	int QnaTotal();
-	int Qmodify(String title, String content, int id);
-	int QDelete(int uniq);
-	int comment(int qnaid, String awriter, String comment);
-	ArrayList<AnswersDTO> QnAanswer();
-	int commentModify(int parseInt, String comment);
-	int commentDelete(int parseInt);
+   //Qna 게시판
+   int QnaWrite(String title,String writer, String content);
+   ArrayList<QnaDTO> QnaLoad(int start); 
+   int QnaTotal();
+   int Qmodify(String title, String content, int id);
+   int QDelete(int uniq);
+   int comment(int qnaid, String awriter, String comment);
+   ArrayList<AnswersDTO> QnAanswer();
+   int commentModify(int parseInt, String comment);
+   int commentDelete(int parseInt);
 }

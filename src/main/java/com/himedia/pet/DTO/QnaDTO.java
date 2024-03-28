@@ -10,4 +10,5 @@ public class QnaDTO {
 	String writer;
 	String created_at;
 	String view;
+	String email;
 }

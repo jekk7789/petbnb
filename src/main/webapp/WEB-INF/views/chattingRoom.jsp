@@ -14,6 +14,7 @@
 
 .showid{
 opacity:0.3;
+color:yellow;
 }
 
 </style>
@@ -69,8 +70,6 @@ $(document)
 
       $('#showid').fadeToggle();
       },3000)
-      
-      
 })
 
 </script>
@@ -81,13 +80,15 @@ $(document)
    console.log(admin)
     const username = [[userid]];
 
-    const websocket = new WebSocket("ws://192.168.0.37:8081/ws/chat");
+    //아이피 변경하는 부분 
+    const websocket = new WebSocket("ws://localhost:8081/ws/chat");
     websocket.onmessage = onMessage;
     websocket.onopen = onOpen;
     websocket.onclose = onClose;
 
     let isSeeing = true;
     document.addEventListener("visibilitychange", function() {
+       
         console.log(document.visibilityState);
         if(document.visibilityState == "hidden"){
             isSeeing = false;
@@ -97,6 +98,7 @@ $(document)
     });
 
     var newExcitingAlerts = (function () {
+       
         var oldTitle = document.title;
         var msg = "★Message!★";
         var timeoutId;
@@ -120,6 +122,7 @@ $(document)
 
     setInterval(() => console.log(new Date()), 10000); //prevent chrome refresh
 
+    
     $(document).ready(function(){
         $(".floating-chat").click();
 
@@ -142,7 +145,9 @@ $(document)
         if($("#opinion").text() != ""){
             websocket.send(username + ":" + $("#opinion").text());
             $("#opinion").text('');
+          
         }
+     
     }
 
     function onClose(evt) {
@@ -151,11 +156,15 @@ $(document)
     }
 
     function onOpen(evt) {
+       
         var str = username + ": 님이 입장하셨습니다.";
         websocket.send(str);
     }
 
+    //메세지 도착시에 알람뜨는곳
     function onMessage(msg) {
+//        alert('메세지도착')
+//        alert('맞지여기')
         var data = msg.data;
         var sessionId = null;
         var message = null;
@@ -201,6 +210,58 @@ $(document)
         }
 
         document.getElementById("msgArea").scrollTop = document.getElementById("msgArea").scrollHeight;
+        
+        
+        if($('#userid').val()==sessionId){
+           return ; 
+           
+        }else{
+            //알람 띄우기 ajax;
+           Notification.requestPermission();
+              var permission = Notification.requestPermission();
+              console.log(permission)
+              //알림 권한 요청
+                  function getNotificationPermission() {
+                      // 브라우저 지원 여부 체크
+                      if (!("Notification" in window)) {
+                          alert("데스크톱 알림을 지원하지 않는 브라우저입니다.");
+                      }
+                      // 데스크탑 알림 권한 요청
+                      Notification.requestPermission(function (result) {
+                          // 권한 거절
+                          if(result == 'denied') {
+                              Notification.requestPermission();
+                              alert('알림을 차단하셨습니다.\n브라우저의 사이트 설정에서 변경하실 수 있습니다.');
+                              return false;
+                          }
+                          else if (result == 'granted'){
+                              alert('알림을 허용하셨습니다.');
+                          }
+                      });
+                  }
+                  
+              new Notification("메세지도착.",{body:'메세지가 왔서!.'});
+       
+           // 알림 띄우기
+           function notify(msg) {
+              var options = {
+                 body: msg
+              }        
+              // 데스크탑 알림 요청    
+              var notification = new Notification("DororongJu", options);        
+              // 3초뒤 알람 닫기    
+              setTimeout(function(){ 
+                 console.log('1');       
+                 notification.close();    
+                 console.log('1');
+                 }, 3000);
+              console.log('2');
+           }
+            
+           
+        }
+
+        
     }
 </script>
 <script>

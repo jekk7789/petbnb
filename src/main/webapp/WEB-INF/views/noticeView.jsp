@@ -70,7 +70,6 @@ $(document).ready(function(){
     
 })
 .on('click', '.Del', function() {
-	console.log("클릭햇냐?");
         if(confirm('정말로 삭제하겠습니까?')){
             let noticeid = $(this).data('id');
             console.log("id:", noticeid);

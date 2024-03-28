@@ -25,7 +25,7 @@ public interface LoginDAO {
     boolean kemailExists(String email, String kakaoId);
     boolean gemailExists(String email, String googleId);
     
-    Integer getuserid(String email);
+    int getuserid(String email);
     int adLogin(String email);
     ArrayList<LoginDTO> updateMyList(int id);
     

@@ -28,6 +28,7 @@
 
 <body>
 <input type=hidden id=userid value=${email }>
+<input type=hidden id=loginid >
 <div id="container">
 
     <main id="main">
@@ -35,9 +36,9 @@
      
  
 <div class="layout" id='data_div'>
-   	<label>작성하기</label>
-   	<input  id="pet_id" value=${pid }>
-   	<input  id="idDisplay"> <!-- 작성id -->
+      <label>작성하기</label>
+      <input  id="pet_id" value=${pid }>
+      <input  id="idDisplay"> <!-- 작성id -->
     <input type="text" id="writer"  placeholder="작성자" readonly>
     <textarea id="content" placeholder="내용"></textarea>
     
@@ -48,12 +49,12 @@
         <input type="radio" id="rating7" name="rating" value="3.5"><label class="half" for="rating7" title="3.5점"></label>
         <input type="radio" id="rating6" name="rating" value="3"><label for="rating6" title="3점"></label>
         <input type="radio" id="rating5" name="rating" value="2.5"><label class="half" for="rating5" title="2.5점"></label>
-		<input type="radio" id="rating4" name="rating" value="2"><label for="rating4" title="2점"></label>
-		<input type="radio" id="rating3" name="rating" value="1.5"><label class="half" for="rating3" title="1.5점"></label>
-		<input type="radio" id="rating2" name="rating" value="1"><label for="rating2" title="1점"></label>
-		<input type="radio" id="rating1" name="rating" value="0.5"><label class="half" for="rating1" title="0.5점"></label>
-	</fieldset>
-	<br>
+      <input type="radio" id="rating4" name="rating" value="2"><label for="rating4" title="2점"></label>
+      <input type="radio" id="rating3" name="rating" value="1.5"><label class="half" for="rating3" title="1.5점"></label>
+      <input type="radio" id="rating2" name="rating" value="1"><label for="rating2" title="1점"></label>
+      <input type="radio" id="rating1" name="rating" value="0.5"><label class="half" for="rating1" title="0.5점"></label>
+   </fieldset>
+   <br>
     
     <button id="do_write" >작성하기</button>
     <button id="clear" >취소하기</button>
@@ -73,20 +74,21 @@ $(document).ready(function(){
     
     if($('#idDisplay').val() !== ''){
         roda();
-    	
+        
     }
     
 
     let userid = $('#userid').val();
     let id = userid.split("@");
     $('#writer').val(id[0]);
+    idload();
 });
 
 $("#do_write").on('click', function(){
     if($('#writer').val() === "" || $('#content').val() === "" || $('input[name=rating]:checked').val() === ""){
         alert("빈 칸에 값을 입력해주세요.");
     } else {
-    	let writer = $('#writer').val();
+       let writer = $('#writer').val();
         let content = $('#content').val();
         let rating = $('input[name=rating]:checked').val();
         
@@ -97,16 +99,16 @@ $("#do_write").on('click', function(){
             url: '/doWrite',
             data: {
                 pName: $('#pet_id').val(),
-                writer: $('#writer').val(), 
+               /*  writer: $('#writer').val(),  */
                 content: $('#content').val(),
                 rating: $('input[name=rating]:checked').val(),
                 idDisplay: $('#idDisplay').val(),
-                userId: $('#userid').val()
+                userId: $('#loginid').val()
                 
             }, 
             dataType: 'json',
             success: function(data) {
-            	console.log(data)
+               console.log(data)
                 if(data == 1){
                     alert('성공');
                     $('#content').val('');
@@ -145,12 +147,26 @@ function roda(){
                let rating = parseFloat(data.rating);
                let ratingRadioId = "rating" + Math.round(rating * 2); 
                $("#" + ratingRadioId).prop("checked", true);
-           		
+                 
            }
            
         }
    });
 } 
+function idload(){ // 로그인아이디 가져오기
+      $.ajax({
+         type:'post',
+         url:'idload',
+         data:{loginid:$('#userid').val()},
+         dataType:'json',
+         success:function(data){
+            console.log(data.id);
+            $("#loginid").val(data.id);
+         }
+      })
+               
+   }
+
 
 </script>
 </body>

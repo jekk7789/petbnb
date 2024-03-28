@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.himedia.pet.DAO.LoginDAO;
 import com.himedia.pet.DAO.vaccineDAO;
+import com.himedia.pet.DTO.LoginDTO;
 import com.himedia.pet.DTO.vpetDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -116,6 +118,20 @@ public class vaccineController {
         
         return ""+n;
     }
+    @PostMapping("/idload") // 로그인정보 
+    @ResponseBody
+    public String idload(HttpServletRequest req) {
+        String loginid = req.getParameter("loginid");
+        System.out.println(loginid);
+             
+        LoginDTO ldto = vdao.idload(loginid);
+        
+        JSONObject jo =new JSONObject();
+        jo.put("id",ldto.getId());
+        
+        return jo.toJSONString();
+    }
+
 
 
     

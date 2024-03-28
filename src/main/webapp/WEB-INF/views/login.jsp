@@ -25,14 +25,9 @@
       <div class="form-container sign-up">
         <form method="post" action="/dosignup">
 		  <h1>회원가입</h1>
-		  <!-- <div class="social-icons">
-		    <a href="#" class="icon"><i class="xi-google" style="font-size: 30px;"></i></a>
-		    <a href="javascript:kakaoLogin()" class="icon"><i class="xi-kakaotalk" style="font-size: 30px;"></i></a>
-		    <a href="#" class="icon"><i class="xi-naver" style="font-size: 30px;"></i></a>
-		  </div> -->
 		  <br><br>
 		  <input type="email" placeholder="Email" name="email" />
-		  <input type="passwordChk" placeholder="Password" name="password" />
+		  <input type="password" placeholder="Password" name="password" />
 		  <input type="password" placeholder="PasswordCheck" name="PasswordCheck" />
 		  <button onclick="submitForm()">회원가입</button>
 		</form>

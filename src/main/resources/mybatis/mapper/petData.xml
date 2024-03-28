@@ -11,10 +11,17 @@
 
 <!-- 리뷰 -->
 <insert id="write">
-   INSERT into board set pNAme=#{param1},writer=#{param2},content=#{param3},rating=#{param4},created=sysdate(),userId=#{param5}
+   INSERT into board set pNAme=#{param1},userId=#{param2},content=#{param3},rating=#{param4},created=sysdate()
 </insert>
-<select id="reviewLoad" resultType="com.himedia.pet.DTO.boardDTO">
-   SELECT id, writer, content,rating, created from board where pName=#{param1} limit #{param2},10
+<!-- <select id="reviewLoad" resultType="com.himedia.pet.DTO.boardDTO">
+   SELECT id, userId, content,rating, created from board where pName=#{param1} limit #{param2},10
+</select>  -->
+ <select id="reviewLoad" resultType="com.himedia.pet.DTO.boardDTO">
+   SELECT a.id,email,content,rating, created 
+   from board a,login b
+   where a.userId=b.id 
+   and pName=#{param1} 
+   limit #{param2},10
 </select> 
 <delete id="rDelete">
    delete from board where id=#{param1}
@@ -23,7 +30,7 @@
    UPDATE board set content=#{param1},rating=#{param2},created=sysdate() where id=#{param3}
 </update>
 <select id="reLoad" resultType="com.himedia.pet.DTO.boardDTO">
-   SELECT writer, content,rating from board where id=#{param1}
+   SELECT content,rating from board where id=#{param1}
 </select>
 <select resultType="_int" id="reviewTotal">
    select count(*) from board where pName like #{param1}
@@ -31,7 +38,7 @@
 
 <!-- 리뷰목록 불러오기 -->
 <select id="reviewList" resultType="com.himedia.pet.DTO.boardDTO">
-    select c.id,a.content,a.writer,a.rating
+    select c.id,a.content,b.email,a.rating
       from  board a,login b,petdata c
       where a.userId=b.id
       and a.pName=c.id

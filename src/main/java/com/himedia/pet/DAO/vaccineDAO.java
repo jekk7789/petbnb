@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.himedia.pet.DTO.LoginDTO;
 import com.himedia.pet.DTO.vpetDTO;
 
 
@@ -17,5 +18,6 @@ public interface vaccineDAO {
    String dateadd(String petbirth, int num);
    int pmodify(int petId, String petno, String petname, String birth);
    int pdelete(String petId);
+   LoginDTO idload(String Id);
 
 }

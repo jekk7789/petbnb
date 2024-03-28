@@ -9,4 +9,5 @@ public class AnswersDTO {
    String content;
    String  writer_answer;
    String created;
+   String email;
 }

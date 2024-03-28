@@ -52,10 +52,6 @@ public class HomeController {
       return "popupContent";
    }
    
-   @GetMapping("chatAI")
-   public String chatAI() {
-	   return "chatAI";
-   }
    
    @GetMapping("/review")
    public String goReview(HttpServletRequest req,Model model) {
@@ -271,29 +267,7 @@ public class HomeController {
                 
       return jo.toJSONString();
    }
-   @PostMapping("/doWrite") // 리뷰작성
-   @ResponseBody
-   public String doWrite(HttpServletRequest req) {
-      String pName=req.getParameter("pName");
-      String writer = req.getParameter("writer");
-      String content = req.getParameter("content");
-      String idDisplay = req.getParameter("idDisplay");
-      String rating = req.getParameter("rating");
-      String userId = req.getParameter("userId");
-      
-      int id = ldao.getuserid(userId);
-      
-      int n=0;
-      if(idDisplay == null || idDisplay.equals("")) {
-         n = ddao.write(Integer.parseInt(pName),writer,content,rating, id);
-         System.out.println("n"+n);
-      } else {
-         n = ddao.rUpdate(content,rating,Integer.parseInt(idDisplay));
-         System.out.println("n"+n);
-      }
-      System.out.println("n"+n);
-      return ""+n;
-   }
+   
    @PostMapping("/doReview") // 리뷰 로딩
    @ResponseBody
    public String review(HttpServletRequest req) {
@@ -320,19 +294,45 @@ public class HomeController {
            for (int i = 0; i < data.size(); i++) {
                JSONObject jo = new JSONObject();
                jo.put("id", data.get(i).id);
-               jo.put("writer", data.get(i).writer);
+               jo.put("userid", data.get(i).userId);
+               jo.put("email", data.get(i).email);
                jo.put("content", data.get(i).content);
                jo.put("rating", data.get(i).rating);
                jo.put("time", data.get(i).created);
                ja.add(jo);
            }
-			/* System.out.println(ja); */
+         /* System.out.println(ja); */
            return ja.toJSONString();
        } catch (NumberFormatException e) { // 숫자로 변환할 수 없는 경우에 대한 예외 처리.
            e.printStackTrace(); //
            return "Error: Invalid pet_id";
        }
    }
+   
+   @PostMapping("/doWrite") // 리뷰작성
+   @ResponseBody
+   public String doWrite(HttpServletRequest req) {
+      String pName=req.getParameter("pName");
+ 
+      String content = req.getParameter("content");
+      String idDisplay = req.getParameter("idDisplay");
+      String rating = req.getParameter("rating");
+      String userId = req.getParameter("userId");
+      System.out.println("userID"+userId);
+      
+      
+      int n=0;
+      if(idDisplay == null || idDisplay.equals("")) {
+         n = ddao.write(Integer.parseInt(pName),Integer.parseInt(userId),content,rating);
+         System.out.println("n"+n);
+      } else {
+         n = ddao.rUpdate(content,rating,Integer.parseInt(idDisplay));
+         System.out.println("n"+n);
+      }
+      System.out.println("n"+n);
+      return ""+n;
+   }
+   
    @GetMapping("/rDelet") // 리뷰 삭제
    @ResponseBody
    public String rDelet(HttpServletRequest req) {
@@ -349,7 +349,7 @@ public class HomeController {
       int idDisplay = Integer.parseInt(req.getParameter("idDisplay")); 
       boardDTO ddto2 = ddao.reLoad(idDisplay);
       JSONObject jo = new JSONObject();   
-      jo.put("writer", ddto2.writer);
+    
       jo.put("content",ddto2.content);
       jo.put("rating", ddto2.rating);
       
@@ -519,14 +519,15 @@ public class HomeController {
    public String myjjim(HttpServletRequest req) {
       return "myjjim";
    }
- //찜목록 제이슨으로 띄우기 리뷰,qna,찜 모두 가능
+   
+   
+   //찜목록 제이슨으로 띄우기 리뷰,qna,찜 모두 가능
    @GetMapping("/myList")
    @ResponseBody
    public String showJJim(HttpServletRequest req) {
       String userid = req.getParameter("userid");
       System.out.println("userid는"+userid);
       String data = req.getParameter("data");
-      
       System.out.println("data는 "+data);
       String email = req.getParameter("userid");
       String emailId = ddao.getjjim_id(email);
@@ -539,8 +540,8 @@ public class HomeController {
                JSONObject jo = new JSONObject();
                jo.put("id",alReview.get(i).getId());
                jo.put("content",alReview.get(i).getContent());
-              jo.put("writer",alReview.get(i).getWriter());
-              jo.put("rating",alReview.get(i).getRating());
+               jo.put("email",alReview.get(i).getEmail());
+               jo.put("rating",alReview.get(i).getRating());
                ja.add(jo);
             }
             return ja.toJSONString();
@@ -553,7 +554,7 @@ public class HomeController {
                jo.put("id",alQNA.get(i).getId());
                jo.put("content",alQNA.get(i).getContent());
                jo.put("title",alQNA.get(i).getTitle());
-              jo.put("writer",alQNA.get(i).getWriter());
+               jo.put("email",alQNA.get(i).getEmail());
                ja.add(jo);
             }
             return ja.toJSONString();
@@ -564,8 +565,8 @@ public class HomeController {
             JSONObject jo = new JSONObject();
             jo.put("id",alJJim.get(i).getId());
             jo.put("name",alJJim.get(i).getName());
-           jo.put("number",alJJim.get(i).getNumber());
-           jo.put("loadAddress",alJJim.get(i).getLoadAddress());
+            jo.put("number",alJJim.get(i).getNumber());
+            jo.put("loadAddress",alJJim.get(i).getLoadAddress());
             ja.add(jo);
          }
             return ja.toJSONString();

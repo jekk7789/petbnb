@@ -17,35 +17,36 @@
             <strong>공지사항-수정</strong>
             <p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
         </div>
-        <input type=hidden name="id" value="${alList.id}">
+        <input type="hidden" name="id" value="${notice.id}">
+
         <div class="board_write_wrap">
             <div class="board_write">
                 <div class="title">
                     <dl>
                         <dt>제목</dt>
-                        <dd><input type="text" name="title" value="${alList.title}"></dd>
+                        <dd><input type="text" name="title" value="${notice.title}"></dd>
                     </dl>
                 </div>
                 <div class="info">
                     <dl>
                         <dt>글쓴이</dt>
                         <%
-    						String email = (String) session.getAttribute("email");
-							String admin = email.split("@")[0];
-						%>
-                        <dd><input type="text" name="writer" value="<%= admin %>" readonly></dd>
+                      String email = (String) session.getAttribute("email");
+                     String admin = email.split("@")[0];
+                  %>
+                        <dd><input type="text" name="writer" value="<%= admin %>" readonly> <input type="hidden" name=userid value="${email }"></dd>
                     </dl>
                     <dl>
                         <dt>파일 추가</dt>
-                        <dd><input type="file" name='file' id="n_image"></dd>
+                        <dd><input type="file" name='file' id="n_image">${notice.image}</dd>
                     </dl>
                 </div>
                 <div class="cont">
-                    <textarea name="detail">${alList.detail}</textarea>
+                    <textarea name="detail">${notice.detail}</textarea>
                 </div>
             </div>
             <div class="bt_wrap">
-            	<input class="on1" type="submit" id="notice" value="수정">
+               <input class="on1" type="submit" id="notice" value="수정">
                 <a href="/notice">취소</a>
             </div>
         </div>

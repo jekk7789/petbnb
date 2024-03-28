@@ -19,11 +19,6 @@
  #tbldog2{
    display:none;
 }
-.petlist{
-     transform: translate(32ch,0mm);
-     text-align: center;
-     color:chocolate;
-} 
 
 </style>
 <body>
@@ -32,6 +27,8 @@
      <%@ include file="/WEB-INF/views/include/header.jsp" %>
 </header>
 <input type=hidden id=userid value=${email }>
+<input type="hidden" id=loginid >
+
 <!-- <input id=pbirth > -->
 <div class="container">
    
@@ -329,6 +326,7 @@ $(document)
    $("#review").hide();
    setDateBox();
    petload();
+   idload();
 })
 
 .on('click','.tablinks:eq(0)',function(){
@@ -353,7 +351,7 @@ $(document)
       $.ajax({
          type:'post',
          url:'petadd',
-         data:{num:$("#dog_no").val(),name:$("#dog_name").val(),birth:birth,loginid:$('#userid').val()},
+         data:{num:$("#dog_no").val(),name:$("#dog_name").val(),birth:birth,loginid:$('#loginid').val()},
          dataType:'text',
          success:function(data){
             if(data==1){
@@ -521,7 +519,7 @@ function petload(){ // 등록한 펫 리스트
    $.ajax({
       type:'post',
       url:'petload',
-      data:{loginid:$('#userid').val()},
+      data:{loginid:$('#loginid').val()},
       dataType:'json',
       success:function(data){
          $('.tbldog').empty();
@@ -536,6 +534,20 @@ function petload(){ // 등록한 펫 리스트
    })
             
 }
+function idload(){ // 로그인아이디 가져오기
+    $.ajax({
+       type:'post',
+       url:'idload',
+       data:{loginid:$('#userid').val()},
+       dataType:'json',
+       success:function(data){
+          console.log(data.id);
+          $("#loginid").val(data.id);
+       }
+    })
+             
+ }
+
 
 
 

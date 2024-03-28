@@ -22,5 +22,9 @@
  <delete id="pdelete">
     delete from petAdd where id=#{param1}
  </delete>
+ <select id="idload" resultType="com.himedia.pet.DTO.LoginDTO">
+    select id from login where email=#{param1}
+ </select>
+ 
 </mapper>
    

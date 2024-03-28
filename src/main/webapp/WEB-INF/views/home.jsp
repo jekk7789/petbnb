@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>도그비앤비</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -46,13 +46,13 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <c:choose>
-		                            <c:when test="${not empty email}">
-		                                <a href="/logout" style="color: #B29079;">logout</a>
-		                            </c:when>
-		                            <c:otherwise>
-		                                <a href="/login" class="btn-11" style="color: #B29079;">login</a>
-		                            </c:otherwise>
-		                        </c:choose>
+                                  <c:when test="${not empty email}">
+                                      <a href="/logout" style="color: #B29079;">logout</a>
+                                  </c:when>
+                                  <c:otherwise>
+                                      <a href="/login" class="btn-11" style="color: #B29079;">login</a>
+                                  </c:otherwise>
+                              </c:choose>
                             </li>
                             <li >
                                 <a href="/notice" style="color: #B29079;">notice</a>
@@ -63,8 +63,8 @@
                             <li >
                                 <a href="/calendar" style="color: #B29079;">Calendar</a>
                             </li>
-							
-							<c:if test="${not empty email}">
+                     
+                     <c:if test="${not empty email}">
                             <li>
                                 <a href="/mypage" style="color: #B29079;">mypage</a>
                             </li>
@@ -83,72 +83,84 @@
                 </div>
                 
                 <div class="navigation" style="margin-top: 100px;">
-                	
+                   
                     <a class="frame-btn" href="store?text=반려동물용품">
-						<span class="frame-btn__outline frame-btn__outline--tall">
-							<span class="frame-btn__line frame-btn__line--tall"></span>
-							<span class="frame-btn__line frame-btn__line--flat"></span>
-						</span>
-						<span class="frame-btn__outline frame-btn__outline--flat">
-							<span class="frame-btn__line frame-btn__line--tall"></span>
-							<span class="frame-btn__line frame-btn__line--flat"></span>
-						</span>
-						<span class="frame-btn__solid"></span>
-						<span class="frame-btn__text">애견용품점</span>
-					</a>  
+                  <span class="frame-btn__outline frame-btn__outline--tall">
+                     <span class="frame-btn__line frame-btn__line--tall"></span>
+                     <span class="frame-btn__line frame-btn__line--flat"></span>
+                  </span>
+                  <span class="frame-btn__outline frame-btn__outline--flat">
+                     <span class="frame-btn__line frame-btn__line--tall"></span>
+                     <span class="frame-btn__line frame-btn__line--flat"></span>
+                  </span>
+                  <span class="frame-btn__solid"></span>
+                  <span class="frame-btn__text">애견용품점</span>
+               </a>  
 
-					<a class="frame-btn" href="store?text=동물병원">
-						<span class="frame-btn__outline frame-btn__outline--tall">
-							<span class="frame-btn__line frame-btn__line--tall"></span>
-							<span class="frame-btn__line frame-btn__line--flat"></span>
-						</span>
-						<span class="frame-btn__outline frame-btn__outline--flat">
-							<span class="frame-btn__line frame-btn__line--tall"></span>
-							<span class="frame-btn__line frame-btn__line--flat"></span>
-						</span>
-						<span class="frame-btn__solid"></span>
-						<span class="frame-btn__text">동물병원</span>
-					</a>  
+               <a class="frame-btn" href="store?text=동물병원">
+                  <span class="frame-btn__outline frame-btn__outline--tall">
+                     <span class="frame-btn__line frame-btn__line--tall"></span>
+                     <span class="frame-btn__line frame-btn__line--flat"></span>
+                  </span>
+                  <span class="frame-btn__outline frame-btn__outline--flat">
+                     <span class="frame-btn__line frame-btn__line--tall"></span>
+                     <span class="frame-btn__line frame-btn__line--flat"></span>
+                  </span>
+                  <span class="frame-btn__solid"></span>
+                  <span class="frame-btn__text">동물병원</span>
+               </a>  
 
-					<a class="frame-btn" href="store?text=동물약국">
-						<span class="frame-btn__outline frame-btn__outline--tall">
-							<span class="frame-btn__line frame-btn__line--tall"></span>
-							<span class="frame-btn__line frame-btn__line--flat"></span>
-						</span>
-						<span class="frame-btn__outline frame-btn__outline--flat">
-							<span class="frame-btn__line frame-btn__line--tall"></span>
-							<span class="frame-btn__line frame-btn__line--flat"></span>
-						</span>
-						<span class="frame-btn__solid"></span>
-						<span class="frame-btn__text">동물약국</span>
-					</a>  
+               <a class="frame-btn" href="store?text=동물약국">
+                  <span class="frame-btn__outline frame-btn__outline--tall">
+                     <span class="frame-btn__line frame-btn__line--tall"></span>
+                     <span class="frame-btn__line frame-btn__line--flat"></span>
+                  </span>
+                  <span class="frame-btn__outline frame-btn__outline--flat">
+                     <span class="frame-btn__line frame-btn__line--tall"></span>
+                     <span class="frame-btn__line frame-btn__line--flat"></span>
+                  </span>
+                  <span class="frame-btn__solid"></span>
+                  <span class="frame-btn__text">동물약국</span>
+               </a>  
 
-					<a class="frame-btn" href="store?text=식당,카페,문예회관">
-						<span class="frame-btn__outline frame-btn__outline--tall">
-							<span class="frame-btn__line frame-btn__line--tall"></span>
-							<span class="frame-btn__line frame-btn__line--flat"></span>
-						</span>
-						<span class="frame-btn__outline frame-btn__outline--flat">
-							<span class="frame-btn__line frame-btn__line--tall"></span>
-							<span class="frame-btn__line frame-btn__line--flat"></span>
-						</span>
-						<span class="frame-btn__solid"></span>
-						<span class="frame-btn__text">문화시설</span>
-					</a>  
-					
-					<a class="frame-btn" href="store?text=펜션">
-						<span class="frame-btn__outline frame-btn__outline--tall">
-							<span class="frame-btn__line frame-btn__line--tall"></span>
-							<span class="frame-btn__line frame-btn__line--flat"></span>
-						</span>
-						<span class="frame-btn__outline frame-btn__outline--flat">
-							<span class="frame-btn__line frame-btn__line--tall"></span>
-							<span class="frame-btn__line frame-btn__line--flat"></span>
-						</span>
-						<span class="frame-btn__solid"></span>
-						<span class="frame-btn__text">숙박시설</span>
-					</a>  
-				</div>
+               <a class="frame-btn" href="store?text=식당,카페,문예회관">
+                  <span class="frame-btn__outline frame-btn__outline--tall">
+                     <span class="frame-btn__line frame-btn__line--tall"></span>
+                     <span class="frame-btn__line frame-btn__line--flat"></span>
+                  </span>
+                  <span class="frame-btn__outline frame-btn__outline--flat">
+                     <span class="frame-btn__line frame-btn__line--tall"></span>
+                     <span class="frame-btn__line frame-btn__line--flat"></span>
+                  </span>
+                  <span class="frame-btn__solid"></span>
+                  <span class="frame-btn__text">문화시설</span>
+               </a>  
+               
+               <a class="frame-btn" href="store?text=펜션">
+                  <span class="frame-btn__outline frame-btn__outline--tall">
+                     <span class="frame-btn__line frame-btn__line--tall"></span>
+                     <span class="frame-btn__line frame-btn__line--flat"></span>
+                  </span>
+                  <span class="frame-btn__outline frame-btn__outline--flat">
+                     <span class="frame-btn__line frame-btn__line--tall"></span>
+                     <span class="frame-btn__line frame-btn__line--flat"></span>
+                  </span>
+                  <span class="frame-btn__solid"></span>
+                  <span class="frame-btn__text">숙박시설</span>
+               </a>  
+               <a class="frame-btn" href="/itemList">
+                  <span class="frame-btn__outline frame-btn__outline--tall">
+                     <span class="frame-btn__line frame-btn__line--tall"></span>
+                     <span class="frame-btn__line frame-btn__line--flat"></span>
+                  </span>
+                  <span class="frame-btn__outline frame-btn__outline--flat">
+                     <span class="frame-btn__line frame-btn__line--tall"></span>
+                     <span class="frame-btn__line frame-btn__line--flat"></span>
+                  </span>
+                  <span class="frame-btn__solid"></span>
+                  <span class="frame-btn__text">미니숍</span>
+               </a> 
+            </div>
             </nav>
             
             <div class="display-table">
@@ -156,11 +168,11 @@
                     <div class="container">
                         <h3>
                         <c:choose>
-						    <c:when test="${not empty email}">
-						           
-						        <p>${email}님 환영합니다.</p>
-						    </c:when>
-						</c:choose>
+                      <c:when test="${not empty email}">
+                             
+                          <p>${email}님 환영합니다.</p>
+                      </c:when>
+                  </c:choose>
                         <h1 class="cd-headline letters rotate-2 is-full-width">
                             <span class="cd-words-wrapper">
                                 <b class="is-visible">반려동물</b>
@@ -180,9 +192,9 @@
             </div>
         </div>
         <div class="floating-button">
-        	<span class="move-myWebSite">
-        		<a class="myWebSite-btn" href="/chattingRoom"></a>
-        	</span>
+           <span class="move-myWebSite">
+              <a class="myWebSite-btn" href="/chattingRoom"></a>
+           </span>
         </div>
     </section>
     
@@ -263,78 +275,91 @@ function deleteCookie() {
 
 <!-- 네이버아디디로로그인 초기화 Script -->
 <script type="text/javascript">
-	var naver_id_login = new naver_id_login("HFRL2GVTFZRzg3tprpNh", "http://localhost:8081/home");
-	var state = naver_id_login.getUniqState();
-	naver_id_login.setDomain(".service.com");
-	naver_id_login.setState(state);
+   var naver_id_login = new naver_id_login("HFRL2GVTFZRzg3tprpNh", "http://localhost:8081/home");
+   var state = naver_id_login.getUniqState();
+   naver_id_login.setDomain(".service.com");
+   naver_id_login.setState(state);
 
 </script>
 <script type="text/javascript">
-	// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-	function naverSignInCallback() {
-	    naver_id_login.getProfileData('프로필항목명');
-	    let email = naver_id_login.getProfileData('email');
-	    let nickname = naver_id_login.getProfileData('nickname');
-	    let id = naver_id_login.getProfileData('id'); // 수정된 부분: 변수 이름을 id로 변경
-	    console.log(email);
-	    console.log(nickname);
-	    console.log(id);
-	    // Ajax 요청으로 이메일 정보를 컨트롤러로 전송
-	    $.ajax({
-	        type: "POST",
-	        url: "/naverLogin",
-	        data: { email: email, naverId: id },
-	        success: function(data) {
-	        	var referrer = document.referrer
-	            if(data === '1'){
-	            	window.location.href = referrer;
-	            }
-	        },
-	        error: function(xhr, status, error) {
-	            console.error(xhr.responseText); // 에러 시 콘솔에 출력
-	        }
-	    });
-	}
-	
-	// 네이버 사용자 프로필 조회
-	naver_id_login.get_naver_userprofile("naverSignInCallback()");		 
-	
+   // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+   function naverSignInCallback() {
+       naver_id_login.getProfileData('프로필항목명');
+       let email = naver_id_login.getProfileData('email');
+       let nickname = naver_id_login.getProfileData('nickname');
+       let id = naver_id_login.getProfileData('id'); // 수정된 부분: 변수 이름을 id로 변경
+       console.log(email);
+       console.log(nickname);
+       console.log(id);
+       // Ajax 요청으로 이메일 정보를 컨트롤러로 전송
+       $.ajax({
+           type: "POST",
+           url: "/naverLogin",
+           data: { email: email, naverId: id },
+           success: function(data) {
+              var referrer = document.referrer
+               if(data === '1'){
+                  window.location.href = referrer;
+               }
+           },
+           error: function(xhr, status, error) {
+               console.error(xhr.responseText); // 에러 시 콘솔에 출력
+           }
+       });
+   }
+   
+   // 네이버 사용자 프로필 조회
+   naver_id_login.get_naver_userprofile("naverSignInCallback()");       
+   
 </script>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
-Notification.requestPermission();
-var permission = Notification.requestPermission();
-console.log(permission)
-//알림 권한 요청
-    function getNotificationPermission() {
-        // 브라우저 지원 여부 체크
-        if (!("Notification" in window)) {
-            alert("데스크톱 알림을 지원하지 않는 브라우저입니다.");
-        }
-        // 데스크탑 알림 권한 요청
-        Notification.requestPermission(function (result) {
-            // 권한 거절
-            if(result == 'denied') {
-                Notification.requestPermission();
-                alert('알림을 차단하셨습니다.\n브라우저의 사이트 설정에서 변경하실 수 있습니다.');
-                return false;
-            }
-            else if (result == 'granted'){
-                alert('알림을 허용하셨습니다.');
-            }
-        });
-    }
-new Notification("환영합니다.", {body:'저희 홈페이지에 와주셔서 감사합니다.'});
+$()
+
+.ready(function(){
+   
+
+   notify(msg);
+   console.log(notify)
+   
+})
+   
+   Notification.requestPermission();
+   var permission = Notification.requestPermission();
+   console.log(permission)
+   //알림 권한 요청
+       function getNotificationPermission() {
+           // 브라우저 지원 여부 체크
+           if (!("Notification" in window)) {
+               alert("데스크톱 알림을 지원하지 않는 브라우저입니다.");
+           }
+           // 데스크탑 알림 권한 요청
+           Notification.requestPermission(function (result) {
+               // 권한 거절
+               if(result == 'denied') {
+                   Notification.requestPermission();
+                   alert('알림을 차단하셨습니다.\n브라우저의 사이트 설정에서 변경하실 수 있습니다.');
+                   return false;
+               }
+               else if (result == 'granted'){
+                   alert('알림을 허용하셨습니다.');
+               }
+           });
+       }
+       
+   new Notification("환영합니다.",{body:'저희 홈페이지에 와주셔서 감사합니다.'});
+
 // 알림 띄우기
 function notify(msg) {
-	var options = {
-		body: msg
-	}        
-	// 데스크탑 알림 요청    
-	var notification = new Notification("DororongJu", options);        
-	// 3초뒤 알람 닫기    
-	setTimeout(function(){        
-		notification.close();    
-		}, 3000);
-	}
+   var options = {
+      body: msg
+   }        
+   // 데스크탑 알림 요청    
+   var notification = new Notification("DororongJu", options);        
+   // 3초뒤 알람 닫기    
+   setTimeout(function(){        
+      notification.close();    
+      }, 3000);
+}
 </script>
 </html>

@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-   	<link rel="stylesheet" href="css/notice.css" />
+      <link rel="stylesheet" href="css/notice.css" />
     <link rel="stylesheet" href="css/noticecss.css" />
     <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
     <!-- 다크 모드 스타일 -->
@@ -99,11 +99,12 @@
 </head>
 <body>
  <header id="herder">
-  	<%@ include file="include/header.jsp" %>
+     <%@ include file="include/header.jsp" %>
 </header>
 
 <input type="hidden" id="hpage" value="${page}">
 <input type="hidden" id="hlastpage" value="${lastpage}">
+<input type="hidden" id=userid value="${email }">
 <!-- 다크 모드 토글 버튼 -->
 <button class="toggle-btn" onclick="toggleDarkMode()">다크 모드 <span id="darkModeStatus">${darkMode ? '끄기' : '켜기'}</span></button>
 
@@ -113,24 +114,15 @@
         <p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
     </div>
     <div class="board_list_wrap">
-        <div class="board_list">
+        <div class="board_list" id=noticelist>
             <div class="top">
                 <div class="num">번호</div>
                 <div class="title">제목</div>
                 <div class="writer">글쓴이</div>
                 <div class="date">작성일</div>
                 <div class="count">조회</div>
-            </div>
-            <c:forEach var="notice" items="${alnotice}">
-                <div>
-                    <div class="num">${notice.id}</div>
-                    <div class="title"><a href="/noticeView?id=${notice.id}" target="_self">${notice.title}</a></div>
-                    <div class="writer">${notice.writer}</div>
-                    <div class="date">${notice.created_at}</div>
-                    <div class="count">${notice.views}</div>
-                    
-                </div>
-            </c:forEach>
+            </div >
+            
         </div>
         <div class="board_page">
             <a href="#" id="first" class="bt first"><<</a>
@@ -144,10 +136,10 @@
         <div class="bt_wrap">
             <a href="home" class="on">홈으로</a>
             <% 
-			    if(session.getAttribute("admin") != null) { 
-			%>
-			    <a href="/noticeWrite">공지사항 등록</a>
-			<% } %>
+             if(session.getAttribute("admin") != null) { 
+         %>
+             <a href="/noticeWrite">공지사항 등록</a>
+         <% } %>
         </div>
     </div>
 </div>
@@ -157,6 +149,23 @@
 <script>
 $(document)
 .ready(function(){
+   // 공지사항 리스트 가져오기
+   $.ajax({
+      type:'get',
+      url:'/noticelist',
+      data:{email:$('#userid').val()},
+      dataType:'json',
+      success:function(data){
+         for(let i=0;i<data.length;i++){
+            let ob=data[i]
+            let logid=ob.email.split("@")
+            let str='<div><div class="num">'+ob.id+'</div><div class="title"><a href="/noticeView?id='+ob.id+'" target="_self">'+ob.title+'</a></div><div class="writer">'+logid[0]+'</div><div class="date">'+ob.created_at+'</div><div class="count">'+ob.views+'</div></div>'
+            console.log(str)
+            $('#noticelist').append(str)
+         }
+      }
+      
+   })
     // 이전 페이지 버튼 숨기기 처리
     if($('#hpage').val() == 1){
         $('#prev').hide();
@@ -166,6 +175,8 @@ $(document)
         $('#next').hide();
     }
 })
+
+
 .on('click', '#prev', function(){
     // 이전 페이지로 이동
     let num = $('#hpage').val();
