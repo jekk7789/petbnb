@@ -734,11 +734,10 @@ h1, h2, h3, h4,
 
 @media (min-width: 992px) {
   .navigation {
-  	
     position: absolute;
-    width: 50%;
+    width: 60%;
     top: 60%;
-    left: 25%;
+    left: 19%;
     height: 100px;
   }
 

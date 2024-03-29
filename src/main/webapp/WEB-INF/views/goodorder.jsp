@@ -62,10 +62,9 @@ button:hover {
 </style>
 </head>
 <body>
-
-   <input type="hidden" id="id" value=${id }>
-   <input type="hidden" id="userid" value=${email }>
-            
+	
+   <input type="text" id="id" value=${id }>
+   <input type="text" id="userid" value=${email }>
 
    <div >
      <img class="itemImage"style="width: 280px;"  ><br>
@@ -75,7 +74,9 @@ button:hover {
        <tr><td colspan="2" class="itemName"></td></tr>
        <tr>
          <td>판매가</td>
+         
          <td class="itemPrice"></td>
+
        </tr>
        <tr>
          <td>배송비</td>
@@ -119,7 +120,7 @@ $(document)
 	let userid=$("#userid").val();
     let title=$(".itemName").text();
     let price=$(".itemPrice").text();
-    let img=$(".item_img").attr("src");
+    let img=$(".itemImage").attr("src");
     let count=$("#result").val();
     let amount = price * count;
     
@@ -146,8 +147,9 @@ $(document)
         dataType:'text',
         success: function(data) {
             if(data==="1"){
+            	alert("상품이 장바구니에 추가되었습니다.")
             	console.log('상품이 장바구니에 추가되었습니다.');
-            	window.close();
+            	/* window.close(); */
             }
         }
 	})
@@ -160,10 +162,10 @@ function item(){
         data: {id:$('#id').val()}, 
         dataType: 'json',
         success: function(data) {
-        
-           $('.itemName').text(data.title); // 이름
-           $('.itemPrice').text(data.price); //개별 아이디
-           $('#sum').val(data.price);
+        	$('.itemImage').attr('src', data.img);
+           	$('.itemName').text(data.title); // 이름
+           	$('.itemPrice').text(data.price); //개별 아이디
+           	$('#sum').val(data.price);
           
         }
    });

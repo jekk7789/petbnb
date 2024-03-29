@@ -148,6 +148,7 @@
                   <span class="frame-btn__solid"></span>
                   <span class="frame-btn__text">숙박시설</span>
                </a>  
+               
                <a class="frame-btn" href="/itemList">
                   <span class="frame-btn__outline frame-btn__outline--tall">
                      <span class="frame-btn__line frame-btn__line--tall"></span>

@@ -10,9 +10,15 @@ import com.himedia.pet.DTO.BasketDTO;
 @Mapper
 public interface BasketDAO {
 	ArrayList<BasketDTO> basketList();
-	ArrayList<BasketDTO> userbasketList(String userid);
+	ArrayList<BasketDTO> userbasketList(int userid);
 	
 	int basketadd(int orderid, int id, String title, int price,
 			int amount, int count, String img);
+	
+	int basketRemove(int id);
+	
+	int orderDelete(int id);
+	
+	int addpayments(int userid,String orderName, int amount, String paymentMethod);
 	
 }

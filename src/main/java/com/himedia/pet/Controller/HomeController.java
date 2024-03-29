@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.himedia.pet.DAO.HotelDAO;
 import com.himedia.pet.DAO.LoginDAO;
 import com.himedia.pet.DAO.QnaDAO;
 import com.himedia.pet.DAO.cityDAO;
 import com.himedia.pet.DAO.dataDAO;
 import com.himedia.pet.DTO.LoginDTO;
 import com.himedia.pet.DTO.QnaDTO;
+import com.himedia.pet.DTO.RoomsDTO;
 import com.himedia.pet.DTO.boardDTO;
 import com.himedia.pet.DTO.cityDTO;
 import com.himedia.pet.DTO.dataDTO;
@@ -37,6 +39,8 @@ public class HomeController {
    
    @Autowired
    private QnaDAO qdao;
+   @Autowired
+   private HotelDAO hdao;
    
    @GetMapping("/")
    public String goHome() {
@@ -253,6 +257,8 @@ public class HomeController {
       JSONObject jo = new JSONObject();   
       jo.put("name", ddto.name);
        jo.put("localAddress",ddto.loadAddress);
+       jo.put("category",ddto.category);
+       System.out.println("jo: "+jo);
        jo.put("number", ddto.number);
        jo.put("homepage", ddto.homepage);
        jo.put("time", ddto.operatingTime);
@@ -570,7 +576,20 @@ public class HomeController {
             ja.add(jo);
          }
             return ja.toJSONString();
-      } 
+      }  else if(data.equals("4")){
+          ArrayList<RoomsDTO> alBook = hdao.bookList(Integer.parseInt(emailId));
+          System.out.println("alBook은 예약"+alBook);
+          for(int i=0;i<alBook.size();i++) {
+             JSONObject jo = new JSONObject();
+             jo.put("id",alBook.get(i).getBookId());
+             jo.put("name",alBook.get(i).getName());
+             jo.put("rname",alBook.get(i).getRname());
+             jo.put("howmuch",alBook.get(i).getHowmuch());
+             jo.put("mobile",alBook.get(i).getMobile());
+             ja.add(jo);
+          }
+             return ja.toJSONString();
+       } 
          else {
          return "0";
       }

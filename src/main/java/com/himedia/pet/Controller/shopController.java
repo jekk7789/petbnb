@@ -43,7 +43,7 @@ public class shopController {
           
 	   String id = req.getParameter("id");
        model.addAttribute("id",id);
-       System.out.println(model);
+       System.out.println("model"+model);
       return "/goodorder";
       
    }
@@ -56,6 +56,7 @@ public class shopController {
          itemDTO idto = idao.itemLoad(id);
          JSONObject jo = new JSONObject();
          jo.put("title", idto.getTitle());
+         jo.put("img", idto.getImg());
          jo.put("price",idto.getPrice());
        
          System.out.println("내용: "+ jo);

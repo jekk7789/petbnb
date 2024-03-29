@@ -56,7 +56,7 @@ div,table{
 </div>
 <div >
    <table >
-      <tr><th class="myjjim" id="myreview" style="cursor: pointer"><input type=hidden id=hreview value="1"><input type=hidden name=flag value=false>리뷰</th><th class="myjjim" id="myqna" style="cursor: pointer"><input type=hidden id=hqna value=2><input type=hidden name=flag value=false>QNA</th><th class="myjjim" id="myjjim" style="cursor: pointer"><input type=hidden id=hjjim value=3><input type=hidden name=flag value=false>찜목록</th></tr>
+      <tr><th class="myjjim" id="myreview" style="cursor: pointer"><input type=hidden id=hreview value="1"><input type=hidden name=flag value=false>리뷰</th><th class="myjjim" id="myqna" style="cursor: pointer"><input type=hidden id=hqna value=2><input type=hidden name=flag value=false>QNA</th><th class="myjjim" id="myjjim" style="cursor: pointer"><input type=hidden id=hjjim value=3><input type=hidden name=flag value=false>찜목록</th><th class="myjjim" id="mybook" style="cursor: pointer"><input type=hidden id="hbook" value="4">예약목록</th></tr>
    </table>
    <div>
          <table class="my_List" id=tblreview></table>
@@ -66,6 +66,9 @@ div,table{
    </div>
    <div>
          <table  class="my_List"  id=tbljjim></table>
+   </div>
+     <div>
+         <table  class="my_List"  id=tblbook></table>
    </div>
 </div>
    
@@ -87,32 +90,48 @@ $(document)
    showreview();
    showqna();
    showjjim();
+   showbook();
    $('#tblreview').hide();
    $('#tblqna').hide();
    $('#tbljjim').hide();
-   
+   $('#tblbook').hide();
 })
 
 .on('click', '.myjjim', function() {
-
+   console.log($('#tblbook').val())
    let ndx = $(this).index();
+   console.log(ndx)
    if(ndx==0){
       if($('#tblreview').is(':visible')) $('#tblreview').hide();
       else $('#tblreview').show();
         $('#tblqna').hide();
         $('#tbljjim').hide();
-      
+        $('#tblbook').hide();
    } else if(ndx==1){
-      $('#tblreview').hide();
+        $('#tblreview').hide();
         if($('#tblqna').is(':visible')) $('#tblqna').hide();
         else $('#tblqna').show();
         $('#tbljjim').hide();
-      
+        $('#tblbook').hide();
    }else if(ndx==2){
-      $('#tblreview').hide();
+        $('#tblreview').hide();
         $('#tblqna').hide();
+        $('#tblbook').hide();
         if($('#tbljjim').is(':visible')) $('#tbljjim').hide();
         else $('#tbljjim').show();
+   }else if(ndx==3){
+      $('#tblreview').hide();
+       $('#tblqna').hide();
+       $('#tbljjim').hide();
+       if($('#tblbook').is(':visible')){
+          $('#tblbook').hide();
+       }else {
+          $('#tblbook').show();
+       }
+   }
+   else {
+    return  
+      
    }
 })   
 
@@ -185,7 +204,31 @@ function showqna(){
       }
    })
 }
+function showbook(){
 
+//  $('#loginid').val(logid[0]);
+ $('#tblbook').empty();
+ console.log("!");
+ $.ajax({
+    type:"get",
+    url:"/myList",
+    data:{userid:$('#userid').val(),data:$('#hbook').val()},
+    dataType:"json",
+    success:function(data){
+       let str="";
+       str+="<tr class='brown'><td>이름</td><td>숙소명</td><td>숙박비</td><td>번호</td></tr>"
+       for(let i=0;i<data.length;i++){
+          let ob=data[i]
+          console.log(ob)
+//            let userid=ob['email'];
+//           console.log('userid는'+userid);
+//            let logid=userid.split("@");
+          str+="<tr><td><a href='/book?id="+ob['id']+"'>"+ob['name']+"</a></td><td>"+ob['rname']+"</td><td>"+ob['howmuch']+"</td><td>"+ob['mobile']+"</td></tr>"
+       }
+       $('#tblbook').append(str)
+    }
+ })
+}
 
 </script>
 </html>

@@ -16,7 +16,8 @@
 
 </head>
 <body>
-	<input type=text id=userid value=${email }>
+	<input type="text" id="userid" value="${email}">
+
     <div class="cart-container">
     <div id="wrap">
         <div class="cart-title">장바구니 
@@ -25,10 +26,11 @@
         <table id="tbbasket">
             <tr>
             	<th>전체선택<input type="checkbox" id="allCk"></th>
-                <th>사진</th>
+                <!-- <th>사진</th> -->
                 <th>상품명</th>
                 <th>수량</th>
                 <th>상품금액</th>
+                <th>아이디</th>
                 <th>삭제</th>
             </tr>
         </table>
@@ -54,6 +56,8 @@
 <script>
 	
 	$(document).ready(function(){
+		let userid = $("#userid").val();
+		console.log(userid)
 		basketList();
 	    totalPrice();
 		
@@ -95,7 +99,7 @@
 	    return checkboxString;
 	}
 	
-    //세션 정의
+   //세션 정의
     $(document).on('click', '#session', function(){
        let session = "";
        $('input[name="productchk"]:checked').each(function() {
@@ -118,18 +122,18 @@
   })
     
     
-    .on('click', '.cartRemove', function(){
-	    let orderid = $(this).data('orderid');
+    .on('click', '.basketRemove', function(){
+	    let id = $(this).data('id');
 	    $.ajax({
 	        type: 'post',
-	        url: '/CartRemove',
-	        data: {orderid: orderid},
+	        url: '/basketRemove',
+	        data: {id: id},
 	        dataType: 'text',
 	        success: function(data){
-	        	
+	        	console.log(data)
 	            if(data == "1"){
 	                alert("삭제하였습니다.");
-	                cartList();
+	                basketList();
 	            } else{
 	                alert("삭제 실패하였습니다.");
 	            }
@@ -153,23 +157,22 @@
 		$.ajax({
 			type:'post',
 			url:'/basketrev',
-			data:{},
+			data:{userid:$("#userid").val()},
 			dataType:'json',
 			success: function(data){
 				$('#tbbasket tr:gt(0)').empty();
 				console.log(data);
 				for(let i = 0; i < data.length; i++){
 					let ob = data[i];
-					let btn = '<button type="button" class="basketRemove" data-orderid="'+ ob['orderid'] +'">삭제</button>';
-					let checkbox = '<input type="checkbox" name="productchk" value="' + ob['orderid'] + '">';
-					let imgTag = '<img src="'+ob['image']+'" class="product-image">';
-					let str = '<tr data-orderid="${ob.orderid}" data-userid="${ob.userid}"><td style="display: none;">'+ ob['orderid']+
+					let btn = '<button type="button" class="basketRemove" data-id="'+ ob['orderid'] +'">삭제</button>';
+					let checkbox = '<input type="checkbox" name="productchk" value="' + ob['id'] + '">';
+					let str = '<tr data-id="${ob.orderid}" data-userid="${ob.userid}"><td style="display: none;">'+ ob['orderid']+
 								'</td><td style="display: none;">'+ ob['userid']+
 								'</td><td>'+checkbox+
-								'</td><td>' + imgTag + 
-								'</td><td>' + ob['OrderName'] +
+								'</td><td>' + ob['orderName'] +
 								'</td><td>' + ob['count'] + 
 								'</td><td>' + ob['amount'] +
+								'</td><td>' + ob['id'] +
 								'</td><td>' +btn+ '</td></tr>';
 					$('#tbbasket').append(str);
 				}
@@ -183,7 +186,7 @@
 	    let total = 0;
 	    $('input[type="checkbox"][name="productchk"]:checked').each(function() {
 	        let row = $(this).closest('tr');
-	        let amount = parseInt(row.find('td:nth-child(7)').text());
+	        let amount = parseInt(row.find('td:nth-child(6)').text());
 	        total += amount;
 	    });
 	    $('#selectedPrice').text(total);
@@ -196,7 +199,7 @@
 	    let productNames = [];
 	    $('input[type="checkbox"][name="productchk"]:checked').each(function() {
 	        let row = $(this).closest('tr');
-	        let name = row.find('td:nth-child(5)').text();
+	        let name = row.find('td:nth-child(4)').text();
 	        productNames.push(name);
 	    });
 	    
@@ -209,7 +212,7 @@
 	    let totalQuantity = 0;
 	    $('input[type="checkbox"][name="productchk"]:checked').each(function() {
 	        let row = $(this).closest('tr');
-	        let quantity = parseInt(row.find('td:nth-child(6)').text());
+	        let quantity = parseInt(row.find('td:nth-child(5)').text());
 	        totalQuantity += quantity;
 	    });
 	    console.log("Total Quantity: ", totalQuantity);

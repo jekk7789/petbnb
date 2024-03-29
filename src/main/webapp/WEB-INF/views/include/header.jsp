@@ -75,8 +75,10 @@ li a:hover {
 					<li>
 						<a href="/mypage" style="color: #B29079;">mypage</a>
 					</li>
+					<li>
+						<a href="/basket" style="color: #B29079;">장바구니</a>
+					</li>
 				  </c:if>
-          
               </ul>
           </div>
      </div>

@@ -61,6 +61,7 @@
 <input type=hidden id=hpage value=${page } >
 <input type=hidden id=hlastpage value=${lastpage }>
 <input type=hidden id=loginid >
+<input type=hidden id=category >
 <div class="floating-button">
            <span class="move-myWebSite">
               <a class="myWebSite-btn" href="/chattingRoom"></a>
@@ -74,7 +75,7 @@
             <p><div id="map" style="width:1000px;height:600px;"></div></p> 
         </div>
         
-        <div class="product-options">
+        <div class="product-options" id=btnBook>
             <table>
                 <tr>
                     <th colspan="3" ><button class="btn-like" id=like>❤️</button>
@@ -122,6 +123,18 @@
               </td>
             </tr>
             </table>
+            
+            <!--             예약하러가기 만들기 -->
+            
+         
+               <table class="booking" style=display:none;>
+                  <tr class="booking01">
+                     <td class="left" ><button id="btnBook">예약하러가기</button></td>
+                     <td class="right" ><button id="btnInfo">더보기</button></td>
+                  </tr>
+               </table>
+           
+          
         </div>
     </div>
    <hr>
@@ -206,6 +219,11 @@ $(document)
     let logid=userid.split("@");
       $('#loginid').val(logid[0]);
 
+      
+    //예약버튼 만드리
+    
+      
+      
    var wido,gyeongdo; 
    $.ajax({
       type: 'post', 
@@ -220,6 +238,7 @@ $(document)
               $('#homepage').text(data.homepage);
            }
            $('#shop-name').text(data.name);
+           $('#category').val(data.category);
            $('#localAddress').text(data.localAddress);
            $('#number').text(data.number);
            $('#operating_time').text(data.time);
@@ -237,9 +256,14 @@ $(document)
       $('#gyeongdo').val(gyeongdo);
       map();
       map2();
-      
-    })  
-       
+      console.log($('#category').val())
+       if($('#category').val()=='펜션'){
+       console.log($('.booking').val())
+       $('.booking').show();
+       }
+    })
+    
+    
 })
 
 .on('click','#like',function(){
@@ -349,6 +373,22 @@ $('#data_list').on('click', '#tbl_review tr', function() {
     $('#writer').val(name); 
 });
 
+//예약하러가기 클릭시 띄우기
+$("#btnBook").on("click", function() {
+   
+   let userid = $('#userid').val();
+    console.log("userid"+userid)
+    if(userid == "" || userid ==null){
+        alert('로그인페이지로 이동합니다');
+        location.href="/login";
+        return false
+    } else {
+       $('#btnBook').disable = false;
+       openBook()
+       return true;
+    }
+});
+
 /* function doReview(){
    $.ajax({
       type: 'post', 
@@ -371,6 +411,10 @@ $('#data_list').on('click', '#tbl_review tr', function() {
 function openPop(){
   var popup = window.open('http://localhost:8081/review?pid='+ ${id }, '리뷰', 'width=700px,height=800px,scrollbars=yes');
  
+} 
+function openBook(){
+     var popup = window.open('http://localhost:8081/book?pid='+${id},'예약',' width=1100px,height=1000px,scrollbars=yes');
+    
 } 
 function modiPop(id) {
     var popup = window.open('http://localhost:8081/review?id=' + id, '리뷰', 'width=700px,height=800px,scrollbars=yes');

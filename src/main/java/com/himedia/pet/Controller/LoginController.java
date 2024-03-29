@@ -26,7 +26,7 @@ public class LoginController {
            if (!ldao.nemailExists(email,googleId)) {
               int member_id=ldao.getuserid(email);
                sess.setAttribute("email", email);
-               sess.setAttribute("naverId", googleId);
+               sess.setAttribute("googleId", googleId);
                ldao.updateGoogle(email, googleId,member_id);
            } else {
               sess.setAttribute("email", email);
@@ -34,7 +34,7 @@ public class LoginController {
         } else {
            if (!ldao.nemailExists(email,googleId)) {
                sess.setAttribute("email", email);
-               sess.setAttribute("naverId", googleId);
+               sess.setAttribute("googleId", googleId);
                ldao.saveNaver(email, googleId);
            } else {
               sess.setAttribute("email", email);
@@ -79,7 +79,7 @@ public class LoginController {
            if (!ldao.nemailExists(email,kakaoId)) {
               int member_id=ldao.getuserid(email);
                sess.setAttribute("email", email);
-               sess.setAttribute("naverId", kakaoId);
+               sess.setAttribute("kakaoId", kakaoId);
                ldao.updateKakao(email, kakaoId,member_id);
            } else {
               sess.setAttribute("email", email);
@@ -87,7 +87,7 @@ public class LoginController {
         } else {
            if (!ldao.nemailExists(email,kakaoId)) {
                sess.setAttribute("email", email);
-               sess.setAttribute("naverId", kakaoId);
+               sess.setAttribute("kakaoId", kakaoId);
                ldao.saveNaver(email, kakaoId);
            } else {
               sess.setAttribute("email", email);
