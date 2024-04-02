@@ -47,4 +47,25 @@
 
 </select>
 
+<select id="bookload" resultType="com.himedia.pet.DTO.RoomsDTO"> 
+   <!-- SELECT id, name, howmany, howmuch, checkin, checkout,mobile from book where id=#{param1} -->
+   select a.name room ,c.id, c.name, c.howmany, c.howmuch, c.checkin, c.checkout, c.mobile,  c.room_id
+   from room a, roomtype b,book c
+   where a.type= b.id
+   and a.id=c.room_id
+   and c.id=#{param1}
+
+
+</select>
+
+     <!-- 결제 성공시에만 db내 테이블 저장 -->
+     <insert id="addpayments3">
+       INSERT INTO payments2 set
+       userid=#{param1},orderName=#{param2},amount=#{param3},payment_method=#{param4},order_time=sysdate()
+    </insert>
+     <!-- 결제 후 장바구니 삭제 -->
+    <delete id="orderDelete3">
+      DELETE FROM book WHERE id = #{param1}
+      </delete> 
+
 </mapper>

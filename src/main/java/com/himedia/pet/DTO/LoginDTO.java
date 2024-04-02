@@ -10,5 +10,7 @@ public class LoginDTO {
 	String naverId;
 	String googleId;
 	String admin;
+	
+	int advertiser;
 }
 

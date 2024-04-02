@@ -30,7 +30,8 @@ public interface LoginDAO {
     ArrayList<LoginDTO> updateMyList(int id);
     
     
-    
+    int addadvertiser(int id);
+    int checkad(String email);
     
     
     

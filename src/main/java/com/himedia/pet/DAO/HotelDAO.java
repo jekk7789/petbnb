@@ -25,4 +25,9 @@ public interface HotelDAO {
 
    ArrayList<RoomsDTO> bookList(int bookId);
    
+   //결제 
+   RoomsDTO bookload(int id);
+   int orderDelete3(int parseInt);
+   int addpayments3(int id,String orderName, int amount, String paymentMethod);
+   
 }

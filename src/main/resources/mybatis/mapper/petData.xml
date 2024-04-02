@@ -75,4 +75,21 @@
       select id from login where email=#{param1}
   </select>
 
+	<!-- 광고 문의-->
+	<insert id="adsave">
+	   insert into adpayments set userid=#{param1},months=#{param2},amount=#{param3},payment_method=#{param4},order_time=sysdate()
+	</insert>
+	<update id="adregistration">
+	   update adpayments set url=#{param1},img=#{param2} where userid=#{param3}
+	</update>
+	<select id="adList" resultType="com.himedia.pet.DTO.adDTO">
+	   select img,url from adpayments
+	</select>
+	
+	<select id="urlList" resultType="com.himedia.pet.DTO.adDTO">
+	   select url from adpayments where img=#{param1}
+	</select>
+
+	
+
 </mapper>

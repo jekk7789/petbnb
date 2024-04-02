@@ -23,7 +23,7 @@ public class LoginController {
     public String googleLogin(@RequestParam("googleId") String googleId, @RequestParam("email") String email, HttpServletRequest req) {
        HttpSession sess = req.getSession();
        if(ldao.findEmail(email)) {
-           if (!ldao.nemailExists(email,googleId)) {
+           if (!ldao.gemailExists(email,googleId)) {
               int member_id=ldao.getuserid(email);
                sess.setAttribute("email", email);
                sess.setAttribute("googleId", googleId);
@@ -32,14 +32,16 @@ public class LoginController {
               sess.setAttribute("email", email);
            }
         } else {
-           if (!ldao.nemailExists(email,googleId)) {
+           if (!ldao.gemailExists(email,googleId)) {
                sess.setAttribute("email", email);
                sess.setAttribute("googleId", googleId);
-               ldao.saveNaver(email, googleId);
+               ldao.saveGoogle(email, googleId);
            } else {
               sess.setAttribute("email", email);
            }
         }
+       int a= ldao.checkad(email);
+       sess.setAttribute("advertiser", a);
        return "1";
     }
     
@@ -65,6 +67,8 @@ public class LoginController {
               sess.setAttribute("email", email);
            }
         }
+        int a= ldao.checkad(email);
+        sess.setAttribute("advertiser", a);
         return "1"; 
         
     }
@@ -76,7 +80,7 @@ public class LoginController {
         HttpSession sess = req.getSession();
         if(ldao.findEmail(email)) {
            System.out.println("잉");
-           if (!ldao.nemailExists(email,kakaoId)) {
+           if (!ldao.kemailExists(email,kakaoId)) {
               int member_id=ldao.getuserid(email);
                sess.setAttribute("email", email);
                sess.setAttribute("kakaoId", kakaoId);
@@ -85,14 +89,16 @@ public class LoginController {
               sess.setAttribute("email", email);
            }
         } else {
-           if (!ldao.nemailExists(email,kakaoId)) {
+           if (!ldao.kemailExists(email,kakaoId)) {
                sess.setAttribute("email", email);
                sess.setAttribute("kakaoId", kakaoId);
-               ldao.saveNaver(email, kakaoId);
+               ldao.saveKakao(email, kakaoId);
            } else {
               sess.setAttribute("email", email);
            }
         }
+        int a= ldao.checkad(email);
+        sess.setAttribute("advertiser", a);
         return "1"; 
     }
 
@@ -120,7 +126,8 @@ public class LoginController {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         int n = ldao.log(email, password); // 사용자 인증을 시도합니다.
-        
+        int a= ldao.checkad(email);
+        session.setAttribute("advertiser", a);
         
         if (n == 1) { 
             session.setAttribute("email", email);

@@ -19,7 +19,9 @@
  #tbldog2{
    display:none;
 }
-
+.vaccines{
+   display:none;
+}
 </style>
 <body>
 
@@ -185,7 +187,7 @@
                 <dd><span>*접종주기: </span>6~14주차에 2주 간격으로 각 1번씩 총 5회. 이후 매년마다 추가 접종</dd>
             </dl>
                <p class="s21_shot_pbx">
-            <table >
+            <table class=vaccines >
                <tr>
                   <td>1차</td><td class=ehppl ></td>
                </tr>
@@ -211,7 +213,7 @@
                <dd><span>*접종주기: </span>6, 8주차에 각 1번씩 총 2회.이후 매년마다 추가 접종</dd>                          
             </dl>
             <p class="s21_shot_pbx"></p>
-               <table >
+               <table class=vaccines>
                <tr>
                   <td>1차</td><td class=covid ></td>
                </tr>
@@ -228,7 +230,7 @@
                <dd><span>*접종주기: </span>10, 12주차에 각 1번씩 총 2회.이후 매년마다 추가 접종</dd>
             </dl>
             <p class="s21_shot_pbx">
-               <table >
+               <table class=vaccines >
                <tr>
                   <td>1차</td><td class=cough ></td>
                </tr>
@@ -246,7 +248,7 @@
                <dd><span>*접종주기: </span>16주차 이후 매년마다 추가 접종.</dd>                     
             </dl>
             <p class="s21_shot_pbx">
-               <table >
+               <table class=vaccines>
                <tr>
                   <td>1차</td><td class=Rabies ></td>
                </tr>
@@ -261,7 +263,7 @@
                <dd><span>*접종주기: </span>14,16주차에 각 1번씩 총 2회. 이후 매년마다 추가 접종</dd>                     
             </dl>
             <p class="s21_shot_pbx">
-               <table >
+               <table class=vaccines>
                <tr>
                   <td>1차</td><td class=influenza ></td>
                </tr>
@@ -388,6 +390,7 @@ $(document)
 })
 
 .on('click','#btnMypet',function(){ //팝업창 열기
+   petload();
    $('#pet_add_popup').show();
 })
 
@@ -473,6 +476,8 @@ $(document)
               $(".influenza:eq(0)").text(data[4]);
               $(".influenza:eq(1)").text(data[5]);
               $(".Rabies").text(data[5]);
+              $(".vaccines").show();
+              
        }
     }) 
  })

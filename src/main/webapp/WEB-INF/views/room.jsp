@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Room</title>
+<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 </head>
 <h1 >호텔방 관리</h1>
 <style>

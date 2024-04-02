@@ -5,11 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>결제 결과</title>
-<link rel="stylesheet" href="/css/success.css">
-<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
+<!-- <link rel="stylesheet" href="/css/success.css"> -->
 </head>
 <body>
-<input type=hidden id=orderid value="<%=session.getAttribute("session")%>">
+<input type=text id=id value="<%=session.getAttribute("session")%>">
 <div class="container">
     <c:if test="${isSuccess == true}">
         <h1 class="success">결제 성공</h1>
@@ -47,10 +46,10 @@
 <script>
 
 $(document).ready(function(){
-	let id = $("#id").val();
-	console.log("주문 아이디:", id);
-   	orderDelete();
-   	order();
+   let id = $("#id").val();
+   console.log("주문 아이디:", id);
+      orderDelete();
+      order();
 })
 
 
@@ -59,7 +58,7 @@ $(document).ready(function(){
 function order(){
     $.ajax({
        type:'get',
-       url:'/alorder',
+       url:'/alorder3',
        data:{orderName:$('#orderName').text(),amount:$('#amount').text(),userid:$('#userid').text(),method:$('#method').text()},
        dataType:'text',
        success:function(data){
@@ -72,11 +71,11 @@ function order(){
     })
  }
  
-function orderDelete(){
+ function orderDelete(){
     $.ajax({
        type:'get',
-       url:'/orderDelete',
-       data:{id:$('#orderid').val()},
+       url:'/orderDelete3',
+       data:{id:$('#id').val()},
        dataType:'text',
        success:function(data){
          if (data=='1'){
@@ -84,7 +83,7 @@ function orderDelete(){
          }
        }
     })
- }
+ }  
  
 </script>
 </html>

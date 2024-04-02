@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/theme.css" />
+<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 <title>미니샵</title>
 </head>
 <style>

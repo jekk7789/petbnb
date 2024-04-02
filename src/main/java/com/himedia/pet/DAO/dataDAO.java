@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.himedia.pet.DTO.AnswersDTO;
 import com.himedia.pet.DTO.QnaDTO;
+import com.himedia.pet.DTO.adDTO;
 import com.himedia.pet.DTO.boardDTO;
 import com.himedia.pet.DTO.dataDTO;
 
@@ -64,4 +65,10 @@ public interface dataDAO {
    ArrayList<AnswersDTO> QnAanswer();
    int commentModify(int parseInt, String comment);
    int commentDelete(int parseInt);
+   
+ //광고
+   int adsave(int id,String months,int amount,String method);
+   int adregistration(String url,String file,int id);
+   ArrayList<adDTO> adList();
+   ArrayList<adDTO> urlList(String img);
 }

@@ -9,14 +9,14 @@
 <title>장바구니</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-
+<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700&amp;display=swap'>
 <link rel="stylesheet" href="/css/basket.css">
 <script src="https://js.tosspayments.com/v1"></script>
 
 </head>
 <body>
-	<input type="text" id="userid" value="${email}">
+	<input type="hidden" id="userid" value="${email}">
 
     <div class="cart-container">
     <div id="wrap">
@@ -123,11 +123,14 @@
     
     
     .on('click', '.basketRemove', function(){
-	    let id = $(this).data('id');
+    	let id = $(this).data('id');
+	    /* let n=$(this).parent().find('td:eq(6)').find('#id').text() */
+	    console.log("id="+id)
+	    
 	    $.ajax({
 	        type: 'post',
 	        url: '/basketRemove',
-	        data: {id: id},
+	        data: {id:id},
 	        dataType: 'text',
 	        success: function(data){
 	        	console.log(data)
@@ -164,7 +167,7 @@
 				console.log(data);
 				for(let i = 0; i < data.length; i++){
 					let ob = data[i];
-					let btn = '<button type="button" class="basketRemove" data-id="'+ ob['orderid'] +'">삭제</button>';
+					let btn = '<button type="button" class="basketRemove" data-id="'+ ob['id'] +'">삭제</button>';
 					let checkbox = '<input type="checkbox" name="productchk" value="' + ob['id'] + '">';
 					let str = '<tr data-id="${ob.orderid}" data-userid="${ob.userid}"><td style="display: none;">'+ ob['orderid']+
 								'</td><td style="display: none;">'+ ob['userid']+
@@ -172,7 +175,7 @@
 								'</td><td>' + ob['orderName'] +
 								'</td><td>' + ob['count'] + 
 								'</td><td>' + ob['amount'] +
-								'</td><td>' + ob['id'] +
+								'</td><td id="id">' + ob['id'] +
 								'</td><td>' +btn+ '</td></tr>';
 					$('#tbbasket').append(str);
 				}

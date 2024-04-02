@@ -15,4 +15,5 @@ public class RoomsDTO {
    String mobile;
    String typename;
    int bookId;
+   String room;
 }

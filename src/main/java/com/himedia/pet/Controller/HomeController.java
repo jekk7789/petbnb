@@ -1,15 +1,22 @@
 package com.himedia.pet.Controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.himedia.pet.DAO.HotelDAO;
 import com.himedia.pet.DAO.LoginDAO;
@@ -19,11 +26,13 @@ import com.himedia.pet.DAO.dataDAO;
 import com.himedia.pet.DTO.LoginDTO;
 import com.himedia.pet.DTO.QnaDTO;
 import com.himedia.pet.DTO.RoomsDTO;
+import com.himedia.pet.DTO.adDTO;
 import com.himedia.pet.DTO.boardDTO;
 import com.himedia.pet.DTO.cityDTO;
 import com.himedia.pet.DTO.dataDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
@@ -49,6 +58,10 @@ public class HomeController {
    @GetMapping("/home")
    public String go22Home() {
       return "home";
+   }
+   @GetMapping("/success2")
+   public String success2() {
+      return "success2";
    }
    
    @GetMapping("/popupContent")
@@ -595,6 +608,111 @@ public class HomeController {
       }
    }
    
+   @GetMapping("/adrequest")
+   public String adRequest() {
+      return "adrequest";
+   }
+   
+   @GetMapping("/adregistration")
+   public String adregistration() {
+      return "adregistration";
+   }
+   
+   @PostMapping("/adsave")
+   public String adsave(@RequestParam(value="file", required=false) MultipartFile file,
+         HttpServletRequest req) throws IOException {
+      String url=req.getParameter("url");
+      String userid=req.getParameter("userid");
+      String savePath = "G:\\디지털java국비\\eclipse\\workspace\\pet\\src\\main\\resources\\static\\image";
+       String uploadFolderPath = Paths.get(savePath).toString();
+       System.out.println("uploadFolderPath:" + uploadFolderPath);
+
+       // 원본 파일 이름 가져오기
+       String n_image = file.getOriginalFilename();
+       // 덮어쓰기를 방지하기 위해 고유 파일 이름 생성
+       String ori_file_name = System.currentTimeMillis() + "_" + n_image;
+       System.out.println(ori_file_name);
+       
+       // 서버에 파일 저장
+       String filePath = Paths.get(uploadFolderPath, ori_file_name).toString();
+       System.out.println("Uploaded File Path: " + filePath);
+       file.transferTo(new File(filePath));
+       System.out.println("Uploaded File Name: " + n_image);
+       
+       int id = ldao.getuserid(userid);
+       
+       int n= ddao.adregistration(url,ori_file_name,id);
+       
+       return "redirect:/";
+   }
+   
+   @PostMapping("/completead")
+   @ResponseBody
+   public String completeAD(HttpSession session,HttpServletRequest req) {
+      String userid=req.getParameter("userid");
+      String month = req.getParameter("month");
+      String money=req.getParameter("amount");
+      String method=req.getParameter("method");
+      month=month+"개월";
+      int id=ldao.getuserid(userid);
+      session.setAttribute("advertiser", "1");
+      int a=ldao.addadvertiser(id);
+      System.out.println("a="+a);
+      int n=ddao.adsave(id, month, Integer.parseInt(money), method);
+      
+      return ""+n; 
+   }
+   @PostMapping("/adupload")
+   public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
+      try {
+           // 업로드 디렉토리에 파일 저장
+         String savePath = "C:\\Users\\1234\\git\\petbnb\\src\\main\\resources\\static\\image";
+         String uploadFolderPath = Paths.get(savePath).toString();
+         System.out.println("uploadFolderPath:" + uploadFolderPath);
+      
+         // 원본 파일 이름 가져오기
+         String n_image = file.getOriginalFilename();
+         // 덮어쓰기를 방지하기 위해 고유 파일 이름 생성
+         String ori_file_name = System.currentTimeMillis() + "_" + n_image;
+         System.out.println(ori_file_name);
+         
+         // 서버에 파일 저장
+         String filePath = Paths.get(uploadFolderPath, ori_file_name).toString();
+         System.out.println("Uploaded File Path: " + filePath);
+         file.transferTo(new File(filePath));
+         System.out.println("Uploaded File Name: " + n_image);
+           return new ResponseEntity<>("파일이 성공적으로 업로드되었습니다.", HttpStatus.OK);
+       } catch (IOException e) {
+           return new ResponseEntity<>("파일 업로드 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+       }
+   }
+   
+   @GetMapping("/showad")
+   @ResponseBody
+   public String showad() { 
+     ArrayList<adDTO> alad = ddao.adList();
+     JSONArray ja = new JSONArray();
+      for(int i=0;i<alad.size();i++) {
+         JSONObject jo = new JSONObject();
+         jo.put("img",alad.get(i).getImg());
+         ja.add(jo);
+      }
+      return ja.toJSONString();
+   }
+   @GetMapping("/bringurl")
+   @ResponseBody
+   public String bringurl(HttpServletRequest req) {
+      String img=req.getParameter("img");
+      ArrayList<adDTO> alad = ddao.urlList(img);
+        JSONArray ja = new JSONArray();
+         for(int i=0;i<alad.size();i++) {
+            JSONObject jo = new JSONObject();
+            jo.put("url",alad.get(i).getUrl());
+            ja.add(jo);
+         }
+         return ja.toJSONString();
+      
+   }
    
    
    

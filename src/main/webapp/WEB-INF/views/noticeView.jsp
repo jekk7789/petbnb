@@ -47,7 +47,7 @@
 					        <img src="image/${notice.image}" style="width: 50%;">
 					    </c:if>
 					    <br>
-	                    ${notice.detail}
+	                    <textarea cols="100" rows="5" style="border: none; resize: none; background-color: #f8f1e5; font-size: 20px;" readonly> ${notice.detail}</textarea>
 	                </div>
 	            </div>
 	            <div class="bt_wrap">

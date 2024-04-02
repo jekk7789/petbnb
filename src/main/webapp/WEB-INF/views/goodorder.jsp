@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 <style>
 /* 이미지 스타일링 */
 .itemImage {

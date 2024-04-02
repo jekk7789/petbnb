@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="stylesheet" href="css/ad.css">
 <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 <title>검색 결과 입니다</title>
 </head>
@@ -96,6 +97,16 @@
   <button id=last>마지막</button>
   <p>${text }!!</p>
  </div>
+</div>
+<div class="side-ad">
+  <h2 style="text-align:right;"><button style="background-color:#f0f0f0; color:black">x</button></h2>
+  <p><img id="ad-image" src="" class="image"></p>
+  <a href="" id="ad-url">자세히 보기</a>
+</div>
+<div class="side-ad2">
+  <h2 style="text-align:right;"><button style="background-color:#f0f0f0; color:black">x</button></h2>
+  <p><img id="ad-image2" src="" class="image"></p>
+  <a href="" id="ad-url2">자세히 보기</a>
 </div>
 <footer class="footer01">
 	<div role="contentinfo" class=container>
@@ -270,6 +281,67 @@ $.ajax({
         $('.temp_max').append($temp_max);   
     }
 })
+// 랜덤 광고 이미지 선택 및 표시
+function displayRandomAd() {
+    const randomIndex = Math.floor(Math.random() * adImages.length)
+    const adImage =adImages[randomIndex]
+    $.ajax({
+       type:'get',
+      url:'bringurl',
+      data:{img:adImage},
+      dataType:'json',
+      success:function(data){
+         for(let i=0;i<data.length;i++){
+            let ob=data[i]
+            console.log("123"+ob['url'])
+            document.getElementById('ad-url').href=
+            document.getElementById('ad-url2').href=ob['url']
+         }
+         document.getElementById('ad-image').src ="image/"+ adImage
+          document.getElementById('ad-image2').src ="image/"+ adImage
+          
+          
+      }
+    })
+    
+    
+}
+ const adImages = []
+// 페이지 로드 시 랜덤 광고 표시
+window.onload = function() {
+   $.ajax({
+      type:'get',
+      url:'showad',
+      data:{},
+      dataType:'json',
+      success:function(data){
+         for(let i=0;i<data.length;i++){
+            let ob=data[i]
+            adImages.push(ob['img'])
+         }
+         console.log("리스트="+adImages)
+            displayRandomAd();
+      }
+      
+   })
+   
+   
+}
 
+</script>
+<script>
+  window.addEventListener('scroll', function() {
+ /*  var sideAd = document.querySelector('.side-ad2') */
+  var mainContent = document.querySelector('.main-content')
+  var scrollTop = window.scrollY;
+
+  if (scrollTop > 100) {
+    sideAd.style.top = '10px'
+    sideAd.style.transform = 'none'
+  } else {
+    sideAd.style.top = '50%'
+    sideAd.style.transform = 'translateY(-50%)'
+  }
+})
 </script>
 </html>

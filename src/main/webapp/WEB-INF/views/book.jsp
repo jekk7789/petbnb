@@ -59,7 +59,7 @@
 <input type=hidden id=hpage value=${page } >
 <input type=hidden id=hlastpage value=${lastpage }>
 <input type=hidden id=userid value=${email }>
-<input type=hidden id=pid value=${id }>
+<input id=pid value=${id }>
 <input type="hidden" id=loginid >
 
 <div >
@@ -97,7 +97,7 @@
       <table  class="my_List"  id=tblqna>
          <tr style=display:none >
             <td style="width: 33%; display:none"></td>
-            <td style=display:none ></td><td><input type="hidden"  id="id" readonly > </td>
+            <td style=display:none ></td><td><input id="id" readonly> </td>
          </tr>
          <tr>
             <td colspan='2' style="text-align:center">세부내역</td>
@@ -137,14 +137,19 @@
    <div>
       <table  class="my_List"  id=tbljjim>
          <tr>
-            <td style="width:5%; text-align:center;">예약완료</td>
-         </tr>
-         <tr aria-rowspan="5">
+            <td colspan=5 style="width:5%; text-align:center;">결재대기</td>
+         </tr> 
+          <tr>
+              <th>객실명</th>
+              <th>객실종류명</th>
+              <th>최소인원(명)</th>
+              <th>가격(원)</th>
+              <th></th>
+          </tr>                           
+         <!-- <tr aria-rowspan="5">
             <td> <select class="selectList" size = "15" style="width: 100%;"  id="rlist"></select></td>
-         </tr>
-         <tr>
-            <td><input type=button id=btnPay value="결제하기"></input></td>
-         </tr>
+         </tr> -->
+
       </table>
    </div>
 </div>
@@ -168,7 +173,7 @@ $(document)
       
       getRoomlist();
       $('#roomNum,#rooms,#roomType,#roomint,#rPrice,#rStart,#rEnd,#rName,#rMobile').val('');
-      $('#rlist').hide();
+      $('#tbljjim').hide();
 })
 
 //아쟉스 틀만들기 먼저 쓰기
@@ -228,9 +233,10 @@ $(document)
    $('#rEnd').val($('#end').val())
 })
 
-.on('click','#rlist',function(){
+/* .on('click','#rlist',function(){
    $('#roomNum,#rooms,#roomType,#roomint,#rPrice,#rStart,#rEnd,#rName,#rMobile').val('');
    let rel=$('#rlist option:selected').text();
+   console.log(rel);
    let drel=rel.split(',');
    $('#id').val(drel[0]);
    $('#rooms').val(drel[3]);
@@ -242,10 +248,29 @@ $(document)
    $('#rName').val(drel[7]);
    $('#rMobile').val(drel[8]);
    $('#roomNum').val(drel[9]);
+   
+}) */
+.on('click', '#tbljjim tr', function(){
+    $('#roomNum,#rooms,#roomType,#roomint,#rPrice,#rStart,#rEnd,#rName,#rMobile').val('');
+    var cells = $(this).find('td');
+    
+    $('#id').val( $(cells[0]).text() );
+    $('#rooms').val( $(cells[1]).text() );
+    $('#roomType').val( $(cells[2]).text() );
+    $('#rStart').val( $(cells[5]).text() );
+    $('#rEnd').val( $(cells[6]).text() );
+    $('#rName').val( $(cells[7]).text() );
+    $('#rMobile').val( $(cells[8]).text() );
+    $('#roomNum').val( $(cells[9]).text() );
+    $('#roomint').val( $(cells[3]).text() );
+    $('#rPrice').val( $(cells[4]).text() );
+    $('#tblqna').show();
+    $('#tbljjim').hide();
+   
 })
 
 .on('click','#finish',function(){
-   console.log($('#id').val())
+
    $.ajax({
       type:'post', url:'/finish', 
       data:{id:$('#id').val(),room_id:$('#roomNum').val(),
@@ -257,13 +282,13 @@ $(document)
       success:function(data){
           if(data==1){
              alert("예약 완료!")
-             $('#rlist').empty();
+             $('#tbljjim').empty();
              $('#roomList').empty();
              getRoomlist();
              $('#roomNum,#rooms,#roomType,#roomint,#rPrice,#rStart,#rEnd,#rName,#rMobile').val('');
              $('#tblqna').hide();
              $('#tbljjim').show();
-             $('#rlist').show();
+            /*  $('#rlist').show(); */
           }
       }
    })
@@ -281,7 +306,7 @@ $(document)
       success:function(data){
           if(data==1){
              alert("예약이 취소되었습니다.")
-             $('#rlist').empty();
+             $('#tbljjim').empty();
              $('#roomList').empty();
              $('#roomNum,#rooms,#roomType,#roomint,#rPrice,#rStart,#rEnd,#rName,#rMobile').val('');
              getRoomad()
@@ -305,8 +330,17 @@ $(document)
           }
       }
    })
-})
+}) 
 
+/* .on('click','#btnPay',function(){
+    var Id = $(this).closest('tr').find('input#id').val();
+     location.href ="/booking?id="+Id
+})
+  */
+.on('click', '#tbljjim #btnPay', function() {
+     var id = $(this).closest('tr').find('td:first').text();
+     location.href ="/booking?id="+id
+});
 function getRoomad(){
    $.ajax({
       type:'post', url:'/List', data:{}, dataType:'json',
@@ -314,7 +348,8 @@ function getRoomad(){
          for(let i=0; i<data.length; i++){
             let ob=data[i];
             let str='<option>'+ob['id']+','+ob['name']+','+ob['typename']+','+ob['personnel']+','+ob['price']+'</option>';      
-            $('#roomList').append(str);
+            $('#roomList').append(str); 
+
          }
       }
    })
@@ -326,13 +361,22 @@ function getRoomlist(){
       success:function(data){
          for(let i=0; i<data.length; i++){
             let ob=data[i];
-            let str='<option>'+ob['checkin']+','+ob['checkout']+','+ob['rname']+','+ob['typename']+','+ob['howmany']
-                  +ob['howmuch']+','+ob['name']+','+ob['mobile']+'</option>';    
-            $('#rlist').append(str);
+            /* let str='<option>'+ob['id']+','+ob['checkin']+','+ob['checkout']+','+ob['rname']+','+ob['typename']+','+ob['howmany']+','+
+                  +ob['howmuch']+','+ob['name']+','+ob['mobile']+','+ob['room_id']+'</option>';    
+            $('#rlist').append(str); */
+            let str = '<tr><td style="display:none;">' + ob['id'] + '</td><td>' + ob['rname'] + '</td><td>' + ob['typename'] + '</td><td>' + 
+                    ob['howmany']+ '</td><td>'+ ob['howmuch']+'</td><td style="display:none;">' + ob['checkin'] + '</td><td style="display:none;">' + ob['checkout'] + '</td>'+
+                    '<td style="display:none;">' + ob['name'] + '</td><td style="display:none;">' + ob['mobile'] + '</td><td style="display:none;">' + ob['room_id'] + '</td>'+
+                    '</td><td><input type=button id=btnPay value="결제하기"></input></td></tr>';
+            $('#tbljjim').append(str);
+
+            
          }
+ 
       }
    })
 }
+
 
 </script>
 </body>
