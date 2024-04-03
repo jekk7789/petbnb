@@ -153,7 +153,7 @@ $(document)
    $.ajax({
       type:'get',
       url:'/noticelist',
-      data:{email:$('#userid').val()},
+      data:{email:$('#userid').val(),page:$('#hpage').val()},
       dataType:'json',
       success:function(data){
          for(let i=0;i<data.length;i++){
@@ -186,6 +186,7 @@ $(document)
 .on('click', '#next', function(){
     // 다음 페이지로 이동
     let num = parseInt($('#hpage').val());
+    console.log(num)
     let page = num + 1;
     location.href = "/notice?page=" + page;
 })
