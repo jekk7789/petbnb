@@ -99,12 +99,14 @@
  </div>
 </div>
 <div class="side-ad">
-  <h2 style="text-align:right;"><button style="background-color:#f0f0f0; color:black">x</button></h2>
+	<input type=hidden id=side value=1>
+  <h2 style="text-align:right;"><button style="background-color:#f0f0f0; color:black" id="del">x</button></h2>
   <p><img id="ad-image" src="" class="image"></p>
   <a href="" id="ad-url">자세히 보기</a>
 </div>
 <div class="side-ad2">
-  <h2 style="text-align:right;"><button style="background-color:#f0f0f0; color:black">x</button></h2>
+<input type=hidden id=side value=2>
+  <h2 style="text-align:right;"><button style="background-color:#f0f0f0; color:black" id="del">x</button></h2>
   <p><img id="ad-image2" src="" class="image"></p>
   <a href="" id="ad-url2">자세히 보기</a>
 </div>
@@ -217,6 +219,15 @@ $(document)
    let num=parseInt($('#hlastpage').val())
    console.log(num)
    location.href="/store?page="+num+"&text=${text}&search=${search}&city=${city}&ciGunGu=${ciGunGu}"
+})
+
+.on('click','#del',function(){
+   console.log("aa="+$(this).parent().parent().find('input[id=side]').val())
+   if($(this).parent().parent().find('input[id=side]').val()==1){
+      $('.side-ad').hide()
+   } else {
+      $('.side-ad2').hide()
+   }
 })
 
 function cityList(){

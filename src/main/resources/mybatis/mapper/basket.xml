@@ -27,11 +27,18 @@
    	<delete id="orderDelete">
       DELETE FROM basket WHERE id = #{param1}
    	</delete>
-   
-   <!-- 결제 성공시에만 db내 테이블 저장 -->
-    <!-- <insert id="addpayments">
-        INSERT INTO payments set
-       userid=#{param1},orderName=#{param2},amount=#{param3},payment_method=#{param4},order_time=sysdate()
-    </insert> -->
+   	
+   	 <select id="payBasketList" resultType="com.himedia.pet.DTO.BasketDTO"> 
+         select a.email,b.orderName,b.amount,b.order_time 
+         from login a,payments b 
+         where a.id=b.userid 
+         and b.userid=#{param1} order By b.order_time desc 
+      </select>
+   <select id="payBookList" resultType="com.himedia.pet.DTO.BasketDTO"> 
+      select a.email,b.orderName,b.amount,b.order_time 
+      from login a,payments2 b 
+      where a.id=b.userid 
+      and b.userid=#{param1}
+   </select>
 	
 </mapper>

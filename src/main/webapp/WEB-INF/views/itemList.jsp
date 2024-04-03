@@ -7,67 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/theme.css" />
+<link rel="stylesheet" href="css/itemList.css" />
 <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 <title>미니샵</title>
 </head>
-<style>
-main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-   .pet_item {
-    width: calc(25% - 20px);
-    margin-bottom: 20px;
-    box-sizing: border-box;
-  }
-  .pet_item a {
-    text-decoration: none;
-    color: inherit;
-    display: block; /* 앵커 요소를 블록 요소로 변경하여 이미지와 텍스트가 세로로 배치되도록 합니다. */
-    text-align: center; /* 텍스트를 가운데 정렬합니다. */
-  }
-
-  .pet_item img {
-    width: 100%;
-    height: auto;
-  }
-
- .pet_item-image {
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
-
-.pet_item-image img {
-  width: 100%;
-}
-
-#middle_area .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 -15px;
-}
-
-#middle_area  {
-    padding: 0 15px;
-    margin-bottom: 20px; /* 각 요소의 아래쪽 여백 추가 */
-}
-.item_img{
-   width: 100%;
-   height: 300px;
-   overflow: hidden; 
-   display: flex;
-   align-items: center;
-   
-}
-
-</style>
 <body>
 
   <header id="herder">

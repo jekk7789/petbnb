@@ -8,20 +8,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/vaccine.css" />
+<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 <title>예방접종</title>
 </head>
 <style>
-.pet_add_popup {
-    height: 80%; /* 높이를 화면의 80%로 설정합니다. */
-    overflow-y: auto; /* 필요한 경우 수직 스크롤을 추가합니다. */
-    background-color:ivory;
-}
  #tbldog2{
    display:none;
 }
 .vaccines{
    display:none;
 }
+
+
 </style>
 <body>
 
@@ -29,9 +27,6 @@
      <%@ include file="/WEB-INF/views/include/header.jsp" %>
 </header>
 <input type=hidden id=userid value=${email }>
-<input type="hidden" id=loginid >
-
-<!-- <input id=pbirth > -->
 <div class="container">
    
    <div class="s21_event_m_top pr">
@@ -170,10 +165,6 @@
                   <tr>
                       <td >동물등록번호</td><td id='number'></td>
                   </tr>
-                 <!--  <tr>
-                      <td colspan=2><button type="button" id="btnMypet">반려견 등록 및 선택을 해주세요.</button>
-                      <button id=dododo>예방접종보기</button></td>
-                  </tr>  -->
               </table>
           </div>
       </div>
@@ -291,16 +282,19 @@
       </div>
       <div class="modal-body_shot">
    
-         <div class="s21_shot_card_img">
-            <p class="s21_shot_img_input">
+         <div class="shot_card_img">
+            <p class="shot_img_input">
                <img src="image/강아지그림.jpg" id="dog_pic" >
+               <dt>파일 추가</dt>
+              <dd><input type="file" name='file' id="n_image"></dd>
             </p>
          </div>
          
-         <div class="s21_shot_card_text_pop">
+         <div class="shot_card_text_pop">
             <p>
-            <label>등록번호:</label><input type="text" class="pet_input" id="dog_no" placeholder="등록번호" value=""></p>
-            <p><label>반려견이름:</label><input type="text" class="pet_input" id="dog_name" placeholder="반려견이름" value=""></p>
+            <input type="text" class="pet_input" id="dog_no" placeholder="등록번호" value="">
+            <input type="text" class="pet_input" id="dog_name" placeholder="반려견이름" value="">
+            </p>
          <div>
          <div>
          <select name="birthY" id="birthY" class="pet_select" ></select>년
@@ -328,7 +322,7 @@ $(document)
    $("#review").hide();
    setDateBox();
    petload();
-   idload();
+  /*  idload(); */
 })
 
 .on('click','.tablinks:eq(0)',function(){
@@ -345,24 +339,23 @@ $(document)
    let birth =$("#birthY").val()+$("#birthM").val()+$("#birthD").val();
    var petId = $(this).closest('tr').find('input#petid').val();
    
-   if($('#userid').val()==''){
-      alert("로그인을 해주십시오.");
-   } else if($('#dog_name').val()==''){
+   if($('#dog_name').val()==''){
       alert("이름을 입력해주세요."); 
-   } else{
-      $.ajax({
-         type:'post',
-         url:'petadd',
-         data:{num:$("#dog_no").val(),name:$("#dog_name").val(),birth:birth,loginid:$('#loginid').val()},
-         dataType:'text',
-         success:function(data){
-            if(data==1){
-               alert("등록이 완료되었습니다.")
-               petload();
-            }
-         }
-      })  
-   }
+      return
+   } 
+     $.ajax({
+        type:'post',
+        url:'petadd',
+        data:{num:$("#dog_no").val(),name:$("#dog_name").val(),birth:birth,loginid:$('#userid').val()},
+        dataType:'text',
+        success:function(data){
+           if(data==1){
+              alert("등록이 완료되었습니다.")
+              petload();
+           }
+        }
+     })  
+   
 })
 
 .on('click','#modify',function(){ //펫 수정
@@ -372,24 +365,29 @@ $(document)
    
    if($('#dog_name').val()==''){
       alert("이름을 입력해주세요")
-   } else{
-        $.ajax({
-             type:'post',
-             url:'petmodify',
-             data:{petId:petId, petno:$('#dog_no').val(), petname:$('#dog_name').val(),birth:birth },
-             dataType:'text',
-             success:function(data){
-               console.log(data);
-                if(data==1){
-                   alert("성공");
-                   petload();
-                }
-             }
-        })  
-      }
+      return
+   } 
+      $.ajax({
+           type:'post',
+           url:'petmodify',
+           data:{petId:petId, petno:$('#dog_no').val(), petname:$('#dog_name').val(),birth:birth },
+           dataType:'text',
+           success:function(data){
+             console.log(data);
+              if(data==1){
+                 alert("성공");
+                 petload();
+              }
+           }
+      })  
+      
 })
 
 .on('click','#btnMypet',function(){ //팝업창 열기
+   if($('#userid').val()==''){
+       alert("로그인을 해주십시오.");
+       return
+   } 
    petload();
    $('#pet_add_popup').show();
 })
@@ -524,13 +522,13 @@ function petload(){ // 등록한 펫 리스트
    $.ajax({
       type:'post',
       url:'petload',
-      data:{loginid:$('#loginid').val()},
+      data:{loginid:$('#userid').val()},
       dataType:'json',
       success:function(data){
          $('.tbldog').empty();
           for(var i=0; i<data.length; i++){
                let ob=data[i];
-               let str = '<tr><td>' + ob.name + '</td><td></td>' +
+               let str = '<tr><td>이름</td><td>' + ob.name + '</td>'+
                 '<td rowspan="3"><input type="hidden" id="petid" value="' + ob.id + '"></input><button id="choice">선택</button><button id="modify">수정</button><button id="delete">삭제</button></td></tr>' +
                 '<tr><td>생일</td><td>' + ob.birth + '</td></tr><tr><td>동물등록번호</td><td>' + ob.number + '</td></tr>';
               $('.tbldog').append(str);
@@ -539,19 +537,6 @@ function petload(){ // 등록한 펫 리스트
    })
             
 }
-function idload(){ // 로그인아이디 가져오기
-    $.ajax({
-       type:'post',
-       url:'idload',
-       data:{loginid:$('#userid').val()},
-       dataType:'json',
-       success:function(data){
-          console.log(data.id);
-          $("#loginid").val(data.id);
-       }
-    })
-             
- }
 
 
 

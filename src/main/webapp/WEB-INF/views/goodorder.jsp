@@ -7,68 +7,111 @@
 <title>Insert title here</title>
 <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 <style>
-/* 이미지 스타일링 */
+/* 전체 페이지 스타일 */
+body {
+    font-family: Arial, sans-serif; /* 전체 폰트 설정 */
+    background-color: #f8f8f8; /* 페이지 배경색 설정 */
+    margin: 0; /* 페이지 마진 제거 */
+    padding: 20px; /* 페이지 내부 패딩 추가 */
+}
+
+/* 상품 이미지 스타일 */
 .itemImage {
-    display: block; /* 이미지를 블록 요소로 설정하여 가로 정렬합니다. */
+    width: 100%; /* 이미지 너비를 100%로 설정하여 가로 크기를 조정합니다. */
+    display: block; /* 이미지를 블록 요소로 설정하여 가로 중앙 정렬합니다. */
     margin-bottom: 20px; /* 이미지 아래 여백 추가 */
 }
 
-/* 상품 이름 스타일링 */
+/* 상품 이름 스타일 */
 .itemName {
-    font-size: 20px; /* 상품 이름 폰트 크기 설정 */
+    font-size: 24px; /* 상품 이름 폰트 크기 설정 */
     font-weight: bold; /* 상품 이름을 굵게 설정 */
-    padding-bottom: 10px; /* 상품 이름 아래쪽 여백 추가 */
+    margin-bottom: 10px; /* 상품 이름 아래쪽 여백 추가 */
 }
 
-/* 테이블 스타일링 */
+/* 상품 설명 스타일 */
+.itemDescription {
+    color: #666; /* 상품 설명 텍스트 색상 설정 */
+    margin-bottom: 20px; /* 상품 설명 아래 여백 추가 */
+}
+
+/* 테이블 스타일 */
 table {
     width: 100%; /* 테이블을 부모 요소의 전체 너비로 설정 */
     border-collapse: collapse; /* 테이블 셀 경계를 합칩니다. */
     margin-bottom: 20px; /* 테이블 아래 여백 추가 */
 }
 
-/* 테이블 셀 스타일링 */
+/* 테이블 셀 스타일 */
 table td {
     padding: 10px; /* 셀 내부 여백 설정 */
     border: 1px solid #ddd; /* 셀 테두리 설정 */
 }
 
-/* 수량 입력란 스타일링 */
+/* 수량 입력란 스타일 */
 #result {
-    text-align: right; /* 텍스트 오른쪽 정렬 */
-    width: 80px; /* 너비 설정 */
-    height: 30px; /* 높이 설정 */
-    font-size: 20px; /* 폰트 크기 설정 */
+    width: 60px; /* 수량 입력란 너비 설정 */
+    height: 30px; /* 수량 입력란 높이 설정 */
+    font-size: 16px; /* 수량 입력란 폰트 크기 설정 */
+    text-align: center; /* 수량 입력란 텍스트 가운데 정렬 */
+    margin-right: 10px; /* 수량 입력란 오른쪽 여백 추가 */
+    border: 1px solid #ccc; /* 테두리 설정 */
+    border-radius: 5px; /* 테두리 둥글게 설정 */
 }
 
-/* 버튼 스타일링 */
+/* 총액 입력란 스타일 */
+#basket {
+    width: 20%; /* 총액 입력란 너비 설정 */
+    height: 50px; /* 총액 입력란 높이 설정 */
+    font-size: 16px; /* 총액 입력란 폰트 크기 설정 */
+    text-align: center; /* 총액 입력란 텍스트 오른쪽 정렬 */
+    border: 1px solid #ccc; /* 테두리 설정 */
+    border-radius: 5px; /* 테두리 둥글게 설정 */
+    background-color: #a1660e; /* 배경색 설정 */
+    color: #fff; /* 텍스트 색상 설정 */
+    transition: background-color 0.3s; /* 애니메이션 속도 설정 */
+}
+
+#basket:hover {
+    background-image: linear-gradient(to right, #f6ad3d, #e6e6e6); /* 그라데이션 배경색 설정 */
+}
+/* 수량 조절 버튼 스타일 */
 .int {
-    width: 40px; /* 너비 설정 */
-    height: 30px; /* 높이 설정 */
+    width: 30px; /* 수량 조절 버튼 너비 설정 */
+    height: 30px; /* 수량 조절 버튼 높이 설정 */
+    font-size: 16px; /* 수량 조절 버튼 폰트 크기 설정 */
+    background-color: #f8f8f8; /* 배경색 설정 */
+    border: 1px solid #ccc; /* 테두리 설정 */
+    border-radius: 5px; /* 테두리 둥글게 설정 */
+    cursor: pointer; /* 커서를 포인터로 변경하여 클릭 가능한 상태로 표시 */
 }
 
-/* 장바구니/구매 버튼 스타일링 */
-    button {
-    padding: 10px 20px; /* 내부 여백 설정 */
-    font-size: 18px; /* 폰트 크기 설정 */
+.int:hover {
+    background-color: #e6e6e6; /* 호버 시 배경색 변경 */
+}
+
+/* 버튼 스타일 */
+.button {
+    padding: 10px 20px; /* 버튼 내부 여백 설정 */
+    font-size: 18px; /* 버튼 폰트 크기 설정 */
     background-color: #a1660e; /* 배경색 설정 */
     color: #fff; /* 텍스트 색상 설정 */
     border: none; /* 테두리 제거 */
     cursor: pointer; /* 커서를 포인터로 변경하여 클릭 가능한 상태로 표시 */
 }
 
-button:hover {
+.button:hover {
     background-color: #e6c926; /* 호버 시 배경색 변경 */
 }
 </style>
 </head>
 <body>
 	
-   <input type="text" id="id" value=${id }>
-   <input type="text" id="userid" value=${email }>
+   <input type="hidden" id="id" value=${id }>
+   <input type="hidden" id="userid" value=${email }>
 
    <div >
-     <img class="itemImage"style="width: 280px;"  ><br>
+     <img class="itemImage"style="width: 280px; display: none;"  ><br>
    </div>
  
      <table>

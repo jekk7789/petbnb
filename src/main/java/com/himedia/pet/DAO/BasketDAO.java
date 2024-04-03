@@ -21,4 +21,7 @@ public interface BasketDAO {
 	
 	int addpayments(int userid,String orderName, int amount, String paymentMethod);
 	
+	ArrayList<BasketDTO> payBasketList(int id);
+	ArrayList<BasketDTO> payBookList(int id);
+	
 }

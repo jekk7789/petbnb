@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.himedia.pet.DAO.BasketDAO;
 import com.himedia.pet.DAO.HotelDAO;
 import com.himedia.pet.DAO.LoginDAO;
 import com.himedia.pet.DAO.QnaDAO;
 import com.himedia.pet.DAO.cityDAO;
 import com.himedia.pet.DAO.dataDAO;
+import com.himedia.pet.DTO.BasketDTO;
 import com.himedia.pet.DTO.LoginDTO;
 import com.himedia.pet.DTO.QnaDTO;
 import com.himedia.pet.DTO.RoomsDTO;
@@ -48,8 +50,12 @@ public class HomeController {
    
    @Autowired
    private QnaDAO qdao;
+   
    @Autowired
    private HotelDAO hdao;
+   
+   @Autowired
+   private BasketDAO bdao;
    
    @GetMapping("/")
    public String goHome() {
@@ -602,7 +608,31 @@ public class HomeController {
              ja.add(jo);
           }
              return ja.toJSONString();
-       } 
+       } else if(data.equals("5")){
+           int id = ldao.getuserid(userid);
+           System.out.println("id: "+ id);
+            ArrayList<BasketDTO> alPayment = bdao.payBasketList(id);
+            System.out.println("alBook은 예약"+alPayment);
+            for(int i=0;i<alPayment.size();i++) {
+               JSONObject jo = new JSONObject();
+               jo.put("email",alPayment.get(i).getEmail());
+               jo.put("orderName",alPayment.get(i).getOrderName());
+               jo.put("amount",alPayment.get(i).getAmount());
+               jo.put("order_time",alPayment.get(i).getOrder_time());
+               ja.add(jo);
+            }
+          
+            ArrayList<BasketDTO> alPayment1 = bdao.payBookList(id);
+            for(int i=0;i<alPayment1.size();i++) {
+               JSONObject jo = new JSONObject();
+               jo.put("email",alPayment1.get(i).getEmail());
+               jo.put("orderName",alPayment1.get(i).getOrderName());
+               jo.put("amount",alPayment1.get(i).getAmount());
+               jo.put("order_time",alPayment1.get(i).getOrder_time());
+               ja.add(jo);
+            }
+               return ja.toJSONString();
+         }
          else {
          return "0";
       }

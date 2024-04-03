@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>결제 결과</title>
-<!-- <link rel="stylesheet" href="/css/success.css"> -->
+<link rel="stylesheet" href="/css/success.css">
 </head>
 <body>
-<input type=text id=id value="<%=session.getAttribute("session")%>">
+<input type=hidden id=id value="<%=session.getAttribute("session")%>">
 <div class="container">
     <c:if test="${isSuccess == true}">
         <h1 class="success">결제 성공</h1>

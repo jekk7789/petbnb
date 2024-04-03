@@ -13,5 +13,10 @@ public class BasketDTO {
 	int count;
 	String img;
 	String created;
+	String orderName;
+	String paymentMethod;
+	String order_time;
+	String orderQuantity;
+	String email;
 	
 }

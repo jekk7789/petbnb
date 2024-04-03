@@ -330,6 +330,7 @@ $("#btnBook").on("click", function() {
    showList()
    showpage()
 })
+
 .on('click','#delete',function(){
    let id=$(this).parent().parent().find('td:eq(4)').text();
    console.log("id:",id);

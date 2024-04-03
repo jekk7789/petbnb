@@ -30,12 +30,12 @@
                 <th>상품명</th>
                 <th>수량</th>
                 <th>상품금액</th>
-                <th>아이디</th>
+                <!-- <th>아이디</th> -->
                 <th>삭제</th>
             </tr>
         </table>
         <strong>선택한 제품 가격: <span id="selectedPrice"></span> 원</strong>
-        <button class="order" onclick="pay();" id =session style="left: 60%; margin-top: 10px;"><span class="default">결제하기</span><span class="success">결제 성공
+        <button class="order" onclick="pay();" id =session style="left: 57%; margin-top: 10px;"><span class="default">결제하기</span><span class="success">결제 성공
 		    <svg viewbox="0 0 12 10">
 		      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
 		    </svg></span>
@@ -175,7 +175,7 @@
 								'</td><td>' + ob['orderName'] +
 								'</td><td>' + ob['count'] + 
 								'</td><td>' + ob['amount'] +
-								'</td><td id="id">' + ob['id'] +
+								'</td><td id="id" style="display: none;">' + ob['id'] +
 								'</td><td>' +btn+ '</td></tr>';
 					$('#tbbasket').append(str);
 				}
