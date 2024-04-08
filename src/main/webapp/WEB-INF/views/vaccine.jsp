@@ -17,6 +17,7 @@
 }
 .vaccines{
    display:none;
+   cursor: pointer;
 }
 
 
@@ -329,6 +330,10 @@ $(document)
    $("#review").hide(); 
    $("#information").show(); 
 })
+.on('click','.vaccines',function(){
+   var popup = window.open('/calendar', '캘린더', 'width=800px,height=800px,scrollbars=yes');
+  /* location.href='/calendar';  */
+})
 
 .on('click','.tablinks:eq(1)',function(){
    $("#information").hide(); 
@@ -401,6 +406,7 @@ $(document)
 .on('click','#btn_clear',function(){ 
    $('#dog_no,#dog_name').val("");
    $('.pet_select').find('option:first').prop('selected', true);
+   $('#pet_add_popup').hide()
 })
 
 .on('click', '#choice', function() { // 등록한 펫 선택
@@ -537,16 +543,6 @@ function petload(){ // 등록한 펫 리스트
    })
             
 }
-
-
-
-
-
 </script>
-
-           
- 
-
-
 </body>
 </html>

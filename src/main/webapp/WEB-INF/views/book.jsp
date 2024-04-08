@@ -146,9 +146,6 @@
               <th>가격(원)</th>
               <th></th>
           </tr>                           
-         <!-- <tr aria-rowspan="5">
-            <td> <select class="selectList" size = "15" style="width: 100%;"  id="rlist"></select></td>
-         </tr> -->
 
       </table>
    </div>
@@ -233,23 +230,6 @@ $(document)
    $('#rEnd').val($('#end').val())
 })
 
-/* .on('click','#rlist',function(){
-   $('#roomNum,#rooms,#roomType,#roomint,#rPrice,#rStart,#rEnd,#rName,#rMobile').val('');
-   let rel=$('#rlist option:selected').text();
-   console.log(rel);
-   let drel=rel.split(',');
-   $('#id').val(drel[0]);
-   $('#rooms').val(drel[3]);
-   $('#roomType').val(drel[4]);
-   $('#roomint').val(drel[5]);
-   $('#rPrice').val(drel[6]);
-   $('#rStart').val(drel[1]);
-   $('#rEnd').val(drel[2])
-   $('#rName').val(drel[7]);
-   $('#rMobile').val(drel[8]);
-   $('#roomNum').val(drel[9]);
-   
-}) */
 .on('click', '#tbljjim tr', function(){
     $('#roomNum,#rooms,#roomType,#roomint,#rPrice,#rStart,#rEnd,#rName,#rMobile').val('');
     var cells = $(this).find('td');
@@ -331,12 +311,6 @@ $(document)
       }
    })
 }) 
-
-/* .on('click','#btnPay',function(){
-    var Id = $(this).closest('tr').find('input#id').val();
-     location.href ="/booking?id="+Id
-})
-  */
 .on('click', '#tbljjim #btnPay', function() {
      var id = $(this).closest('tr').find('td:first').text();
      location.href ="/booking?id="+id
@@ -361,9 +335,6 @@ function getRoomlist(){
       success:function(data){
          for(let i=0; i<data.length; i++){
             let ob=data[i];
-            /* let str='<option>'+ob['id']+','+ob['checkin']+','+ob['checkout']+','+ob['rname']+','+ob['typename']+','+ob['howmany']+','+
-                  +ob['howmuch']+','+ob['name']+','+ob['mobile']+','+ob['room_id']+'</option>';    
-            $('#rlist').append(str); */
             let str = '<tr><td style="display:none;">' + ob['id'] + '</td><td>' + ob['rname'] + '</td><td>' + ob['typename'] + '</td><td>' + 
                     ob['howmany']+ '</td><td>'+ ob['howmuch']+'</td><td style="display:none;">' + ob['checkin'] + '</td><td style="display:none;">' + ob['checkout'] + '</td>'+
                     '<td style="display:none;">' + ob['name'] + '</td><td style="display:none;">' + ob['mobile'] + '</td><td style="display:none;">' + ob['room_id'] + '</td>'+

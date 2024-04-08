@@ -54,9 +54,11 @@ public class CalendarController {
     @PostMapping("/CalendarList")
     @ResponseBody
     public JSONArray doCalendar(HttpServletRequest req) {
+       String userId = req.getParameter("userName");
+       System.out.println("userId:"+ userId);
         HttpSession sess = req.getSession();
-        String userName = (String) sess.getAttribute("userName");
-        ArrayList<calendarDTO> alCal = cdao.selectCal(userName);
+//        String userName = (String) sess.getAttribute(userId);
+        ArrayList<calendarDTO> alCal = cdao.selectCal(userId);
         JSONArray ja = new JSONArray();
         for (int i = 0; i < alCal.size(); i++) {
             JSONObject jo = new JSONObject();
@@ -77,15 +79,15 @@ public class CalendarController {
     @PostMapping("/calRemove")
     @ResponseBody
     public String calRemove(HttpServletRequest req) {
-    	String title = req.getParameter("title");
-    	System.out.println("title은 일정제목"+title);
-    	String titleNum = cdao.getCal_id(title);
-    	System.out.println("titleNum은 아이디"+titleNum);
-    	
-    	int n = cdao.delCalendar(Integer.parseInt(titleNum));
-    	System.out.println("n은 지울번호"+n);
-    	return ""+n;
-    	
+       String title = req.getParameter("title");
+       System.out.println("title은 일정제목"+title);
+       String titleNum = cdao.getCal_id(title);
+       System.out.println("titleNum은 아이디"+titleNum);
+       
+       int n = cdao.delCalendar(Integer.parseInt(titleNum));
+       System.out.println("n은 지울번호"+n);
+       return ""+n;
+       
     }
     
 }

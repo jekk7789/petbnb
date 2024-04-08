@@ -382,25 +382,6 @@ $('#data_list').on('click', '#tbl_review tr', function() {
     $('#writer').val(name); 
 });
 
-/* function doReview(){
-   $.ajax({
-      type: 'post', 
-        url: '/doReview',
-        data: {id:$('#pet_id').val()}, 
-        dataType: 'json',
-        success: function(data) {
-           $('#tbl_review').empty();
-           for(let i=0; i< data.length; i++){
-              let ob=data[i];
-              let str='<tr><td>'+ob['content']+'</td><td>'+ob['writer']+'</td><td>'+ob['time']+'</td><td class="borad_id" >' + ob['id'] +
-                '</td><td>'+'<a href="#" onclick="modiPop(' + ob['id'] + ')">수정</a><a href="/rDelet?id=' + ob['id'] + '">삭제</a></td></tr>';
-            $('#tbl_review').append(str);         
-           } 
-         $("#data_list").html(JSON.stringify(data));      
-       }
-   });
-} */
-
 function openPop(){
   var popup = window.open('http://localhost:8081/review?pid='+ ${id }, '리뷰', 'width=700px,height=800px,scrollbars=yes');
  
@@ -413,27 +394,6 @@ function modiPop(id) {
     var popup = window.open('http://localhost:8081/review?id=' + id, '리뷰', 'width=700px,height=800px,scrollbars=yes');
 }
 
-/* function displayRating(rating) {
-    let starsHtml = '<fieldset class="rate">';
-    let fullStars = Math.floor(rating);
-    let halfStar = (rating - fullStars) >= 0.5;
-    console.log("별:", fullStars);
-    console.log("반 별:", halfStar);
-    for (let i = 1; i <= 5; i++) {
-        if (i <= fullStars) {
-            // 별
-            starsHtml += '<input type="text" id="rating' + i + '" name="rating" value="' + i + '" checked><label for="rating' + i + '" title="' + i + '점" style="color:blue;"></label>';
-            console.log("풀별:", starsHtml)
-        } else if (halfStar && (i === fullStars + 1)) {
-            // 반별
-            starsHtml += '<input type="text" id="rating' + i + '" name="rating" value="' + (i - 0.5) + '" checked><label class="half" for="rating' + i + '" title="' + (i - 0.5) + '점" style="color: blue;"></label>';
-            console.log("반별:", starsHtml)
-        }
-    }
-    
-    starsHtml += '</fieldset>';
-    return starsHtml;
-} */
 
 function showList(){
     $.ajax({
@@ -470,12 +430,9 @@ function showList(){
          dataType:'text',
          success:function(data){
             $('#showpage').empty()
-            //console.log(data)
             let b=data.slice(1,-1)
             b=b.replace(/(\s*)/g, "")
-            //console.log(b)
             let a=b.split(',')
-            //console.log(a)
             
             let str='<tr><td>&nbsp;&nbsp;&nbsp;<button id=first>맨처음</button><button id=prev>이전</button>'
             for(let i=0;i<a.length;i++){

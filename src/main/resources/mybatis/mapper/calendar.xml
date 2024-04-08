@@ -13,7 +13,7 @@
    
    <!-- 고객 달력 -->
    <select id ="selectCal" resultType="com.himedia.pet.DTO.calendarDTO">
-      select * from calendar where userName= #{param1};
+      select * from calendar where userName= #{param1}
    </select>
    
    <select id="getCal_id" resultType="String">

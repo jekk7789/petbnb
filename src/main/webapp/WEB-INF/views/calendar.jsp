@@ -22,9 +22,8 @@
 <input type=hidden id=userid value=${email }>
 <input type=hidden id=hid value=${id }>
 <header id="herder">
-  	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+     <%@ include file="/WEB-INF/views/include/header.jsp" %>
 </header>
-<input type=hidden id=userid value=${email }>
 <div id='calendar-container' style="margin-top: 20px;">    
     <div id='calendar' id=calList></div>  
 </div>
@@ -92,7 +91,7 @@ $(document).ready(function(){
     var calendarEl = $('#calendar')[0];      
     // full-calendar 생성하기      
     var calendar = new FullCalendar.Calendar(calendarEl, {   
-    	googleCalendarApiKey: "AIzaSyCFHbhV_LurvUTgClzZhkCbaojUOLG94Z0",
+       googleCalendarApiKey: "AIzaSyCFHbhV_LurvUTgClzZhkCbaojUOLG94Z0",
         height: '700px',        
         expandRows: true, // 화면에 맞게 높이 재설정        
         slotMinTime: '08:00', // Day 캘린더에서 시작 시간        
@@ -137,26 +136,26 @@ $(document).ready(function(){
             }
         },
         eventSources: [
-        	{
-        		googleCalendarId : 'ko.south_korea#holiday@group.v.calendar.google.com'
+           {
+              googleCalendarId : 'ko.south_korea#holiday@group.v.calendar.google.com'
                     , color: 'white'   // an option!
                     , textColor: 'red' // an option!
-        	}
+           }
         ],
         eventClick: function(info) {
-        	let calId = info.event._def.defId;
-        	let title = info.event._def.title;
-        	console.log(calId);
-        	console.log('이게누르면 삭제냐?');
-        	console.log($('#title').val());
-        	console.log(title);
-        	
-        	$.ajax({
-        		type:"POST",
-        		url: "/calRemove",
-        		dataType:"text",
-        		data:{title:title}
-        	})
+           let calId = info.event._def.defId;
+           let title = info.event._def.title;
+           console.log(calId);
+           console.log('이게누르면 삭제냐?');
+           console.log($('#title').val());
+           console.log(title);
+           
+           $.ajax({
+              type:"POST",
+              url: "/calRemove",
+              dataType:"text",
+              data:{title:title}
+           })
            if (confirm("이 일정을 삭제하시겠습니까?")) {
                 let eventId = info.event._def.defId;
                 console.log("삭제할 이벤트의 ID:", eventId);
@@ -166,7 +165,7 @@ $(document).ready(function(){
         }
     }); 
 
-   	// 캘린더 랜더링      
+      // 캘린더 랜더링      
     calendar.render(); 
     console.log(calendar.getEvents());
     CalendarList(calendar);
@@ -180,13 +179,13 @@ $(document).ready(function(){
     });
     
     //모달창 이벤트
-   	$("#saveChanges").on("click", function () {
-   		var eventData = {
-   			    title: $("#title").val(),
-   			    start: $("#start").val(),
-   			    end: $("#end").val(),
-   			    backgroundColor: $("#color").val()
-   		};
+      $("#saveChanges").on("click", function () {
+         var eventData = {
+                title: $("#title").val(),
+                start: $("#start").val(),
+                end: $("#end").val(),
+                backgroundColor: $("#color").val()
+         };
        
        let title = eventData.title;
        let start = eventData.start;
@@ -198,7 +197,7 @@ $(document).ready(function(){
        console.log("start:",start);
        console.log("end",end);
        console.log("backgroundColor:",backgroundColor);
-		
+      
        if($('#userid').val() == "" || $('#userid').val() ==null){
            alert('로그인페이지로 이동합니다');
            location.href="/login";
@@ -229,7 +228,7 @@ $(document).ready(function(){
                        backgroundColor: $("#color").val() },
                success: function(data) {
                    if (data === "1") {
-                	   
+                      
                        alert("등록되었습니다!!");
                    }
                }
@@ -239,12 +238,14 @@ $(document).ready(function(){
 });
 
 function CalendarList(calendar){
+   console.log($('#userid').val())
    $.ajax({
       type:"POST",
       url: "/CalendarList",
       dataType: "JSON",
-      data: {},
+      data: {userName:$('#userid').val()},
       success: function(data){
+         console.log(data)
          data.forEach(function(eventData) {
                 calendar.addEvent({
                     title: eventData.title,

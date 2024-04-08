@@ -97,9 +97,6 @@ $(document)
    bookingload()
    
 })
-/* .on('click','#pay',function(){
-   pay()
-}) */
 .on('click', '#session', function(){
    let session= $('#id').val();
      
