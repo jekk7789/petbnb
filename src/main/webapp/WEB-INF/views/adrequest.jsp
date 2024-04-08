@@ -123,7 +123,7 @@ $(document).ready(function(){
    
    //테스트 API키
    
-   let tossPayments = TossPayments("test_ck_vZnjEJeQVxROqX5KlRxM8PmOoBN0");
+   let tossPayments = TossPayments("test..api키 설정");
    
    function pay() {
       let orderName = TitleName();

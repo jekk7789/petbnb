@@ -37,7 +37,7 @@
           <h1>로그인</h1>
           <div class="social-icons">
           <div id="g_id_onload"
-			     data-client_id="222829870582-u9cct90m652v0e2ev1gvmjncb5gns4f2.apps.googleusercontent.com"
+			     data-client_id="api"
 			     data-callback="handleCredentialResponse">
 			</div>
           	  <a data-type="icon" data-shape="circle" class="g_id_signin"></a>
@@ -69,7 +69,7 @@
     
   </body>
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.0/kakao.min.js" integrity="sha384-l+xbElFSnPZ2rOaPrU//2FF5B4LB8FiX5q4fXYTlfcG4PGpMkE1vcL7kNXI6Cci0" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   
@@ -78,7 +78,7 @@
 
 
 
-Kakao.init('d129ecc6b869c11eb7e257e7089bcf6b');
+Kakao.init('api');
 
 //카카오톡 로그인
 function kakaoLogin() {
@@ -176,7 +176,7 @@ loginBtn.addEventListener('click', () => {
  
 <script type="text/javascript">
 
-	var naver_id_login = new naver_id_login("HFRL2GVTFZRzg3tprpNh", "http://localhost:8081/home");
+	var naver_id_login = new naver_id_login("api키 ", "http://localhost:8081/home");
 	var state = naver_id_login.getUniqState();
 	//naver_id_login.setButton("white", 2,40);
 	naver_id_login.setDomain(".service.com");

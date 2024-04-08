@@ -236,7 +236,7 @@ window.addEventListener('pageshow', function(event) {
             document.cookie = 'search=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         }
     });
-Kakao.init('d129ecc6b869c11eb7e257e7089bcf6b');
+Kakao.init('api');
 
 //카카오로그아웃  
 function kakaoLogout() {
@@ -276,7 +276,7 @@ function deleteCookie() {
 
 <!-- 네이버아디디로로그인 초기화 Script -->
 <script type="text/javascript">
-   var naver_id_login = new naver_id_login("HFRL2GVTFZRzg3tprpNh", "http://localhost:8081/home");
+   var naver_id_login = new naver_id_login("네이버 api 키", "http://localhost:8081/home");
    var state = naver_id_login.getUniqState();
    naver_id_login.setDomain(".service.com");
    naver_id_login.setState(state);
