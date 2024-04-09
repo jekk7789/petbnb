@@ -140,7 +140,7 @@ function bookingload(){
 
 //테스트 API키
 
-let tossPayments = TossPayments("test_ck_vZnjEJeQVxROqX5KlRxM8PmOoBN0");
+let tossPayments = TossPayments("<api 키>");
 
 function pay() {
     let orderName = $('#name').val();// 펜션이름  
