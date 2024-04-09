@@ -345,10 +345,12 @@ public class HomeController {
       String userId = req.getParameter("userId");
       System.out.println("userID"+userId);
       
+      int id = ldao.getuserid(userId);
+      
       
       int n=0;
       if(idDisplay == null || idDisplay.equals("")) {
-         n = ddao.write(Integer.parseInt(pName),Integer.parseInt(userId),content,rating);
+         n = ddao.write(Integer.parseInt(pName),id,content,rating);
          System.out.println("n"+n);
       } else {
          n = ddao.rUpdate(content,rating,Integer.parseInt(idDisplay));

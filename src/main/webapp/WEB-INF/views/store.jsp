@@ -262,7 +262,7 @@ var weatherIcon = {
     '50' : 'fas fa-smog'
 }
 
-var apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+'Gyeonggi-do'+"&appid="+"api 키";
+var apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+'Gyeonggi-do'+"&appid="+"api키";
 $.ajax({
     url: apiURI,
     dataType: "json",

@@ -17,7 +17,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
     <title>로그인</title>
     
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://accounts.google.com/gsi/client"async defer></script>
   </head>
 
   <body>
@@ -37,7 +37,7 @@
           <h1>로그인</h1>
           <div class="social-icons">
           <div id="g_id_onload"
-			     data-client_id="api"
+			     data-client_id="구글 api"
 			     data-callback="handleCredentialResponse">
 			</div>
           	  <a data-type="icon" data-shape="circle" class="g_id_signin"></a>
@@ -78,7 +78,7 @@
 
 
 
-Kakao.init('api');
+Kakao.init(카카오 api');
 
 //카카오톡 로그인
 function kakaoLogin() {
@@ -176,7 +176,7 @@ loginBtn.addEventListener('click', () => {
  
 <script type="text/javascript">
 
-	var naver_id_login = new naver_id_login("api키 ", "http://localhost:8081/home");
+	var naver_id_login = new naver_id_login("HFRL2GVTFZRzg3tprpNh ", "http://localhost:8081/home");
 	var state = naver_id_login.getUniqState();
 	//naver_id_login.setButton("white", 2,40);
 	naver_id_login.setDomain(".service.com");

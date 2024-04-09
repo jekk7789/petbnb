@@ -253,7 +253,7 @@
 	
 	//테스트 API키
 	
-	let tossPayments = TossPayments("test..api키 설정");
+	let tossPayments = TossPayments("api 키 입력");
 	
 	function pay() {
 		let orderName = TitleName();

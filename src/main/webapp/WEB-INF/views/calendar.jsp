@@ -91,7 +91,7 @@ $(document).ready(function(){
     var calendarEl = $('#calendar')[0];      
     // full-calendar 생성하기      
     var calendar = new FullCalendar.Calendar(calendarEl, {   
-       googleCalendarApiKey: "<api>",
+       googleCalendarApiKey: "api키 입력",
         height: '700px',        
         expandRows: true, // 화면에 맞게 높이 재설정        
         slotMinTime: '08:00', // Day 캘린더에서 시작 시간        

@@ -81,8 +81,8 @@ $(document).ready(function(){
     let userid = $('#userid').val();
     let id = userid.split("@");
     $('#writer').val(id[0]);
-    idload();
-});
+
+})
 
 $("#do_write").on('click', function(){
     if($('#writer').val() === "" || $('#content').val() === "" || $('input[name=rating]:checked').val() === ""){
@@ -103,7 +103,7 @@ $("#do_write").on('click', function(){
                 content: $('#content').val(),
                 rating: $('input[name=rating]:checked').val(),
                 idDisplay: $('#idDisplay').val(),
-                userId: $('#loginid').val()
+                userId: $('#userid').val()
                 
             }, 
             dataType: 'json',
@@ -153,21 +153,6 @@ function roda(){
         }
    });
 } 
-function idload(){ // 로그인아이디 가져오기
-      $.ajax({
-         type:'post',
-         url:'idload',
-         data:{loginid:$('#userid').val()},
-         dataType:'json',
-         success:function(data){
-            console.log(data.id);
-            $("#loginid").val(data.id);
-         }
-      })
-               
-   }
-
-
 </script>
 </body>
 </html>

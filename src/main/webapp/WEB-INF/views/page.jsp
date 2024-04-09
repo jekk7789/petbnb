@@ -205,7 +205,7 @@
 
 
 <script src="https://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey= <!-- <api 키>  --> &libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d129ecc6b869c11eb7e257e7089bcf6b&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript"></script>
 <script>
 
