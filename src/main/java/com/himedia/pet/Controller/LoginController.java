@@ -126,8 +126,9 @@ public class LoginController {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         int n = ldao.log(email, password); // 사용자 인증을 시도합니다.
+        System.out.println("n: "+ n);
         int a= ldao.checkad(email);
-       System.out.println(a);
+        System.out.println(a);
         session.setAttribute("advertiser", a);
         
         if (n == 1) { 
@@ -182,6 +183,7 @@ public class LoginController {
         }
         
     }
+    
     
    
     

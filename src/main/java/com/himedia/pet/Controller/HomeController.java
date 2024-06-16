@@ -289,9 +289,11 @@ public class HomeController {
        jo.put("parking", ddto.parking);
        jo.put("wido",ddto.wido);
        jo.put("gyeongdo", ddto.gyeongdo);
-                
+       System.out.println("jo"+jo);         
       return jo.toJSONString();
+      
    }
+   
    
    @PostMapping("/doReview") // 리뷰 로딩
    @ResponseBody

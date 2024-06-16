@@ -37,7 +37,7 @@
           <h1>로그인</h1>
           <div class="social-icons">
           <div id="g_id_onload"
-			     data-client_id="구글 api"
+			     data-client_id="222829870582-u9cct90m652v0e2ev1gvmjncb5gns4f2.apps.googleusercontent.com"
 			     data-callback="handleCredentialResponse">
 			</div>
           	  <a data-type="icon" data-shape="circle" class="g_id_signin"></a>
@@ -78,7 +78,7 @@
 
 
 
-Kakao.init(카카오 api');
+Kakao.init('d129ecc6b869c11eb7e257e7089bcf6b');
 
 //카카오톡 로그인
 function kakaoLogin() {

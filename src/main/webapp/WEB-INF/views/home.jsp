@@ -276,7 +276,7 @@ function deleteCookie() {
 
 <!-- 네이버아디디로로그인 초기화 Script -->
 <script type="text/javascript">
-   var naver_id_login = new naver_id_login("네이버api", "http://localhost:8081/home");
+   var naver_id_login = new naver_id_login("HFRL2GVTFZRzg3tprpNh", "http://localhost:8081/home");
    var state = naver_id_login.getUniqState();
    naver_id_login.setDomain(".service.com");
    naver_id_login.setState(state);

@@ -74,60 +74,68 @@ public class noticeController {
 
 	@PostMapping("/upload")
 	public String donotice(@RequestParam(value = "id", required = false) String id, @RequestParam("title") String title,
-			@RequestParam("writer") String writer, @RequestParam("userid") String email,
-			@RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("detail") String detail,
-			@RequestParam(value = "views", required = false) String views, HttpServletRequest req,
-			HttpServletResponse res) throws IOException {
+	                       @RequestParam("writer") String writer, @RequestParam("userid") String email,
+	                       @RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("detail") String detail,
+	                       @RequestParam(value = "views", required = false) String views, HttpServletRequest req,
+	                       HttpServletResponse res) throws IOException {
 
-		// 현재 시간 생성
-		LocalDateTime currentTime = LocalDateTime.now();
+	    // 현재 시간 생성
+	    LocalDateTime currentTime = LocalDateTime.now();
 
-		// 현재 시간을 원하는 형식으로 변환하여 문자열로 사용
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		String created_at = currentTime.format(formatter);
+	    // 현재 시간을 원하는 형식으로 변환하여 문자열로 사용
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	    String created_at = currentTime.format(formatter);
 
-		System.out.println("id: " + id);
-		System.out.println("title: " + title);
-		System.out.println("file: " + file);
-		System.out.println("detail: " + detail);
-		req.setCharacterEncoding("UTF-8");
-		res.setContentType("text/html; charset=UTF-8");
+	    System.out.println("id: " + id);
+	    System.out.println("title: " + title);
+	    System.out.println("file: " + file);
+	    System.out.println("detail: " + detail);
+	    req.setCharacterEncoding("UTF-8");
+	    res.setContentType("text/html; charset=UTF-8");
 
-		String ori_file_name = null; // 파일이 선택되지 않았을 때의 파일 이름
+	    String ori_file_name = null; // 파일이 선택되지 않았을 때의 파일 이름
 
-		// 파일이 선택되었을 때만 파일을 저장하도록 처리
-		if (file != null && !file.isEmpty()) {
-			String savePath = "G:\\디지털java국비\\eclipse\\workspace\\pet\\src\\main\\resources\\static\\image";
-			String uploadFolderPath = Paths.get(savePath).toString();
-			System.out.println("uploadFolderPath:" + uploadFolderPath);
+	    // 파일이 선택되었을 때만 파일을 저장하도록 처리
+	    if (file != null && !file.isEmpty()) {
+	        // 절대 경로 지정
+	        String savePath = "/Users/umsanghyun/git/petbnb/src/main/resources/static/image"; // 절대 경로
+	        String uploadFolderPath = Paths.get(savePath).toString();
+	        System.out.println("uploadFolderPath:" + uploadFolderPath);
 
-			// 원본 파일 이름 가져오기
-			String n_image = file.getOriginalFilename();
-			// 덮어쓰기를 방지하기 위해 고유 파일 이름 생성
-			ori_file_name = System.currentTimeMillis() + "_" + n_image;
-			System.out.println(ori_file_name);
+	        // 디렉토리가 존재하지 않으면 생성
+	        File directory = new File(uploadFolderPath);
+	        if (!directory.exists()) {
+	            directory.mkdirs();
+	        }
 
-			// 서버에 파일 저장
-			String filePath = Paths.get(uploadFolderPath, ori_file_name).toString();
-			System.out.println("Uploaded File Path: " + filePath);
-			file.transferTo(new File(filePath));
-			System.out.println("Uploaded File Name: " + n_image);
-		} else if (id != null && !id.isEmpty()) {
-			// 파일이 선택되지 않은 경우, 기존 파일 이름을 유지하기 위해 이전 파일 이름을 가져옵니다.
-			noticeDTO existingNotice = ndao.textView(Integer.parseInt(id));
-			ori_file_name = existingNotice.getImage(); // 기존 파일명 가져오기
-		}
+	        // 원본 파일 이름 가져오기
+	        String n_image = file.getOriginalFilename();
+	        // 덮어쓰기를 방지하기 위해 고유 파일 이름 생성
+	        ori_file_name = System.currentTimeMillis() + "_" + n_image;
+	        System.out.println(ori_file_name);
 
-		int userid = ldao.getuserid(email);
-		int viewsInt = (views != null && !views.isEmpty()) ? Integer.parseInt(views) : 0;
-		int n;
-		if (id == null || id.isEmpty()) {
-			n = ndao.addNotice(title, userid, ori_file_name, detail, viewsInt, created_at);
-		} else {
-			n = ndao.modify(Integer.parseInt(id), title, userid, ori_file_name, detail);
-		}
-		return "redirect:/notice";
+	        // 서버에 파일 저장
+	        String filePath = Paths.get(uploadFolderPath, ori_file_name).toString();
+	        System.out.println("Uploaded File Path: " + filePath);
+	        file.transferTo(new File(filePath));
+	        System.out.println("Uploaded File Name: " + n_image);
+	    } else if (id != null && !id.isEmpty()) {
+	        // 파일이 선택되지 않은 경우, 기존 파일 이름을 유지하기 위해 이전 파일 이름을 가져옵니다.
+	        noticeDTO existingNotice = ndao.textView(Integer.parseInt(id));
+	        ori_file_name = existingNotice.getImage(); // 기존 파일명 가져오기
+	    }
+
+	    int userid = ldao.getuserid(email);
+	    int viewsInt = (views != null && !views.isEmpty()) ? Integer.parseInt(views) : 0;
+	    int n;
+	    if (id == null || id.isEmpty()) {
+	        n = ndao.addNotice(title, userid, ori_file_name, detail, viewsInt, created_at);
+	    } else {
+	        n = ndao.modify(Integer.parseInt(id), title, userid, ori_file_name, detail);
+	    }
+	    return "redirect:/notice";
 	}
+
 
 	@GetMapping("/notice")
 	public String notice(HttpServletRequest req, Model model) {
@@ -172,7 +180,9 @@ public class noticeController {
 	@ResponseBody
 	public String noticelist(HttpServletRequest req) {
 		String email = req.getParameter("email");
+		System.out.println("email="+email);
 		int id = ldao.getuserid(email);
+		System.out.println("id="+id);
 		String pageno = "1";
 		if (req.getParameter("page") != null && !req.getParameter("page").equals("")) {
 			pageno = req.getParameter("page");

@@ -249,6 +249,7 @@ $(document)
 	   }).done(function() {
 	      $('#wido').val(wido);  
 	      $('#gyeongdo').val(gyeongdo);
+	      console.log("wido: "+wido, "gyeongdo: "+ gyeongdo)
 	      map();
 	      map2();
 	      console.log($('#category').val())
@@ -480,14 +481,14 @@ function chekJjim(){
        
        var map = new kakao.maps.Map(container, options);
        
-        //지도 컨트롤
-      var mapTypeControl = new kakao.maps.MapTypeControl();
+       //지도 컨트롤
+       var mapTypeControl = new kakao.maps.MapTypeControl();
        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
        var zoomControl = new kakao.maps.ZoomControl();
        
        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
        var markerPosition  = new kakao.maps.LatLng($('#wido').val(),$('#gyeongdo').val());
-       console.log(markerPosition);
+       console.log("markerPosition"+markerPosition);
        var marker = new kakao.maps.Marker({
            position: markerPosition
        });
@@ -509,7 +510,7 @@ function map2(){
       center: new kakao.maps.LatLng($('#wido').val(),$('#gyeongdo').val()),
         level: 5 // 지도의 확대 레벨
     }; 
-    console.log(mapContainer2);
+    console.log("mapContainer2"+mapContainer2);
     
  // 지도를 생성합니다    
     var map2 = new kakao.maps.Map(mapContainer2, mapOption2); 
