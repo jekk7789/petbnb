@@ -43,8 +43,7 @@
                 <div class="writer">글쓴이</div>
                 <div class="date">작성일</div>
                 <div class="count">조회</div>
-            </div >
-            
+            </div>
         </div>
         <div class="board_page">
             <a href="#" id="first" class="bt first"><<</a>

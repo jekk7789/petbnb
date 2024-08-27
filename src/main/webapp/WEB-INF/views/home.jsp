@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>도그비앤비</title>
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+   	<link rel="preconnect" href="https://fonts.googleapis.com">
+   	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   	<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -17,16 +17,11 @@
     <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fittext/1.2.0/jquery.fittext.min.js"></script>
-    
-    
-    
+
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="70">
-    
     <section class="home svg_shape bg_image" id="home" style="background-image: url(image/배경.png)">
-        
         <div class="full_height">
-            
             <nav class="navbar navbar-default nav_scroll navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
@@ -37,44 +32,38 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-
                         <!-- LOGO -->
-                        <a class="navbar-brand" href="/popupContent" style="color: #B29079;">petB&B</a>
-                        
+                        <a class="navbar-brand" href="/popupContent" style="color: #B29079; top: 10px;">petB&B</a>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <c:choose>
                                   <c:when test="${not empty email}">
-                                      <a href="/logout" style="color: #B29079;">logout</a>
+                                      <a href="/logout" style="color: #B29079; top: 5px;">logout</a>
                                   </c:when>
                                   <c:otherwise>
-                                      <a href="/login" class="btn-11" style="color: #B29079;">login</a>
+                                      <a href="/login" class="btn-11" style="color: #B29079; top: 5px;">login</a>
                                   </c:otherwise>
                               </c:choose>
                             </li>
-                            <li >
-                                <a href="/notice" style="color: #B29079;">notice</a>
+                            <li>
+                                <a href="/notice" style="color: #B29079; top: 5px;">notice</a>
                             </li>
                             <li>
-                                <a href="/Qna" style="color: #B29079;">Q&A</a>
+                                <a href="/Qna" style="color: #B29079; top: 5px;">Q&A</a>
                             </li>
-                            <li >
-                                <a href="/calendar" style="color: #B29079;">Calendar</a>
-                            </li>
-                     
-                     <c:if test="${not empty email}">
                             <li>
-                                <a href="/mypage" style="color: #B29079;">mypage</a>
+                                <a href="/calendar" style="color: #B29079; top: 5px;">Calendar</a>
                             </li>
+                     		<c:if test="${not empty email}">
+                            	<li><a href="/mypage" style="color: #B29079; top: 5px;">mypage</a></li>
                             </c:if>
-                            
-                            <li style="margin-bottom: 10px;"> 
+                            <li style="margin-bottom: 10px; right: 15px; bottom: 2px;"> 
                                 <form method="get" action="search">
                                     <div class="search">
                                         <input type="text" name="search" />
-                                        <div class="material-icons"><i class="fas fa-search"></i></div>
+                                        <div class="material-icons"><i class="fas fa-search" style="right: 10px;"></i></div>
                                     </div>
                                 </form>
                             </li>
@@ -147,8 +136,7 @@
                   </span>
                   <span class="frame-btn__solid"></span>
                   <span class="frame-btn__text">숙박시설</span>
-               </a>  
-               
+               </a>
                <a class="frame-btn" href="/itemList">
                   <span class="frame-btn__outline frame-btn__outline--tall">
                      <span class="frame-btn__line frame-btn__line--tall"></span>
@@ -163,17 +151,16 @@
                </a> 
             </div>
             </nav>
-            
             <div class="display-table">
                 <div class="display-table-cell">
                     <div class="container">
                         <h3>
                         <c:choose>
-                      <c:when test="${not empty email}">
+                      		<c:when test="${not empty email}">
                              
-                          <p>${email}님 환영합니다.</p>
-                      </c:when>
-                  </c:choose>
+                          	<p>${email}님 환영합니다.</p>
+                      		</c:when>
+                  		</c:choose>
                         <h1 class="cd-headline letters rotate-2 is-full-width">
                             <span class="cd-words-wrapper">
                                 <b class="is-visible">반려동물</b>
@@ -186,9 +173,7 @@
             </div>
             <div class="container go_down_container">
                 <div class="go_down">
-                    <a href="#about" class="smooth_scroll">
-                        
-                    </a>
+                    <a href="#about" class="smooth_scroll"></a>
                 </div>
             </div>
         </div>
@@ -198,7 +183,6 @@
            </span>
         </div>
     </section>
-    
 </body>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.0/kakao.min.js"

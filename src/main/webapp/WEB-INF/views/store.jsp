@@ -17,10 +17,6 @@
 <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
 <title>검색 결과 입니다</title>
 </head>
-<style>
-
-</style>
-</head>
 
 <body>
 <header id="herder">
@@ -69,7 +65,7 @@
          </div>
          <button id=citysearch>&#128269;</button>      
    </div> 
- </form>
+</form>
    
 <div class=detail>
 	<table >
@@ -85,7 +81,6 @@
 			</tr>
 		</c:forEach>
 	</table>  
- 
 
 <div class=page>
   <button id=first>맨처음</button>
